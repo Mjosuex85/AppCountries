@@ -2,38 +2,41 @@ const axios = require('axios')
 const { Country, Activities } = require('../db')
 
 const url = "https://restcountries.com/v3/all"
+/* const url_name = `https://restcountries.com/v3/name/${name}` */
 
-const getCountries = async () => {
-    const countries = await axios.get(url)
+const getCountries = async (name) => {
+
+    const countries = !name ? await axios.get(url) : await axios.get(url_name)
     const data = countries.data
     
     return data.map(country => {
-    
-    return {
-        id: country.cca3,
-        name: country.name.common,
-        flags: country.flags[0],
-        continents: country.continents[0],
-        capital: country.hasOwnProperty("capital") ? country.capital[0] : "No Capital",
-        subregion: country.subregion,
-        area: country.area,
-        population: country.population,
-    }})
+        return {
+            id: country.cca3,
+            name: country.name.common,
+            flags: country.flags[0],
+            continents: country.continents[0],
+            capital: country.hasOwnProperty("capital") ? country.capital[0] : "No Capital",
+            subregion: country.subregion,
+            area: country.area,
+            population: country.population,
+        }
+    });
+};
 
-}
+const byId= async (id) => {
+    const country_id = await Country.findOne({
+        where: {
+            id: id
+        },
+        include: {
+            model: Activities, through: {attributes: []}
+        }
+    })
 
-const byName = async (name) => {
-    const country = await Country.findOne({where: {name: name}})
-
-    return country
-}
-
-const byCode = async (code) => {
-
-}
+    return country_id
+};
 
 module.exports = {
     getCountries,
-    byName,
-    byCode
-}
+    byId
+};

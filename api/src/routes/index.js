@@ -6,7 +6,7 @@ const activities = require('./activities.js')
 
 const router = Router();
 
-router.use('/', countries)
+router.use('/countries', countries)
 router.use('/', activities)
 // Configurar los routers   
 // Ejemplo: router.use('/auth', authRouter);

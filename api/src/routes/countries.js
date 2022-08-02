@@ -1,17 +1,29 @@
 const { Router } = require('express')
 const router = Router()
 const { Country, Activities } = require('../db')
-const { getCountries, byName, byCode } = require('../controllers/countries')
+const { getCountries, byId } = require('../controllers/countries')
+const { Op } = require('sequelize')
 
 
-router.get('/countries', async (req, res) => {
-    const { name } = req.query
-    try {
+router.get('/', async (req, res) => {
+     const { name } = req.query
+    try { 
         const api_countries = await getCountries()
-        await Country.bulkCreate(api_countries)
-        const allCountries = await Country.findAll()
-    
-        name ? res.send(byName(name)) : res.status(200).send(allCountries)
+        const x = await Country.findAll()
+        const allCountries = x.length === 0 
+        ? await Country.bulkCreate(api_countries)
+        : await Country.findAll({})
+
+        const countries = name ? await Country.findAll({
+            where: {
+                name: {
+                    [Op.iLike]: `%${name}%`
+                }
+            }
+        })
+        : await Country.findAll()
+
+        res.status(200).send(countries)
     }
 
     catch(error) {
@@ -23,19 +35,14 @@ router.get('/countries', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
-        const coutry_id = await Country.findByPk(id)
-
+        const coutry_id = await byId(id)
         res.send(coutry_id)
     }
-
-
     catch(error) {
         console.log(error)
-        res.send("error")
+        res.send("NO SE ENCUENTRA EL ID")
     }
-
 })
-
 
 
 module.exports = router
