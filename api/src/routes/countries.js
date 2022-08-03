@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 const { Country, Activities } = require('../db')
-const { getCountries, byId } = require('../controllers/countries')
+const { getCountries, byId, countriesDB, include_activities } = require('../controllers/countries')
 const { Op } = require('sequelize')
 
 
@@ -14,15 +14,11 @@ router.get('/', async (req, res) => {
         ? await Country.bulkCreate(api_countries)
         : await Country.findAll({})
 
-        const countries = name ? await Country.findAll({
-            where: {
-                name: {
-                    [Op.iLike]: `%${name}%`
-                }
-            }
-        })
-        : await Country.findAll()
+        const countries = name ? await countriesDB(name)
+        : await Country.findAll(include_activities)
 
+        countries.length === 0 ? 
+        res.send("NO SE ENCUENTRA EL PAIS") :
         res.status(200).send(countries)
     }
 

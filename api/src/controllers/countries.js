@@ -1,13 +1,24 @@
 const axios = require('axios')
 const { Country, Activities } = require('../db')
+const { Op } = require('sequelize')
 
 const url = "https://restcountries.com/v3/all"
-/* const url_name = `https://restcountries.com/v3/name/${name}` */
+
+
+const include_activities = {
+    include: {
+        model: Activities, 
+        attributes: ["name", "duration", "season", "difficulty"],
+        through: {attributes: []}
+    }
+}
 
 const getCountries = async (name) => {
-    const countries = !name ? await axios.get(url) : await axios.get(url_name)
+    const countries = await axios.get(url)
     const data = countries.data
     
+    // the conten of some subregions keys are null, so it need to be check the info sended to the client
+
     return data.map(country => {
         return {
             id: country.cca3,
@@ -15,27 +26,44 @@ const getCountries = async (name) => {
             flags: country.flags[0],
             continents: country.continents[0],
             capital: country.hasOwnProperty("capital") ? country.capital[0] : "No Capital",
-            subregion: country.subregion,
+            subregion: country.subregion, // <-------- TO CHECK
             area: country.area,
             population: country.population,
         }
     });
 };
 
+
+const countriesDB = async (name) => {
+    const countries = await Country.findAll({
+        where: {
+            name: {
+                [Op.iLike]: `%${name}%`
+            }
+        },
+        include: include_activities.include
+    })
+
+    return countries
+}
+
+
 const byId= async (id) => {
     const country_id = await Country.findOne({
         where: {
             id: id
         },
-        include: {
-            model: Activities, through: {attributes: []}
-        }
+        include: include_activities.include
     })
 
-    return country_id
+    const country = country_id === null ? "DIRECCIONAR A 404" : country_id
+    return country
 };
+
 
 module.exports = {
     getCountries,
-    byId
+    byId,
+    countriesDB,
+    include_activities
 };

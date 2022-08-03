@@ -6,7 +6,7 @@ router.post('/activities', async (req, res) => {
     const { name, difficulty, duration, season } = req.body
     const { countries } = req.body  // va a recibir un array con los paises
 
-    const activity = {   
+    try {const activity = {   
         name,
         difficulty,
         duration, 
@@ -21,11 +21,17 @@ router.post('/activities', async (req, res) => {
         }
     })
     
-    const postActivity = await add_countries.forEach((c) => {
+    await add_countries.forEach((c) => {
         c.addActivities(db_activity)
     })
 
-    res.send(postActivity)
+    res.send(activity)
+    }
+
+    catch(error) {
+        console.log(error)
+        res.status(404).json(error.parent.detail)
+    }
 
 })
 
