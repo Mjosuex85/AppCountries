@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     try { 
         const api_countries = await getCountries()
         const x = await Country.findAll()
-        const allCountries = x.length === 0 
+        x.length === 0 
         ? await Country.bulkCreate(api_countries)
         : await Country.findAll({})
 
@@ -43,6 +43,5 @@ router.get('/:id', async (req, res) => {
         res.send("NO SE ENCUENTRA EL ID")
     }
 })
-
 
 module.exports = router

@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
     sequelize.define('activities', {
         name: {
           type: DataTypes.STRING,
+          unique: true
         },
 
         difficulty: {   
@@ -18,7 +19,7 @@ module.exports = (sequelize) => {
         },
 
         season: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING,  // debería ser un array
             allowNull: false
         },
         

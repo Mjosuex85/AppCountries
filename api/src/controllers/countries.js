@@ -5,7 +5,6 @@ const url = "https://restcountries.com/v3/all"
 /* const url_name = `https://restcountries.com/v3/name/${name}` */
 
 const getCountries = async (name) => {
-
     const countries = !name ? await axios.get(url) : await axios.get(url_name)
     const data = countries.data
     
