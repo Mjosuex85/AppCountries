@@ -1,6 +1,7 @@
 import axios from "axios";
 export const REQUEST_COUNTRIES = "REQUEST_COUNTRIES"
 export const COUNTRIES_SEARCHED = "COUNTRIES_SEARCHED"
+export const ALL_ACTIVITIES = "ALL_ACTIVITIES"
 
 const url = `http://localhost:3005/countries`
 
@@ -34,5 +35,21 @@ export function byName(name) {
             console.log(error)
         }
     };
+};
+
+export function allActivities() {
+    return async function(dispatch) {
+        try {
+            const activities = await axios.get("http://localhost:3005/activities")
+        return dispatch({
+            type: ALL_ACTIVITIES,
+            payload: activities.data
+        })
+        }
+
+        catch(error) {
+            console.log(error)
+        }
+    }
 };
 

@@ -33,7 +33,22 @@ router.post('/activities', async (req, res) => {
         res.status(404).json(error.parent.detail)
     }
 
-})
+});
+
+router.get("/activities", async (req, res) => {
+    try {
+        const activities = await Activities.findAll({
+        attributes: ['name']
+    })
+        res.send(activities)
+    }
+
+    catch(error){
+        console.log(error)
+    }
+
+    
+});
 
 
 module.exports = router

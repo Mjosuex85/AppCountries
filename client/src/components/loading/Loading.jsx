@@ -1,10 +1,11 @@
 import React from 'react'
 import style from './loading.modudle.css'
+import gif from './icons8-mapa.gif'
 
 const Loading = () => {
   return (
-    <div className={style.preloader}>
-      <h2 >Cargando...</h2>
+    <div>
+      <img src={gif} alt="" width="80" height="80" />
     </div>
   )
 };

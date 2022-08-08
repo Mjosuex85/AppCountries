@@ -1,4 +1,7 @@
-import { REQUEST_COUNTRIES,COUNTRIES_SEARCHED } from './actions'
+import { REQUEST_COUNTRIES,
+        COUNTRIES_SEARCHED,
+         ALL_ACTIVITIES 
+} from './actions'
 
 const initialState = {
     allCountries: [],
@@ -20,6 +23,12 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 allCountries: action.payload
+            };
+        
+        case ALL_ACTIVITIES:
+            return {
+                ...state,
+                activities: action.payload
             }
     
     default: {

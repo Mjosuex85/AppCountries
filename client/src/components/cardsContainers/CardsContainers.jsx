@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { allCountries } from '../../store/actions.js'
 import style from './cardsContainers.module.css'
 import Loading from '../loading/Loading.jsx'
+import Filters from '../filters/Filters'
 
 const CardsContainers = () => {
     const countries = useSelector((state) => state.allCountries)
@@ -26,9 +27,14 @@ const CardsContainers = () => {
     } */
 
   return (
+    <div>
+        <div>
+        <Filters/>
+        </div>
     <div className={style.container} >
-
-        {countries.length === 0 ? <Loading/> : countries.slice(start, finish).map((country, index) => {
+        
+        {countries.length === 0 ? <Loading/> : 
+        countries.slice(start, finish).map((country, index) => {
             return <CountryCard
                 key={index}
                 id={country.id}
@@ -43,6 +49,7 @@ const CardsContainers = () => {
                 season={country.activities.map(s => s.season)}
             />
         })  }
+    </div>
     </div>
   )
 }
