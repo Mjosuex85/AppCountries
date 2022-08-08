@@ -1,0 +1,18 @@
+.container {
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgb(121, 120, 120);
+    text-align: center;
+    width: 20%;
+    height: 6%;
+}
+
+.image {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.image:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

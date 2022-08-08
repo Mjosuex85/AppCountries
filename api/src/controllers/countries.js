@@ -11,9 +11,9 @@ const include_activities = {
         attributes: ["name", "duration", "season", "difficulty"],
         through: {attributes: []}
     }
-}
+};
 
-const getCountries = async (name) => {
+const getCountries = async () => {
     const countries = await axios.get(url)
     const data = countries.data
     
@@ -23,7 +23,7 @@ const getCountries = async (name) => {
         return {
             id: country.cca3,
             name: country.name.common,
-            flags: country.flags[0],
+            flags: country.flags[1],
             continents: country.continents[0],
             capital: country.hasOwnProperty("capital") ? country.capital[0] : "No Capital",
             subregion: country.subregion, // <-------- TO CHECK
@@ -33,7 +33,6 @@ const getCountries = async (name) => {
     });
 };
 
-
 const countriesDB = async (name) => {
     const countries = await Country.findAll({
         where: {
@@ -41,12 +40,14 @@ const countriesDB = async (name) => {
                 [Op.iLike]: `%${name}%`
             }
         },
-        include: include_activities.include
+        include: include_activities.include,
+        order: [
+            ["name", "ASC"]
+        ]
     })
 
     return countries
-}
-
+};
 
 const byId= async (id) => {
     const country_id = await Country.findOne({

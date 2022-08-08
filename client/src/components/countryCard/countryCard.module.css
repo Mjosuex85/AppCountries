@@ -1,0 +1,20 @@
+.containrer {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgb(121, 120, 120);
+    margin: 0px 10px;
+    width: 28%;
+    height: 40%;
+    margin-top: 10px;
+}
+
+.containrer:hover {
+ transform: scale(1.1);
+ cursor: pointer;
+}
+
+.image {
+    display: flex;
+    border-radius: 3px;
+}
+	
