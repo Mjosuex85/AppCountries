@@ -2,6 +2,8 @@ import axios from "axios";
 export const REQUEST_COUNTRIES = "REQUEST_COUNTRIES"
 export const COUNTRIES_SEARCHED = "COUNTRIES_SEARCHED"
 export const ALL_ACTIVITIES = "ALL_ACTIVITIES"
+export const BY_CONTINENT = "BY_CONTINENT"
+export const BY_ACTIVITIES = "BY_ACTIVITIES"
 
 const url = `http://localhost:3005/countries`
 
@@ -52,4 +54,18 @@ export function allActivities() {
         }
     }
 };
+
+export function byContinente(payload) {
+    return {
+        type: BY_CONTINENT,
+        payload
+    }
+};
+
+export function byActivities(payload) {
+    return {
+        type: BY_ACTIVITIES,
+        payload,
+    }
+}
 

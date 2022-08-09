@@ -1,6 +1,11 @@
 .container {
+    display: flex;
     background-color: #41E1D1;
     padding: 8px;
     /* border: solid 1px gray; */
     margin-bottom: 20px;
+}
+
+.title {
+    margin-left: 6%;
 }

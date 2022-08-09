@@ -3,8 +3,18 @@
     border-radius: 5px;
     box-shadow: 0 4px 8px rgb(121, 120, 120);
     margin: 0px 10px;
-    width: 50%;
+    width: fit-content;
     height: 40%;
     margin-top: 10px;
     text-align: right;
+}
+
+.btn {
+    border:  none;
+    background-color: transparent;
+    font-size: 15px;
+}
+
+.container:hover {
+    transform: scale(1.1);
 }

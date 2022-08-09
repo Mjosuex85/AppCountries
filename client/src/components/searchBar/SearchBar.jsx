@@ -1,6 +1,6 @@
 import React from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import { useState, Dispatch } from 'react'
+import { useDispatch} from 'react-redux'
+import { useState} from 'react'
 import { byName } from '../../store/actions.js'
 
 const SearchBar = () => {

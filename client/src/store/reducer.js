@@ -1,6 +1,8 @@
 import { REQUEST_COUNTRIES,
         COUNTRIES_SEARCHED,
-         ALL_ACTIVITIES 
+        ALL_ACTIVITIES,
+        BY_CONTINENT,
+        BY_ACTIVITIES
 } from './actions'
 
 const initialState = {
@@ -29,7 +31,23 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 activities: action.payload
+            };
+        
+        case BY_CONTINENT:
+            const continents = state.allCountriesCopy.filter(c => c.continents === action.payload)
+            return {
+                ...state,   
+                allCountries: [...continents]
             }
+
+        case BY_ACTIVITIES:
+            const activities = state.allCountriesCopy.filter(e => e.activities[0])
+            const activities_Filtred = activities.filter(e => e.activities[0].name)
+            console.log(activities_Filtred)
+            return {
+                ...state,
+                allCountries: [...activities_Filtred]
+            } 
     
     default: {
         return state
