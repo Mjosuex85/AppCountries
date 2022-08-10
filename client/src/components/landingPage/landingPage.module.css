@@ -1,0 +1,10 @@
+.container {
+    margin-top: 12%;
+    text-align:  center;
+    justify-content: center;
+    width: 100%;
+}
+
+.image:hover {
+    transform: scale(1.1);
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import style from './filters.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect} from 'react'
-import { allActivities, byActivities } from '../../store/actions'
+import { allActivities, byActivities, asc, desc, population,} from '../../store/actions'
 
 const Filters = () => {
 
@@ -15,21 +15,30 @@ const Filters = () => {
 
     function activityFilter(event) {
       event.preventDefault()
-      console.log(event.target.value)
       dispatch(byActivities(event.target.value))
+    }
+    
+    function asc_abc(event) {
+      event.preventDefault()
+      event.target.value === "Name: Asc" ?
+      dispatch(asc()) : dispatch(desc())
+    }
+
+    function orderPopulation(event) {
+      event.preventDefault()
+      dispatch(population(event.target.value))
     }
 
 
   return (
-    
     <div className={style.container}>
         <div>
             <select className={style.filters} name="" id="">
               <option disabled={false}> Order by...</option>
-              <option> Name: Asc </option>
-              <option> Name: Desc </option>
-              <option> Population: high to low </option>
-              <option> Population: low to low </option>
+              <option onClick={(e) => asc_abc(e)}> Name: Asc </option>
+              <option onClick={(e) => asc_abc(e)}> Name: Desc </option>
+              <option onClick={(e) => orderPopulation(e)}> Population: high to low </option>
+              <option onClick={(e) => orderPopulation(e)}> Population: low to high </option>
             </select>
 
             <select className={style.filters} name="" id="">

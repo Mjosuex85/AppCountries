@@ -5,15 +5,16 @@ import antarctica from '../../images/antartida.png'
 import asia from '../../images/asia.png'
 import oceania from '../../images/australia.png'
 import europe from '../../images/europe.png'
+import northamerica from '../../images/northamerica.png'
 import style from './continents.module.css'
-import { useState } from 'react'
 import { byContinente } from '../../store/actions.js'
 import { useDispatch } from 'react-redux'
 
-const continents = [africa, southamerica, antarctica, asia, oceania, europe]
-const names = ["Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
-const width = 140
-const height = 110
+
+export const continents = [northamerica, africa, southamerica, antarctica, asia, oceania, europe]
+export const names = [ "North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe",]
+const width = 130
+const height = 100
 
 const Continents = () => {
 

@@ -12,7 +12,7 @@ const CardsContainers = () => {
     const dispatch = useDispatch()
 
     const [start, setStart] = useState(0)
-    const [finish, setFinish] = useState(9)
+    const [finish, setFinish] = useState(250)
 
     useEffect(() => {
         dispatch(allCountries())

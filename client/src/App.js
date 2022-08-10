@@ -1,18 +1,16 @@
-import './App.css';
-import Countries from './components/countries/Countries.jsx'
-import Continents from './components/continents/Continents.jsx'
-import NavBar from './components/NavBar/NavBar';
+import LandingPage from './components/landingPage/LandingPage.jsx'
+import Home from './components/Home/Home.jsx'
+import CountryDetails from './components/countryDetails/CountryDetails.jsx';
+import { BrowserRouter, Route } from 'react-router-dom';  
 
 
 function App() {
   return (
-    <div /* className="App" */>
-      <NavBar/>
-      <div className="App" >
-        <Continents/>
-        <Countries/>
-      </div>
-    </div>
+      <BrowserRouter>
+        <Route exact path="/" component={LandingPage}/>
+        <Route exact path="/home" component={Home}/>
+        <Route exact path="/home/:id" render={({match}) => <CountryDetails id={match.params.id}/>}/>
+      </BrowserRouter>
   );
 }
 
