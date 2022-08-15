@@ -1,12 +1,8 @@
-import React from 'react'
-import style from './worldMap.module.css'
-
-
-const WorldMap = () => {
-  return (
-    <div className={style.container}>
-<svg  version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1280.000000pt" height="770.000000pt" 
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="1280.000000pt" height="770.000000pt" viewBox="0 0 1280.000000 770.000000"
  preserveAspectRatio="xMidYMid meet">
 <metadata>
 Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -18,10 +14,8 @@ fill="#000000" stroke="none">
 -54 -103 51 -209 154 -156 16 8 34 23 39 32 9 15 10 14 11 -10 0 -57 60 -117
 115 -117 52 0 115 60 115 109 0 21 1 21 25 5 39 -25 103 -13 138 26 60 67 20
 176 -68 185 -22 3 -47 2 -55 -2z"/>
-
 <path d="M5057 7560 c-33 -26 -48 -79 -36 -124 23 -82 126 -107 189 -45 25 26
-30 38 30 79 0 41 -5 53 -31 79 -26 26 -38 31 -78 31 -34 0 -56 -6 -74 -20z" />
-
+30 38 30 79 0 41 -5 53 -31 79 -26 26 -38 31 -78 31 -34 0 -56 -6 -74 -20z"/>
 <path d="M8374 7520 c-37 -15 -64 -59 -64 -104 0 -103 117 -151 191 -80 91 87
 -9 232 -127 184z"/>
 <path d="M4842 7494 c-40 -20 -62 -60 -62 -110 0 -52 53 -104 107 -104 49 0
@@ -981,8 +975,3 @@ c30 16 57 61 57 96 0 55 -54 115 -105 115 -14 0 -13 4 4 26 27 34 28 110 3
 -48 -6 -76 -34z"/>
 </g>
 </svg>
-    </div>
-  )
-}
-
-export default WorldMap

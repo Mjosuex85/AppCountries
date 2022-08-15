@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         : await Country.findAll(include_activities)
 
         countries.length === 0 ? 
-        res.send("NO SE ENCUENTRA EL PAIS") :
+        res.send([]) :
         res.status(200).send(countries)
     }
 

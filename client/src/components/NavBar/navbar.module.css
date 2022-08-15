@@ -1,11 +1,13 @@
 .container {
     display: flex;
-    background-color: #41E1D1;
+    flex-direction: row;
+    justify-content: space-around;
+    background-image: -webkit-image-set("https://images4.alphacoders.com/667/667235.jpg");
     padding: 8px;
-    /* border: solid 1px gray; */
     margin-bottom: 20px;
 }
 
 .title {
     margin-left: 6%;
+    margin-top: 20px;
 }

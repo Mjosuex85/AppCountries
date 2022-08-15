@@ -1,0 +1,16 @@
+.container {
+    background-color: #00A0C0;
+    margin-top: 20%;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgb(200, 196, 196);
+    margin: 0px 10px;
+    width: 87%;
+    height: 29px;
+    margin-top: 10px;
+}
+
+.container:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

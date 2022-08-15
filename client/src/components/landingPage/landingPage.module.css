@@ -1,10 +1,33 @@
 .container {
+    display: flex;
     margin-top: 12%;
     text-align:  center;
     justify-content: center;
     width: 100%;
+    justify-content: space-evenly;
+}
+
+.box {
+    background-color: transparent;
+    margin-top: 5%;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgb(121, 120, 120);
+    margin: 0px 10px;
+    width: fit-content;
+    margin-top: 10px;
+    
+}
+
+.image {
+     transition: all .3s ease-in-out;   
 }
 
 .image:hover {
     transform: scale(1.1);
+    border-radius: 10px;
+    transition: 0.5s;
+    
 }
+
+

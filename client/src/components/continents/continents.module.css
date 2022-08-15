@@ -1,9 +1,10 @@
 .container {
+    background-color: white;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
     text-align: center;
-    width: 20%;
+    width: 101%;
     height: 6%;
 }
 

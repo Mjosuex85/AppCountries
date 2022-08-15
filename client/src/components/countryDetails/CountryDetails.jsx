@@ -13,25 +13,35 @@ const CountryDetails = ({id}) => {
         dispatch(byId(id))
     }, [dispatch])
 
+    function back() {
+        window.history.back() 
+      }
+
   return (
+    <>
     
-    <div className={style.container}>
-        <h1>{details.name}</h1>
-        <img src={details.flags} alt="Not Found"/>
-        <h3> Population: {details.population}</h3>
-        <h3> Area: {details.area}</h3>
-        <h3> Continent: {details.continents}</h3>
-        <h3> Capital: {details.capital}</h3>
+                 <button onClick={(e) => back(e)}> Back </button>
+    <div className={style.container2}>
+       
+        <div className={style.container1}> 
+             <h1 className={style.name}>{details.name}</h1>
+             <img className={style.image} src={details.flags} alt="Not Found"/>
+             <h3> Population: ---- {Intl.NumberFormat('de-DE').format(details.population)}</h3>
+             <h3> Area: ---- {Intl.NumberFormat('de-DE').format(details.area)} km2 </h3>
+             <h3> Continent: ---- {details.continents}</h3>
+             <h3> Capital: ---- {details.capital}</h3>
+        </div>
             
-            <div> 
+        <div className={style.activities}> 
                 {details.activities?.map((a, i) => { 
                     return <Activities key={i} name={a.name} 
                     difficulty={a.difficulty} 
                     duration={a.duration}
                     season={a.season} />}
                 )}
-            </div>
+        </div>
     </div>
+    </>
   )
 }
 

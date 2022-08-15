@@ -9,16 +9,3 @@
     margin-top: 10px;
     text-align: right;
 }
-
-.filterA {
-    margin-right: 5px;
-}
-
-.filters {
-    border-radius: 3px;
-    border: none
-}
-
-.filters:hover {
-    transform: scale(1.1);
-}

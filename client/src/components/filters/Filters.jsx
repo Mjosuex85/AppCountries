@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect} from 'react'
 import { allActivities, byActivities, asc, desc, population,} from '../../store/actions'
 
-const Filters = () => {
+const Filters = (props) => {
 
     const dispatch = useDispatch()
     const activities = useSelector((state) => state.activities)
@@ -14,21 +14,26 @@ const Filters = () => {
     }, [dispatch])
 
     function activityFilter(event) {
+      props.changeStart(0)
+      props.changeFinish(10)
       event.preventDefault()
       dispatch(byActivities(event.target.value))
-    }
+    };
     
     function asc_abc(event) {
+      props.changeStart(0)
+      props.changeFinish(10)
       event.preventDefault()
       event.target.value === "Name: Asc" ?
       dispatch(asc()) : dispatch(desc())
-    }
+    };
 
     function orderPopulation(event) {
+      props.changeStart(0)
+      props.changeFinish(10)
       event.preventDefault()
       dispatch(population(event.target.value))
-    }
-
+    };
 
   return (
     <div className={style.container}>
@@ -51,6 +56,6 @@ const Filters = () => {
         </div>
     </div>
   )
-}
+};
 
 export default Filters

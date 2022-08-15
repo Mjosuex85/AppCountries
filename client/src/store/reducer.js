@@ -6,15 +6,17 @@ import { REQUEST_COUNTRIES,
         ORDER_ASC,
         ORDER_DESC,
         POPULATION,
-        BY_ID
+        BY_ID,
+        RESET
 } from './actions'
 
 const initialState = {
     allCountries: [],
     allCountriesCopy: [],
     activities: [],
-    countryDetails: []
-}
+    countryDetails: [],
+    paginate: {start: 0, finish: 10}
+};
 
 export default function reducer(state = initialState, action) {
     switch(action.type) {
@@ -42,15 +44,14 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,   
                 allCountries: [...continents]
+
             };
 
         case BY_ACTIVITIES:
-            const activities = state.allCountriesCopy.filter(e => e.activities[0])
-            const activities_Filtred = activities.filter(e => e.activities[0].name === action.payload)
-            console.log(activities_Filtred)
+            const activities = state.allCountriesCopy.filter((c) => c.activities.find((c) => c.name === action.payload))
             return {
                 ...state,
-                allCountries: [...activities_Filtred]
+                allCountries: [...activities]
             };
 
         case ORDER_ASC: 
@@ -59,7 +60,7 @@ export default function reducer(state = initialState, action) {
                 if ( a.name > b.name ) { return 1; }
                 return 0;
             }
-            let asc = state.allCountriesCopy.sort(ascend)
+            let asc = state.allCountries.sort(ascend)
             return {
                 ...state,
                 allCountries: [...asc]
@@ -71,7 +72,7 @@ export default function reducer(state = initialState, action) {
                     if ( a.name < b.name ) { return 1; }
                     return 0;
                 }
-                let oderDesc = state.allCountriesCopy.sort(desc)
+                let oderDesc = state.allCountries.sort(desc)
     
             return {
                     ...state,
@@ -80,7 +81,7 @@ export default function reducer(state = initialState, action) {
 
             case POPULATION:
             let pop;
-            const population = state.allCountriesCopy
+            const population = state.allCountries
             
             action.payload === 'Population: high to low'
             ?  pop = population.sort((a, b) => b.population - a.population)
@@ -94,6 +95,13 @@ export default function reducer(state = initialState, action) {
                 return {
                     ...state,
                     countryDetails: action.payload
+                };
+
+            case RESET:
+                const all = state.allCountriesCopy
+                return {
+                    ...state,
+                    allCountries: [...all]
                 }
 
     

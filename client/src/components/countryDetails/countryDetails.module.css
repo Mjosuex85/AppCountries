@@ -1,9 +1,43 @@
-.container {
+.container1 {
+    background-color: white;
+    color: black;
+    text-align: center;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
     margin: 0px 10px;
-    width: 100%;
+    width: 50%;
     height: 100%;
     margin-top: 10px;
+    
+}
+
+.container2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgb(121, 120, 120);
+    margin: 0px 10px;
+    width: 96%;
+    height: 1%;
+    margin-top: 10px;
+    
+}
+
+.activities {
+    display: flex;
+    flex-wrap: wrap;
+    width: 55%;
+    height: 100%;
+}
+
+.name {
+    font-size: 50px;
+}
+
+.image {
+    box-shadow: 0 1px 1px #9c9c9c;
 }

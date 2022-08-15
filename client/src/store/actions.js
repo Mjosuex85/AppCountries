@@ -8,6 +8,7 @@ export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DESC = "ORDER_DESC"
 export const POPULATION = "POPULATION"
 export const BY_ID = "BY_ID"
+export const RESET = "RESET"
 
 const url = `http://localhost:3005/countries/`
 
@@ -103,4 +104,11 @@ export function population(payload) {
         payload
     }
 };
+
+export function reset(payload) {
+    return {
+        type: RESET,
+        payload
+    }
+}
 

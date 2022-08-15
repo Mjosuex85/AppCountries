@@ -1,20 +1,38 @@
 .containrer {
+    background-color: transparent;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    background-color: white;
+    color: black;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
     margin: 0px 10px;
-    width: 28%;
-    height: 40%;
+    width: 20%;
+    height: 10%;
     margin-top: 10px;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+}
+
+.ph {
+    background-color: transparent;
+    margin-top: -3px;
+    text-align: center;
+    border: solid 0.01px #00A2BF;
+    border-radius: 10px;
 }
 
 .containrer:hover {
- transform: scale(1.1);
- cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: #00A0C0;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .image {
-    display: flex;
+    text-align: center;
+    box-shadow: 0 1px 1px #9c9c9c;
     border-radius: 3px;
 }
 	

@@ -1,7 +1,23 @@
 .container {
+    background-color: transparent;
     display: flex;
     flex-wrap: wrap;
     flex-direction: center;
     justify-content: left;
     width: 110%;
+}
+
+.notFound {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgb(121, 120, 120);
+    margin: 0px 10px;
+    width: 101%;
+    height: 10%;
+    margin-top: 10px;
+}
+
+.loading {
+    text-align: center;
 }
