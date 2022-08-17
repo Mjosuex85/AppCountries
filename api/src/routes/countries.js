@@ -5,7 +5,7 @@ const { getCountries, byId, countriesDB, include_activities } = require('../cont
 const { Op } = require('sequelize')
 
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
      const { name } = req.query
     try { 
         const api_countries = await getCountries()
@@ -18,12 +18,13 @@ router.get('/', async (req, res) => {
         : await Country.findAll(include_activities)
 
         countries.length === 0 ? 
-        res.send([]) :
+        res.send("NO SE ENCUENTRA EL PAIS") :
         res.status(200).send(countries)
     }
 
     catch(error) {
         console.log(error)
+        next()
         res.status(404).send("ERROR")
     }
 })

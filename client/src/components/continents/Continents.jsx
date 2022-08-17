@@ -7,15 +7,14 @@ import oceania from '../../images/australia.png'
 import europe from '../../images/europe.png'
 import northamerica from '../../images/northamerica.png'
 import style from './continents.module.css'
-import { byContinente } from '../../store/actions.js'
+import { byContinente, setContinents } from '../../store/actions.js'
 import { useDispatch } from 'react-redux'
 import AllCountriesMap from '../allCountriesMap/AllCountriesMap'
 
-
 export const continents = [northamerica, africa, southamerica, antarctica, asia, oceania, europe]
-export const names = ["North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe",]
+export const names = [ "North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe",]
 const width = 100
-const height = 70
+const height = 80
 
 const Continents = () => {
   const dispatch = useDispatch()  
@@ -23,9 +22,11 @@ const Continents = () => {
   function handleClick(e) {
     e.preventDefault()
     dispatch(byContinente(e.target.name))
+   /*  dispatch(setContinents()) */
   }
 
   return (
+
     <div className={style.container}>  
         <div>
           <AllCountriesMap/>

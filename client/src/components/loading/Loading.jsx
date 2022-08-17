@@ -1,11 +1,11 @@
 import React from 'react'
 import style from './loading.modudle.css'
-import gif from './icons8-mapa.gif'
+import gif from './giphy.gif'
 
 const Loading = () => {
   return (
     <div>
-      <img src={gif} alt="" width="80" height="80" />
+      <img src={gif} alt="" width="120" height="120" />
     </div>
   )
 };

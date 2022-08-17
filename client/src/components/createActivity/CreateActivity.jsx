@@ -21,27 +21,25 @@ const CreateActivity = () => {
 
     //////////////////////////////////////////// LOCAL STATES //////////////////////////////////
    
-    const [continet, setContinent] = useState("")
     const [countryF, setCountryF] = useState([])
     const [countries, setCountries] = useState([])
     const [activity, setActivity] = useState({});
     const [flags, setFlags] = useState([])
 
-    console.log("flags", flags)
-
     ////////////////////////////////////// FUNCIONES ///////////////////////////////////////////
         
         const handleOnChange = (e) => { // FUNCION QUE LLENA EL ESTADO CON LA INFORMACIÓN
             e.preventDefault()
-            const name = e.target.name
-            const value = e.target.value
-            
+        
             setActivity({
                 ...activity,
-                [name]: value,
-                countries: [...countries]
+                [e.target.name]: e.target.value,
+                countries: []
+
             })
         };
+
+        console.log(activity)
         
 
     const handleSubmit = async (e) => {  // FUNCIÖN CREA ACTIVIDAD AL POST
@@ -55,10 +53,10 @@ const CreateActivity = () => {
     const fill_countries = (e) => {  // FUNCION LLENA EL ESTADO DE PAISES QUE VAN A RECIBIR LA ACTIVIDAD
         e.preventDefault()
         if (!countries.includes(e.target.value))
-        setCountries([
-            ...countries,
-            e.target.value
-        ])
+        setActivity({
+            ...activity,
+            countries: [...activity.countries, e.target.value]
+        })
     };
 
     const continentFiltred = async (e) => {
@@ -73,7 +71,6 @@ const CreateActivity = () => {
         e.preventDefault()
         const y = e.target.value
         const x = await countriesBD.find(e => e.name === y)
-        console.log("este es el x",x)
         setFlags([
             ...flags,
             x.flags
@@ -122,7 +119,7 @@ const CreateActivity = () => {
 
             <legend> Season:
                 <div>
-                    <select onChange={(e) => handleOnChange(e)} className={style.selector} name='season' value={activity.season}  > 
+                    <select onChange={(e) => handleOnChange(e)} className={style.selector} name='season' /* value={activity} */  > 
                         <option>Spring</option>
                         <option>Winter</option>
                         <option>Auntum</option>
@@ -147,15 +144,20 @@ const CreateActivity = () => {
 
             <legend> Country:
                 <div> 
-                    <select className={style.selector} /* onClick={(e) => showFlags(e)} */ onChange={(e) => handleOnChange(e)}  name="countries" /* value={"countries"} */> 
+                    <select className={style.selector} 
+                            handleOnChange={(e) => handleOnChange(e)}  
+                            name="countries" value={countries}> 
+                                
                                 {countryF && countryF?.map((c, i) => {
-                                    return <option 
+                                    return (
+                                            <option 
                                                 onClick={(e) => {
                                                     showFlags(e)
                                                     fill_countries(e) 
-                                                } }   
+                                                }}   
                                                 key={i}> {c.name} 
                                            </option>
+                                           )
                                 })}
                     </select>
                 </div>
@@ -163,7 +165,7 @@ const CreateActivity = () => {
 
             <div className={style.imgContainer}> 
                     {flags && flags.map((e, i) => {
-                    return <img key={i} src={e} width='30' height="30"/>
+                    return <img className={style.image} key={i} src={e} width='50' height="30"/>
             }) } </div>
 
          

@@ -1,26 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './countryDetails.module.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { useEffect } from 'react'
 import { byId } from '../../store/actions.js'
 import Activities from '../activities/Activities.jsx'
+import Loading from '../loading/Loading'
 
 const CountryDetails = ({id}) => {
     const dispatch = useDispatch()
     const details = useSelector((state) => state.countryDetails)
 
+    const [show, setShow] = useState(false)
+
     useEffect(() => {
         dispatch(byId(id))
+        setShow(() => setTimeout(true), 2000)
     }, [dispatch])
 
     function back() {
         window.history.back() 
       }
 
-  return (
+      {show === false && (<div className={style.loading}>   
+        <Loading/>
+    </div>)}
+
+     {show === true && (
     <>
     
-                 <button onClick={(e) => back(e)}> Back </button>
+    <button onClick={(e) => back(e)}> Back </button>
     <div className={style.container2}>
        
         <div className={style.container1}> 
@@ -42,7 +50,7 @@ const CountryDetails = ({id}) => {
         </div>
     </div>
     </>
-  )
+  )}
 }
 
 export default CountryDetails

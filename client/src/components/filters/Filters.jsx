@@ -4,33 +4,31 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect} from 'react'
 import { allActivities, byActivities, asc, desc, population,} from '../../store/actions'
 
-const Filters = (props) => {
+const Filters = ({setFirstPage}) => {
 
     const dispatch = useDispatch()
     const activities = useSelector((state) => state.activities)
+    const countries = useSelector((state) => state.Allcountries)
 
     useEffect(() => {
         dispatch(allActivities())
     }, [dispatch])
 
     function activityFilter(event) {
-      props.changeStart(0)
-      props.changeFinish(10)
+      setFirstPage()
       event.preventDefault()
       dispatch(byActivities(event.target.value))
     };
     
     function asc_abc(event) {
-      props.changeStart(0)
-      props.changeFinish(10)
+      setFirstPage()
       event.preventDefault()
       event.target.value === "Name: Asc" ?
       dispatch(asc()) : dispatch(desc())
     };
 
     function orderPopulation(event) {
-      props.changeStart(0)
-      props.changeFinish(10)
+      setFirstPage()
       event.preventDefault()
       dispatch(population(event.target.value))
     };

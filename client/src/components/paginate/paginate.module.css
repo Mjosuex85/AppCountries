@@ -1,4 +1,5 @@
 .container {
+    
     background-color: white;
     padding: 10px;
     border-radius: 5px;
@@ -7,5 +8,31 @@
     width: 101%;
     height: 40%;
     margin-top: 10px;
-    text-align: right;
+    text-align: center;
+    text-decoration: none;
+}
+
+.numbers {
+    background-color: white;
+    padding: 3px;
+    border-radius: 5px;
+    box-shadow: 0 1px 4px rgb(121, 120, 120);
+    margin: 0px 5px;
+    width: fit-content;
+    height: 40%;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+.numbers:hover {
+    cursor: pointer;
+    background-color: #00A0C0;
+    color: white;
+}
+
+.numbers:active {
+    background-color: #00A0C0;
+    color: white;
 }

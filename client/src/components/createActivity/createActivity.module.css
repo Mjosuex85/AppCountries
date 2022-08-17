@@ -39,12 +39,16 @@
 
 .imgContainer {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: center;
-    justify-content: left;
-    width: 50%;
-    height: 50%;
+    flex-direction: wrap;
+    justify-content: center;
+    width: 60%
     
+    
+}
+
+.image {
+    border-radius: 3px;
+    border: solid 1px rgb(195, 191, 191);
 }
 
    

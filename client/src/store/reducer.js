@@ -7,7 +7,8 @@ import { REQUEST_COUNTRIES,
         ORDER_DESC,
         POPULATION,
         BY_ID,
-        RESET
+        RESET,
+        SET_CONTINENTS
 } from './actions'
 
 const initialState = {
@@ -43,7 +44,7 @@ export default function reducer(state = initialState, action) {
             const continents = state.allCountriesCopy.filter(c => c.continents === action.payload)
             return {
                 ...state,   
-                allCountries: [...continents]
+                allCountries: continents
 
             };
 
@@ -51,7 +52,7 @@ export default function reducer(state = initialState, action) {
             const activities = state.allCountriesCopy.filter((c) => c.activities.find((c) => c.name === action.payload))
             return {
                 ...state,
-                allCountries: [...activities]
+                allCountries: activities
             };
 
         case ORDER_ASC: 
@@ -61,6 +62,7 @@ export default function reducer(state = initialState, action) {
                 return 0;
             }
             let asc = state.allCountries.sort(ascend)
+            console.log(asc)
             return {
                 ...state,
                 allCountries: [...asc]
@@ -101,7 +103,13 @@ export default function reducer(state = initialState, action) {
                 const all = state.allCountriesCopy
                 return {
                     ...state,
-                    allCountries: [...all]
+                    allCountries: all
+                };
+
+            case SET_CONTINENTS:
+                const x = state.paginate
+                return {
+                    ...x
                 }
 
     
