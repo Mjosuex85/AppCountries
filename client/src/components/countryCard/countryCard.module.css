@@ -1,21 +1,26 @@
+
+
 .containrer {
+   
+    font-size: smaller;
     background-color: transparent;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     text-align: center;
     background-color: white;
     color: black;
-    padding: 10px;
+    padding: 7px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
-    margin: 0px 10px;
-    width: 20%;
+    margin: 10px 10px;
+    width: 20.6%;
     height: 10%;
     margin-top: 10px;
     text-decoration: none;
-    transition: all .3s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 .ph {
+    font-weight:bold;
     background-color: transparent;
     margin-top: -3px;
     text-align: center;
@@ -24,10 +29,12 @@
 }
 
 .containrer:hover {
+    text-decoration: none;
     color: rgb(255, 255, 255);
     background-color: #00A0C0;
     transform: scale(1.1);
     cursor: pointer;
+    
 }
 
 .image {

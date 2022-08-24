@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     flex-direction: center;
     justify-content: left;
-    width: 110%;
+    width: 195%;
 }
 
 .notFound {
@@ -13,7 +13,7 @@
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
     margin: 0px 10px;
-    width: 101%;
+    width: 170%;
     height: 10%;
     margin-top: 10px;
 }

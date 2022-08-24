@@ -1,7 +1,8 @@
 import React from 'react'
 import { useDispatch} from 'react-redux'
 import { useState} from 'react'
-import { byName } from '../../store/actions.js'
+import { byName, setPagination } from '../../store/actions.js'
+import style from './searchBar.module.css'
 
 const SearchBar = () => {
   const dispatch = useDispatch()
@@ -10,6 +11,7 @@ const SearchBar = () => {
   const onSubmit = (event) => {
     event.preventDefault()
       dispatch(byName(search))
+      dispatch(setPagination(1))
       setSearch("")
   }
   
@@ -21,9 +23,10 @@ const SearchBar = () => {
   return (
     <div>
         <input 
+          className={style.box}
           onChange={(event) => handleChange(event)} 
           type="text" value={search} /> 
-          <button onClick={(event) => onSubmit(event)}> Search </button>
+          <button className={style.btn} onClick={(event) => onSubmit(event)}> Search </button>
     </div>
   )
 }

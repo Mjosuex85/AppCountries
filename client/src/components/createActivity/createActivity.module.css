@@ -1,4 +1,13 @@
+.fondo {
+    width: 100%;
+    height: 100;
+    background-color: black;
+}
+.prueba {
+    text-align: center;
+}
 .create {
+    
     margin-top: 20%;
     padding: 10px;
     border-radius: 5px;
@@ -13,13 +22,15 @@
 }
 
 .container {
+    
     display: flex;
     justify-content: space-evenly;
     padding: 50px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
-    margin: 0px 10px;
-    width: 70%;
+    margin: 20px 10px;
+    margin-left: 20%;
+    width: 50%;
     margin-top: 10px;
 }
 

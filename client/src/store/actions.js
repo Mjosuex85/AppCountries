@@ -10,6 +10,8 @@ export const POPULATION = "POPULATION"
 export const BY_ID = "BY_ID"
 export const RESET = "RESET"
 export const SET_CONTINENTS = "SET_CONTINENTS"
+export const SET_PAGINATE = "SET_PAGINATE"
+export const BY_AREA = "BY_AREA"
 
 const url = `http://localhost:3005/countries/`
 
@@ -116,6 +118,20 @@ export function reset(payload) {
 export function setContinents(payload) {
     return {
         type: SET_CONTINENTS,
+        payload
+    }
+};
+
+export function setPagination(payload) {
+    return {
+        type: SET_PAGINATE,
+        payload
+    }
+};
+
+export function byArea(payload) {
+    return {
+        type: BY_AREA,
         payload
     }
 }

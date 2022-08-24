@@ -28,7 +28,8 @@ const getCountries = async () => {
             capital: country.hasOwnProperty("capital") ? country.capital[0] : "No Capital",
             subregion: country.subregion, // <-------- TO CHECK
             area: country.area,
-            population: country.population,
+            population: country.population === "0" ? "?" : country.population,
+            fifa: country.fifa ? country.fifa : "No contiene fifa"
         }
     });
 };

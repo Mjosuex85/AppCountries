@@ -42,6 +42,11 @@ module.exports = (sequelize) => {
     population: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+
+    fifa: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
 
   });

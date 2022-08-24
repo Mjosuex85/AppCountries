@@ -1,13 +1,32 @@
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-image: -webkit-image-set("https://images4.alphacoders.com/667/667235.jpg");
-    padding: 8px;
-    margin-bottom: 20px;
+
+.nav {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-image: -webkit-image-set("https://images4.alphacoders.com/667/667235.jpg")
 }
 
-.title {
-    margin-left: 6%;
-    margin-top: 20px;
+.font {
+    color: rgb(255, 255, 255);
 }
+
+.other {
+   
+    margin-left: 66px;
+   /*  display: flex; */
+}
+
+.img {
+    border-radius: 50px;
+}
+
+.networks {
+    
+    margin-right: 10px; 
+}
+
+.networks:Hover {
+    transform: rotate(5deg);
+}
+
+
+

@@ -2,35 +2,29 @@ import React from 'react'
 import CountryCard from '../countryCard/CountryCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { allCountries } from '../../store/actions.js'
+import { allCountries, setPagination} from '../../store/actions.js'
 import style from './cardsContainers.module.css'
 import Loading from '../loading/Loading.jsx'
 import Filters from '../filters/Filters'
 import Paginate from '../paginate/Paginate'
+import Continents from '../continents/Continents'
 
 const CardsContainers = () => {
     const countries = useSelector((state) => state.allCountries)
-/*  const paginate = useSelector((state) => state.paginate) */
+    const currentPage = useSelector((state) => state.paginate)
     const dispatch = useDispatch()
 
     const [show, setShow] = useState(false)
-    const [currentPage, setCurrentPage] = useState(1)
-    const [countriesPerPage, setCountriesPerPage] = useState(9)
+    const [x, setCurrentPage] = useState(1)
+    const [countriesPerPage, setCountriesPerPage] = useState(16)
     const indexOfLastCharacter = currentPage * countriesPerPage // 9
     const indexOFfirstCharacter = indexOfLastCharacter - countriesPerPage
-    const currentCountries = countries.slice(indexOFfirstCharacter, indexOfLastCharacter )
-
-
-    console.log(indexOFfirstCharacter, indexOfLastCharacter )
+    const currentCountries = countries.slice(indexOFfirstCharacter, indexOfLastCharacter)
    
-    const paginateF = (pageNumber) => {
-        setCurrentPage(pageNumber)
+    const paginateF = (payload) => {
+        dispatch(setPagination(payload))
     }
 
-    const setFirstPage = () => {
-        setCurrentPage(1)
-        setCountriesPerPage(9)
-    }
 
     useEffect(() => {
         dispatch(allCountries())
@@ -61,7 +55,8 @@ const CardsContainers = () => {
   return (
     <div>
         <div>
-            <Filters setFirstPage={setFirstPage}/>
+            <Continents />
+            <Filters setFirstPage={paginateF}/>
         </div>
 
         <div>
@@ -93,6 +88,8 @@ const CardsContainers = () => {
                  population={Intl.NumberFormat('de-DE').format(country.population)}
                  activities={country.activities}
                  season={country.activities.map(s => s.season)}
+                 fifa={country.fifa}
+
                 />
             }) } 
         </div>

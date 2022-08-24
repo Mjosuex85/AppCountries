@@ -8,7 +8,9 @@ import { REQUEST_COUNTRIES,
         POPULATION,
         BY_ID,
         RESET,
-        SET_CONTINENTS
+        SET_CONTINENTS,
+        SET_PAGINATE,
+        BY_AREA
 } from './actions'
 
 const initialState = {
@@ -16,7 +18,7 @@ const initialState = {
     allCountriesCopy: [],
     activities: [],
     countryDetails: [],
-    paginate: {start: 0, finish: 10}
+    paginate: 1
 };
 
 export default function reducer(state = initialState, action) {
@@ -41,7 +43,9 @@ export default function reducer(state = initialState, action) {
             };
         
         case BY_CONTINENT:
-            const continents = state.allCountriesCopy.filter(c => c.continents === action.payload)
+            const continents = action.payload === "worldMap" 
+            ? state.allCountriesCopy
+            : state.allCountriesCopy.filter(c => c.continents === action.payload)
             return {
                 ...state,   
                 allCountries: continents
@@ -62,7 +66,7 @@ export default function reducer(state = initialState, action) {
                 return 0;
             }
             let asc = state.allCountries.sort(ascend)
-            console.log(asc)
+        
             return {
                 ...state,
                 allCountries: [...asc]
@@ -110,7 +114,25 @@ export default function reducer(state = initialState, action) {
                 const x = state.paginate
                 return {
                     ...x
-                }
+                };
+
+            case SET_PAGINATE:
+                return {
+                    ...state,
+                    paginate: action.payload
+                };
+
+            case BY_AREA:
+            let area;
+            const byArea = state.allCountries
+            
+            action.payload === 'Area: high to low'
+            ?  area = byArea.sort((a, b) => b.area - a.area)
+            :  area = byArea.sort((a, b) => a.area - b.area)
+                return {
+                     ...state,
+                    allCountries: [...area]
+                };
 
     
     default: {

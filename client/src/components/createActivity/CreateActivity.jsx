@@ -4,55 +4,97 @@ import { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import style from './createActivity.module.css'
 import { useEffect } from 'react'
-import { allCountries } from '../../store/actions'
+import { allCountries, allActivities } from '../../store/actions'
 import { names } from '../continents/Continents.jsx'
-
-
 
 const CreateActivity = () => {
     const countriesBD = useSelector((state) => state.allCountries).map(e => {return {name: e.name, continent: e.continents, flags: e.flags}})
+    const activities = useSelector((state) => state.activities).map(e => e.name.toLowerCase())
     const continents = names
     const dispatch = useDispatch()
     
     useEffect(() => {
         dispatch(allCountries())
+        dispatch(allActivities())
     }, [dispatch])
 
-
+    
     //////////////////////////////////////////// LOCAL STATES //////////////////////////////////
-   
+    
+    const [error, setError] = useState({})
     const [countryF, setCountryF] = useState([])
-    const [countries, setCountries] = useState([])
+    /* const [countries, setCountries] = useState([]) */
     const [activity, setActivity] = useState({});
     const [flags, setFlags] = useState([])
-
+    
+    
     ////////////////////////////////////// FUNCIONES ///////////////////////////////////////////
         
-        const handleOnChange = (e) => { // FUNCION QUE LLENA EL ESTADO CON LA INFORMACIÓN
-            e.preventDefault()
-        
-            setActivity({
-                ...activity,
-                [e.target.name]: e.target.value,
-                countries: []
+    const handleOnChange = (e) => { // FUNCION QUE LLENA EL ESTADO CON LA INFORMACIÓN
+        e.preventDefault()
+        setActivity({
+            ...activity,
+            [e.target.name]: e.target.value,
+            countries: []
+          })
 
-            })
+          setError(validate({
+            ...activity,
+            [e.target.name]: e.target.value,
+            
+          }))
         };
 
-        console.log(activity)
-        
-
+       
     const handleSubmit = async (e) => {  // FUNCIÖN CREA ACTIVIDAD AL POST
         e.preventDefault()
         let post = await axios.post("http://localhost:3005/activities/", activity) 
         
-        setActivity({})
+        /* setActivity({}) */
         alert("The Activity " + post.data.name + " Was Created")
+        window.history.back();
     };
+
     
+    ///////////////////////////////////////////////////// FORM VALIDATION ////////////////////////////////////////////////////////
+
+    const validate = (input) => {
+        let error = {}
+        console.log("input", input)
+        if (!input.name) {
+            error.name = "Name is required"
+        }
+    
+        else if (activities.includes(input.name.toLowerCase())) {
+            error.name = "the Activity is alredy Created"
+        }
+    
+        else if (input.name.length > 18) {
+            error.name = "text length is not allowed"
+        }
+    
+        else if (!input.difficulty) {
+            error.difficulty = "Need to rate"
+        }
+    
+        else if (!input.duration) {
+            error.duration = "Please set the duration"
+        }
+    
+        else if (!input.season) {
+            error.season = "Please Select a season"
+        }
+        
+        else if (!input.countries) {
+            error.countries = "Please Select at least one country"
+        }
+
+        return error
+    }
+        
     const fill_countries = (e) => {  // FUNCION LLENA EL ESTADO DE PAISES QUE VAN A RECIBIR LA ACTIVIDAD
         e.preventDefault()
-        if (!countries.includes(e.target.value))
+       /*  if (!countries.includes(e.target.value)) */
         setActivity({
             ...activity,
             countries: [...activity.countries, e.target.value]
@@ -67,23 +109,31 @@ const CreateActivity = () => {
         
     };
 
+   
+
     const showFlags = async (e) => {
         e.preventDefault()
         const y = e.target.value
         const x = await countriesBD.find(e => e.name === y)
+        if (!flags.find(e => e.name === y)) {
         setFlags([
             ...flags,
-            x.flags
-        ])
+            x
+        ]
+        )
     }
+    };
+    
 
-    const selectCountry = (e) => {
+    const removeCountries = (e) => {
         e.preventDefault()
+       
     };
 
   return (
-    <>
+    <div className={style.prueba}>
         <h1>Create Activity</h1>
+        <button>Back</button>
     <form onSubmit={(e) => handleSubmit(e)}>
         <section className={style.container}>
         <div name="Name, Difficulty, Durarion, Season">  
@@ -94,7 +144,10 @@ const CreateActivity = () => {
                         onChange={(e) => handleOnChange(e)} 
                         className={style.input} 
                         type="text"
-                        name="name"/>
+                        name="name"
+                        value={activity.name}/>
+
+                    {error.name ? <p>{error.name} ❌</p> : ""} 
                 </div> <br/><br/>
             </legend>
 
@@ -106,25 +159,29 @@ const CreateActivity = () => {
                     <input onChange={(e) => handleOnChange(e)} type="radio" id="3" name="difficulty" value="3"/>3
                     <input onChange={(e) => handleOnChange(e)} type="radio" id="4" name="difficulty" value="4"/>4
                     <input onChange={(e) => handleOnChange(e)} type="radio" id="5" name="difficulty" value="5"/>5
+                    {error.difficulty ? <p>{error.difficulty} ❌</p> : ""} 
                 </div> <br/><br/>
              </legend>
         
-            <legend> Duration:
+            <legend> Duration: (in Days)
                 <div>
                     <input  onChange={(e) => handleOnChange(e)} 
                             type="number"
-                            name="duration"/>
-                </div> <br/><br/>
+                            name="duration"
+                            value={error.duration} />
+                {error.duration ? <p>{error.duration} ❌</p> : ""} 
+                </div> <br/>
             </legend>
 
             <legend> Season:
                 <div>
-                    <select onChange={(e) => handleOnChange(e)} className={style.selector} name='season' /* value={activity} */  > 
+                    <select onChange={(e) => handleOnChange(e)} className={style.selector} name='season' value={error.activity}  > 
                         <option>Spring</option>
                         <option>Winter</option>
                         <option>Auntum</option>
                         <option>Summer</option>
                     </select>
+                    <a>{error.season ? <p>{error.season} ❌</p> : ""}</a>
                 </div> <br/><br/>
             </legend>
         
@@ -133,7 +190,7 @@ const CreateActivity = () => {
         <div name='Continents, Countries'>
             <legend> Continent:
                 <div>
-                    <select onChange={(e) => continentFiltred(e)} className={style.selector}> 
+                    <select onClick={(e) => continentFiltred(e)} className={style.selector}> 
                                     <option>Select Continent...</option>
                                 {continents.map((c, i) => {
                                     return <option key={i}>{c}</option>
@@ -145,35 +202,43 @@ const CreateActivity = () => {
             <legend> Country:
                 <div> 
                     <select className={style.selector} 
-                            handleOnChange={(e) => handleOnChange(e)}  
-                            name="countries" value={countries}> 
-                                
+                            /* onChange={(e) => handleOnChange(e)}   */
+                            name="countries" value={activity.countries}> 
+                                untr
                                 {countryF && countryF?.map((c, i) => {
                                     return (
                                             <option 
                                                 onClick={(e) => {
                                                     showFlags(e)
-                                                    fill_countries(e) 
+                                                    fill_countries(e)
+                                                    removeCountries(e)
                                                 }}   
                                                 key={i}> {c.name} 
                                            </option>
-                                           )
+                                    )
                                 })}
-                    </select>
+                        </select>
+                    <a> {error.countries ? <p>{error.countries} ❌</p> : ""}</a>
                 </div>
          </legend>
 
             <div className={style.imgContainer}> 
                     {flags && flags.map((e, i) => {
-                    return <img className={style.image} key={i} src={e} width='50' height="30"/>
+                    return <img 
+                                onClick={(e) => removeCountries(e)}
+                                className={style.image} 
+                                name={e.name}
+                                key={i} 
+                                src={e.flags} 
+                                width='50'
+                                 height="30"/>
             }) } </div>
-
          
         </div>
         </section>
-         <input type="submit" value="Create"/>
+         <input disabled={Object.keys(error).length === 0 ? false : true} type="submit" value="Create"/>
     </form>
-    </>
+    </div>
   )
 }
 

@@ -21,14 +21,14 @@ const CountryDetails = ({id}) => {
         window.history.back() 
       }
 
-      {show === false && (<div className={style.loading}>   
-        <Loading/>
-    </div>)}
+    {show === false && (<div className={style.loading}>   
+                <Loading/>
+            </div>)}
 
-     {show === true && (
+  return (
     <>
     
-    <button onClick={(e) => back(e)}> Back </button>
+                 <button onClick={(e) => back(e)}> Back </button>
     <div className={style.container2}>
        
         <div className={style.container1}> 
@@ -50,7 +50,7 @@ const CountryDetails = ({id}) => {
         </div>
     </div>
     </>
-  )}
+  )
 }
 
 export default CountryDetails

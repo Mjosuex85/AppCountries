@@ -11,7 +11,7 @@ const Home = () => {
     <div className={style.styles}>
       <NavBar/>
       <div className="App" >
-        <Continents/>
+      {/*   <Continents/> */}
         <Countries/>
       </div>
     </div>

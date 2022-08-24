@@ -11,7 +11,7 @@ const Paginate = ({countriesPerPage, countries, paginateF}) => {
       <div className={style.container}>
             {pageNumbers && pageNumbers.map((number, i) => (
               
-                  <a className={style.numbers} 
+                  <a key={i} className={style.numbers} 
                     onClick={() => paginateF(number)}>
                       {number}
                   </a>

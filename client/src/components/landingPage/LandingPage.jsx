@@ -8,6 +8,7 @@ import back from './667235.jpg'
 
 const LandingPage = () => {
   return (
+    <div className={style.fondo}>
     <div className={style.container}>
         <Link to='/countries' className={style.box}> 
 
@@ -27,6 +28,7 @@ const LandingPage = () => {
             /> 
            {/*  <h1 className={style.huno}>World Map</h1> */}
         </Link> 
+    </div>
     </div>
   )
 }
