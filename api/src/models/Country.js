@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     
     flags: {
@@ -45,6 +45,11 @@ module.exports = (sequelize) => {
     },
 
     fifa: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+
+    maps: {
       type: DataTypes.STRING,
       allowNull: false
     }

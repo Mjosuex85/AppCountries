@@ -43,7 +43,7 @@ export default function reducer(state = initialState, action) {
             };
         
         case BY_CONTINENT:
-            const continents = action.payload === "worldMap" 
+            const continents = action.payload === "World" 
             ? state.allCountriesCopy
             : state.allCountriesCopy.filter(c => c.continents === action.payload)
             return {

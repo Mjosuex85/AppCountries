@@ -15,7 +15,7 @@ const CountryDetails = ({id}) => {
     useEffect(() => {
         dispatch(byId(id))
         setShow(() => setTimeout(true), 2000)
-    }, [dispatch])
+    }, [dispatch, id])
 
     function back() {
         window.history.back() 
@@ -24,7 +24,7 @@ const CountryDetails = ({id}) => {
     {show === false && (<div className={style.loading}>   
                 <Loading/>
             </div>)}
-
+  console.log(details)
   return (
     <>
     
@@ -38,7 +38,9 @@ const CountryDetails = ({id}) => {
              <h3> Area: ---- {Intl.NumberFormat('de-DE').format(details.area)} km2 </h3>
              <h3> Continent: ---- {details.continents}</h3>
              <h3> Capital: ---- {details.capital}</h3>
+             <h3> Subregion: ---- {details.subregion}</h3>
         </div>
+        
             
         <div className={style.activities}> 
                 {details.activities?.map((a, i) => { 

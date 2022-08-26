@@ -10,13 +10,14 @@
 }
 
 .other {
-   
-    margin-left: 66px;
-   /*  display: flex; */
+
+    margin-left: 4px;
+    
 }
 
 .img {
-    border-radius: 50px;
+    border-radius: 0px;
+    margin: 0;
 }
 
 .networks {

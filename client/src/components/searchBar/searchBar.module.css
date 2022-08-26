@@ -1,5 +1,5 @@
 .btn {
-    color: #41D9D7;
+    color: #ffffff;
     background-color: #00475f;
     border-radius: 10px;
     border: none;
@@ -10,4 +10,5 @@
 
 .box {
     border-radius: 10px;
+    margin-right: 10px;
 }

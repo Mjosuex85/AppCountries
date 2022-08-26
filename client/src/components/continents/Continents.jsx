@@ -9,10 +9,10 @@ import northamerica from '../../images/northamerica.png'
 import style from './continents.module.css'
 import { byContinente, setPagination} from '../../store/actions.js'
 import { useDispatch } from 'react-redux'
-import worldMap from '../../images/worldmap.png'
+import World from '../../images/worldMap.png'
 
-export const continents = [worldMap, northamerica, africa, southamerica, antarctica, asia, oceania, europe]
-export const names = [  "worldMap","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
+export const continents = [World, northamerica, africa, southamerica, antarctica, asia, oceania, europe]
+export const names = [ "World","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
 const width = 100
 const height = 90
 

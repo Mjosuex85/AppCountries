@@ -4,7 +4,7 @@
     border-radius: 5px;
     box-shadow: 0 4px 8px rgb(121, 120, 120);
     /* margin: 0px 5px; */
-    width: 171%;
+    width: 170%;
     height: 40%;
     margin-top: 10px;
     text-align: right;
@@ -19,6 +19,3 @@
     border: none
 }
 
-.filters:hover {
-    transform: scale(1.1);
-}

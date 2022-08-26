@@ -37,7 +37,7 @@ const NavBar = () => {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <NavLink className="nav-link" to="/Home"><span>Home</span></NavLink>
+          <NavLink className="nav-link" to="/countries"><span>Home</span></NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/worldmap"><span>World Map</span></NavLink>

@@ -26,10 +26,11 @@ const getCountries = async () => {
             flags: country.flags[1],
             continents: country.continents[0],
             capital: country.hasOwnProperty("capital") ? country.capital[0] : "No Capital",
-            subregion: country.subregion, // <-------- TO CHECK
+            subregion: country.subregion ? "N/A" : country.subregion,
             area: country.area,
             population: country.population === "0" ? "?" : country.population,
-            fifa: country.fifa ? country.fifa : "No contiene fifa"
+            fifa: country.fifa ? country.fifa : "No contiene fifa",
+            maps: country.maps.googleMaps
         }
     });
 };
