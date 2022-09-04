@@ -5,7 +5,6 @@ import { useSelector, useDispatch} from 'react-redux'
 import style from './createActivity.module.css'
 import { useEffect } from 'react'
 import { allCountries, allActivities } from '../../store/actions'
-import { names } from '../continents/Continents.jsx'
 import { NavLink } from 'react-router-dom'
 import icon from '../NavBar/Coun.png'
 import s from '../NavBar/navbar.module.css'
@@ -13,7 +12,7 @@ import s from '../NavBar/navbar.module.css'
 const CreateActivity = () => {
     const countriesBD = useSelector((state) => state.allCountries).map(e => {return {name: e.name, continent: e.continents, flags: e.flags}})
     const activities = useSelector((state) => state.activities).map(e => e.name.toLowerCase())
-    const continents = names.sort()
+    const continents = ["World","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
     const dispatch = useDispatch()
     
     useEffect(() => {
@@ -48,18 +47,21 @@ const CreateActivity = () => {
           }))
         };
 
+        console.log(activity)
        
     const handleSubmit = async (e) => {  // FUNCIÖN CREA ACTIVIDAD AL POST
         e.preventDefault()
-        try {let post = await axios.post("http://localhost:3005/activities/", activity) 
-        /* setActivity({}) */
-        alert("The Activity " + post.data.name + " Was Created")
-        window.history.back();}
+        try {
+            let post = await axios.post("http://localhost:3005/activities/", activity) 
+            alert("The Activity " + post.data.name + " Was Created")
+            window.location.reload();
+        }
         
         catch(error) {
             console.log(error)
         }
     };
+
 
     
     ///////////////////////////////////////////////////// FORM VALIDATION ////////////////////////////////////////////////////////
@@ -170,7 +172,7 @@ const CreateActivity = () => {
           <NavLink className="nav-link" to="/countries"><span>Home</span></NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/worldmap"><span>World Map</span></NavLink>
+          {/* <NavLink className="nav-link" to="/worldmap"><span>World Map</span></NavLink> */}
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/createactivity"><span>Create Activity</span></NavLink>
@@ -242,7 +244,7 @@ const CreateActivity = () => {
                 <div>
                     <select onClick={(e) => continentFiltred(e)} className={style.inputs} > 
                                     <option>Select Continent...</option>
-                                {continents.map((c, i) => {
+                                {continents.sort().map((c, i) => {
                                     return <option key={i}>{c}</option>
                                 })}
                     </select>

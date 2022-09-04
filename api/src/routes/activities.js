@@ -6,7 +6,7 @@ router.post('/activities', async (req, res) => {
     const { name, difficulty, duration, season } = req.body
     const { countries } = req.body  // va a recibir un array con los paises
 
-    try {const activity = {   
+    try {const activity = {
         name,
         difficulty,
         duration, 
@@ -37,9 +37,8 @@ router.post('/activities', async (req, res) => {
 
 router.get("/activities", async (req, res) => {
     try {
-        const activities = await Activities.findAll({
-        attributes: ['name']
-    })
+        
+        const activities = await Activities.findAll({})
         res.send(activities)
     }
 

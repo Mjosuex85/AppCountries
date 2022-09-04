@@ -1,12 +1,9 @@
-.container {
 
-   align-items: center;
-}   
-
-.x {
-    color: green;
+.name {
+    size: 20%;
 }
 
-.x:hover {
-    transform: scale(1.1);
+.name:hover {
+    
+    cursor: pointer;
 }

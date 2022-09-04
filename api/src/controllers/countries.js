@@ -1,5 +1,5 @@
 const axios = require('axios')
-const { Country, Activities } = require('../db')
+const { Country, Activities, CountryActivities } = require('../db')
 const { Op } = require('sequelize')
 
 const url = "https://restcountries.com/v3/all"
@@ -8,7 +8,7 @@ const url = "https://restcountries.com/v3/all"
 const include_activities = {
     include: {
         model: Activities, 
-        attributes: ["name", "duration", "season", "difficulty"],
+        attributes: ["id", "name", "duration", "season", "difficulty"],
         through: {attributes: []}
     }
 };
@@ -26,7 +26,7 @@ const getCountries = async () => {
             flags: country.flags[1],
             continents: country.continents[0],
             capital: country.hasOwnProperty("capital") ? country.capital[0] : "No Capital",
-            subregion: country.subregion ? "N/A" : country.subregion,
+            subregion: country.subregion ? country.subregion : "N/A" ,
             area: country.area,
             population: country.population === "0" ? "?" : country.population,
             fifa: country.fifa ? country.fifa : "No contiene fifa",
@@ -63,10 +63,17 @@ const byId= async (id) => {
     return country
 };
 
+const eliminateActivityCountry = (id/* , activity */) => {
+    const toEliminate = CountryActivities.findAll({
+    })
+        return toEliminate;
+}
+
 
 module.exports = {
     getCountries,
     byId,
     countriesDB,
-    include_activities
+    include_activities,
+    eliminateActivityCountry
 };

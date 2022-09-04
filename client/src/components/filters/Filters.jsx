@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './filters.module.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect} from 'react'
+import { useEffect } from 'react'
 import { allActivities, byActivities, asc, desc, population, setPagination, byArea} from '../../store/actions'
 
 const Filters = ({setFirstPage}) => {
@@ -13,6 +13,8 @@ const Filters = ({setFirstPage}) => {
     useEffect(() => {
         dispatch(allActivities())
     }, [dispatch])
+
+    console.log(" LAS ACTIVITIESSS ",activities)
 
     function activityFilter(event) {
       event.preventDefault()

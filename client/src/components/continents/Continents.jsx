@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux'
 import World from '../../images/worldMap.png'
 
 export const continents = [World, northamerica, africa, southamerica, antarctica, asia, oceania, europe]
-export const names = [ "World","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
+export const names = ["World","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
 const width = 100
 const height = 90
 
@@ -28,9 +28,6 @@ const Continents = () => {
 
   return (
     <div className={style.container}>  
-        {/* <div>
-          <AllCountriesMap/>
-        </div> */}
         {continents.map((c, index) => {
             return <img key={index} 
                         className={style.image} 

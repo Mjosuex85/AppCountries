@@ -9,6 +9,11 @@ import Filters from '../filters/Filters'
 import Paginate from '../paginate/Paginate'
 import Continents from '../continents/Continents'
 
+////////////////////////////////////////////////////////////////////////////////////////
+///////RED ALERT PROBLEM ABOUT THE FILTER OF THE COUNTRIES AFTER CREATE AN ACTIVITY/////
+///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
+
 const CardsContainers = () => {
     const countries = useSelector((state) => state.allCountries)
     const currentPage = useSelector((state) => state.paginate)
@@ -24,7 +29,7 @@ const CardsContainers = () => {
     const paginateF = (payload) => {
         dispatch(setPagination(payload))
     }
-
+          
 
     useEffect(() => {
         dispatch(allCountries())

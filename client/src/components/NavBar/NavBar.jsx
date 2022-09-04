@@ -40,7 +40,7 @@ const NavBar = () => {
           <NavLink className="nav-link" to="/countries"><span>Home</span></NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/worldmap"><span>World Map</span></NavLink>
+          {/* <NavLink className="nav-link" to="/worldmap"><span>World Map</span></NavLink> */}
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/createactivity"><span>Create Activity</span></NavLink>

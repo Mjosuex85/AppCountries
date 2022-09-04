@@ -1,7 +1,8 @@
-.h1 {   
+.h1 {  
+    background-color: #03BCD1; 
     text-align: center;
-    color: rgb(0, 0, 0);
-    border: solid 1px rgb(0, 0, 0);
+    color: white;
+    border: none;
     border-radius: 10px;
 }
 
@@ -12,7 +13,7 @@
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
     margin: 0px 10px;
-    width: 300px;
+    width: 335px;
     height: 100%;
     margin-top: 10px;
 }
