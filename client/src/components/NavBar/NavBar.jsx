@@ -45,9 +45,9 @@ const NavBar = () => {
         <li className="nav-item">
           <NavLink className="nav-link" to="/createactivity"><span>Create Activity</span></NavLink>
         </li>
-        <li className="nav-item">
+       {/*  <li className="nav-item">
           <NavLink className="nav-link" to="/About"><span>About</span></NavLink>
-        </li>
+        </li> */}
       </ul>
       <div>
         <a href="https://github.com/Mjosuex85" rel="noreferrer" target="_blank"><img className={s.networks} width="35px" src={github} alt="Not Found" /></a>
