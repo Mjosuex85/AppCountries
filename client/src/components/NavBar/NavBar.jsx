@@ -48,7 +48,7 @@ const NavBar = () => {
        {/*  <li className="nav-item">
           <NavLink className="nav-link" to="/About"><span>About</span></NavLink>
         </li> */}
-      </ul>
+      </ul> 
       <div>
         <a href="https://github.com/Mjosuex85" rel="noreferrer" target="_blank"><img className={s.networks} width="35px" src={github} alt="Not Found" /></a>
         <a href="https://www.linkedin.com/in/mario-vidal-8138651a1/" rel="noreferrer" target="_blank"><img className={s.networks} width="35px" src={linkedin} alt="Not Found" /></a>

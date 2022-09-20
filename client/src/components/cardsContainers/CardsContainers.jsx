@@ -28,7 +28,7 @@ const CardsContainers = () => {
    
     const paginateF = (payload) => {
         dispatch(setPagination(payload))
-    }
+    };
           
 
     useEffect(() => {
@@ -64,12 +64,6 @@ const CardsContainers = () => {
             <Filters setFirstPage={paginateF}/>
         </div>
 
-        <div>
-            <Paginate
-                countriesPerPage={countriesPerPage}
-                countries={countries.length}
-                paginateF={paginateF}/>
-        </div>
 
         <div className={style.container} >
         
@@ -82,22 +76,28 @@ const CardsContainers = () => {
 
              {show === true && currentCountries && currentCountries.map((country, index) => {
              return <CountryCard
-                 key={index}
-                 id={country.id}
-                 name={country.name}
-                 flags={country.flags}
-                 continents={country.continents}
-                 capital={country.capital}
-                 subregion={country.subregion}
-                 area={Intl.NumberFormat('de-DE').format(country.area)}
-                 population={Intl.NumberFormat('de-DE').format(country.population)}
-                 activities={country.activities}
-                 season={country.activities.map(s => s.season)}
-                 fifa={country.fifa}
-
-                />
+             key={index}
+             id={country.id}
+             name={country.name}
+             flags={country.flags}
+             continents={country.continents}
+             capital={country.capital}
+             subregion={country.subregion}
+             area={Intl.NumberFormat('de-DE').format(country.area)}
+             population={Intl.NumberFormat('de-DE').format(country.population)}
+             activities={country.activities}
+             season={country.activities.map(s => s.season)}
+             fifa={country.fifa}
+             
+             />
             }) } 
         </div>
+             <div>
+                 <Paginate
+                     countriesPerPage={countriesPerPage}
+                     countries={countries.length}
+                     paginateF={paginateF}/>
+             </div>
     </div>
     )
         }

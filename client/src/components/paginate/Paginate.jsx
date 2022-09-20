@@ -7,14 +7,26 @@ const Paginate = ({countriesPerPage, countries, paginateF}) => {
         pageNumbers.push(i)
     }
 
+  function next(e) {
+    e.preventDefatult()
+  }
+
+  function previous(e) {
+    e.preventDefatult()
+
+  }
+
   return ( 
+    
       <div className={style.container}>
+   
             {pageNumbers && pageNumbers.map((number, i) => (
               
                   <a key={i} className={style.numbers} 
                     onClick={() => paginateF(number)}>
                       {number}
                   </a>
+                  
             ))}
 
       </div>
