@@ -10,26 +10,23 @@ const CountryDetails = ({id}) => {
     const dispatch = useDispatch()
     const details = useSelector((state) => state.countryDetails)
 
-    const [show, setShow] = useState(false)
-    console.log(details)
+/*     const [show, setShow] = useState(true) */
 
     useEffect(() => {
         dispatch(byId(id))
-        setShow(() => setTimeout(true), 3000)
+/*         setShow(() => setTimeout(false), 1500) */
     }, [dispatch, id])
 
     function back() {
         window.history.back() 
       }
-
-    {show === false && (<div className={style.loading}>   
-                <Loading/>
-            </div>)}
-  console.log(details)
+/* 
+      {show && <div className={style.loading}>   
+                  <Loading/>
+              </div>} */
   return (
-    <>
-    
-    <div className={style.container2}>
+    <div>
+      <div className={style.container2}>
                  <button className={style.btn} onClick={(e) => back(e)}> Back </button>
        
         <div className={style.container1}> 
@@ -60,15 +57,16 @@ const CountryDetails = ({id}) => {
             
                 {details.activities?.map((a, i) => { 
                     return <Activities key={i} 
-                    id={a.id}
+                    country_id={details}
+                    activity_id={a.id}
                     name={a.name} 
                     difficulty={a.difficulty} 
                     duration={a.duration}
                     season={a.season} />}
                 )}
         </div>
+      </div>
     </div>
-    </>
   )
 }
 

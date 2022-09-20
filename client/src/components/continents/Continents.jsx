@@ -22,7 +22,6 @@ const Continents = () => {
   function handleClick(e) {
     e.preventDefault()
     dispatch(setPagination(1))
-    console.log(e.target.name)
     dispatch(byContinente(e.target.name))
   }
 

@@ -141,8 +141,6 @@ const CreateActivity = () => {
         )
     }
     };
-    console.log(activity)
-    console.log(activity.countries)
     
     const removeCountries = (e) => {
         e.preventDefault()
