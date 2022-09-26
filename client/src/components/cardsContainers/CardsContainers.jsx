@@ -8,6 +8,7 @@ import Loading from '../loading/Loading.jsx'
 import Filters from '../filters/Filters'
 import Paginate from '../paginate/Paginate'
 import Continents from '../continents/Continents'
+import Footer from '../Footer/Footer'
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ///////RED ALERT PROBLEM ABOUT THE FILTER OF THE COUNTRIES AFTER CREATE AN ACTIVITY/////
@@ -22,7 +23,7 @@ const CardsContainers = () => {
     const [show, setShow] = useState(false)
     const [x, setCurrentPage] = useState(1)
     const [countriesPerPage, setCountriesPerPage] = useState(16)
-    const indexOfLastCharacter = currentPage * countriesPerPage // 9
+    const indexOfLastCharacter = currentPage * countriesPerPage 
     const indexOFfirstCharacter = indexOfLastCharacter - countriesPerPage
     const currentCountries = countries.slice(indexOFfirstCharacter, indexOfLastCharacter)
    
@@ -64,9 +65,7 @@ const CardsContainers = () => {
             <Filters setFirstPage={paginateF}/>
         </div>
 
-
         <div className={style.container} >
-        
              {show === false && (<div className={style.loading}>   
                  <Loading/>
               </div>)}
@@ -92,12 +91,14 @@ const CardsContainers = () => {
              />
             }) } 
         </div>
-             <div>
-                 <Paginate
-                     countriesPerPage={countriesPerPage}
-                     countries={countries.length}
-                     paginateF={paginateF}/>
-             </div>
+        <div>
+            <Paginate
+                countriesPerPage={countriesPerPage}
+                countries={countries.length}
+                paginateF={paginateF}
+                currentPage={currentPage}/>
+        </div>
+
     </div>
     )
         }

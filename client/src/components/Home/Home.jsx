@@ -5,6 +5,7 @@ import NavBar from '../NavBar/NavBar.jsx'
 import Paginate from '../../components/paginate/Paginate.jsx'
 import style from './home.module.css'
 import '../../App.css'
+import Footer from '../Footer/Footer.jsx'
 
 const Home = () => {
   return (

@@ -1,5 +1,5 @@
 .container {
-    
+    margin-top: 15rem;
     background-color: white;
     padding: 10px;
     border-radius: 5px;
@@ -10,15 +10,45 @@
     margin-top: 10px;
     text-align: center;
     text-decoration: none;
+    align-items: center;
+}
+
+.arrowLeft {
+    transform: rotate(180deg);
+    margin-bottom: 0.2rem;
+    cursor: pointer;
+}
+
+.arrowRigth {
+    margin-bottom: 0.2rem;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #03BCD1;  
+    padding: 8px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgb(182, 182, 182);
+    margin: 0px 5px;
+    width: fit-content;
+    height: 40%;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.non {
+    background-color: none;
 }
 
 .numbers {
     background-color: white;
-    padding: 3px;
-    border-radius: 5px;
-    box-shadow: 0 1px 4px rgb(121, 120, 120);
+    padding: 8px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgb(162, 159, 159);;
     margin: 0px 5px;
-    width: fit-content;
+    /* width: fit-content; */
+    width: 10rem;
     height: 40%;
     margin-top: 10px;
     text-align: center;

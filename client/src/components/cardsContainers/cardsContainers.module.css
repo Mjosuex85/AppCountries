@@ -3,8 +3,8 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: center;
-    justify-content: left;
-    width: 195%;
+    justify-content: center;
+    width: 170%;
 }
 
 .notFound {
