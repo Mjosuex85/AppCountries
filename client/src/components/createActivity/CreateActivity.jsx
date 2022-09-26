@@ -47,7 +47,6 @@ const CreateActivity = () => {
           }))
         };
 
-        console.log(activity)
        
     const handleSubmit = async (e) => {  // FUNCIÖN CREA ACTIVIDAD AL POST
         e.preventDefault()
@@ -152,7 +151,6 @@ const CreateActivity = () => {
             countries: [...activity.countries.filter(e => e !== x)]
         })
         
-       
     };
 
   return (
