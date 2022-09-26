@@ -2,7 +2,8 @@
   /* display: flex; */
   /* flex-direction: center; */
   justify-content: center;
-  width: 90%;
-  /* justify-content: space-evenly; */
+ /*  width: 90%; */
+  justify-content: space-evenly;
   margin-left: 54px;
+  margin-right: 65px;
 }

@@ -14,8 +14,6 @@ const Filters = ({setFirstPage}) => {
         dispatch(allActivities())
     }, [dispatch])
 
-    console.log(" LAS ACTIVITIESSS ",activities)
-
     function activityFilter(event) {
       event.preventDefault()
       dispatch(setPagination(1))
