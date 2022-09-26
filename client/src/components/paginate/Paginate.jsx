@@ -20,6 +20,7 @@ const Paginate = ({countriesPerPage, countries, paginateF, currentPage}) => {
     };
 
     const previous = () => {
+      console.log(currentPage)
       if (currentPage <= 1) {
         return
       }
@@ -27,6 +28,8 @@ const Paginate = ({countriesPerPage, countries, paginateF, currentPage}) => {
         paginateF(currentPage - 1)
       }
     };
+
+  
 
 
   return ( 
