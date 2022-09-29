@@ -6,6 +6,9 @@ import { allActivities, byActivities, asc, desc, population, setPagination, byAr
 
 const Filters = ({setFirstPage}) => {
 
+  const continentSelected = useSelector((state) => state.continents)
+    
+
     const dispatch = useDispatch()
     const activities = useSelector((state) => state.activities)
     
@@ -41,7 +44,11 @@ const Filters = ({setFirstPage}) => {
 
   return (
     <div className={style.container}>
-        <div>
+      <h5> 
+        {continentSelected[0]}
+      </h5>
+        
+      <div>
             <select className={style.filters} name="" id="">
               <option disabled={false}> Order by...</option>
               <option onClick={(e) => asc_abc(e)}> Name: Asc </option>
@@ -58,8 +65,7 @@ const Filters = ({setFirstPage}) => {
                   return <option onClick={(e) => activityFilter(e)} key={index}> {a.name} </option>
                  })}
             </select>
-
-        </div>
+      </div>
     </div>
   )
 };

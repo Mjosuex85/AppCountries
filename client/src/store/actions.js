@@ -12,6 +12,7 @@ export const RESET = "RESET"
 export const SET_CONTINENTS = "SET_CONTINENTS"
 export const SET_PAGINATE = "SET_PAGINATE"
 export const BY_AREA = "BY_AREA"
+export const CONTINENT_SELECTED = "CONTINENT_SELECTED"
 
 const url = `http://localhost:3005/countries/`
 
@@ -132,6 +133,14 @@ export function setPagination(payload) {
 export function byArea(payload) {
     return {
         type: BY_AREA,
+        payload
+    }
+};
+
+
+export function continentSelected(payload) {
+    return {
+        type: CONTINENT_SELECTED,
         payload
     }
 }

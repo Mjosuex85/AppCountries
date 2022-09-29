@@ -7,7 +7,9 @@
     width: 170%;
     height: 40%;
     margin-top: 10px;
-    text-align: right;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 .filterA {
@@ -15,6 +17,7 @@
 }
 
 .filters {
+    /* margin-top: 3%; */
     border-radius: 3px;
     border: none
 }

@@ -4,8 +4,8 @@ import gif from './giphy.gif'
 
 const Loading = () => {
   return (
-    <div>
-      <img src={gif} alt="" width="180" height="180" />
+    <div >
+      <img src={gif} alt="" width="120" height="120" />
     </div>
   )
 };

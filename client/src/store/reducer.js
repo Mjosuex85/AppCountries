@@ -10,7 +10,8 @@ import { REQUEST_COUNTRIES,
         RESET,
         SET_CONTINENTS,
         SET_PAGINATE,
-        BY_AREA
+        BY_AREA,
+        CONTINENT_SELECTED
 } from './actions'
 
 const initialState = {
@@ -18,7 +19,8 @@ const initialState = {
     allCountriesCopy: [],
     activities: [],
     countryDetails: [],
-    paginate: 1
+    paginate: 1,
+    continents: ["All Continents"]
 };
 
 export default function reducer(state = initialState, action) {
@@ -133,6 +135,12 @@ export default function reducer(state = initialState, action) {
                      ...state,
                     allCountries: [...area]
                 };
+
+            case CONTINENT_SELECTED: 
+                return {
+                    ...state,
+                    continents: [action.payload]
+                }
 
     
     default: {

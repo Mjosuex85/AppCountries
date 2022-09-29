@@ -31,7 +31,7 @@ const Activities = (props) => {
 
   return (
     <div onClick={(e) => click(e)} className={style.container}>
-        <h5 className={style.h1}>{props.name} <img className={style.cancel} src={cancelImage} width='25' alt="" /></h5>
+        <h5 className={style.h1}>{props.name} {/* <img className={style.cancel} src={cancelImage} width='25' alt="" /> */}</h5>
         <h6> Difficulty: {props.difficulty}</h6>
         <h6> Duration: {props.duration} Days</h6>
         <h6>Season: {props.season}</h6>

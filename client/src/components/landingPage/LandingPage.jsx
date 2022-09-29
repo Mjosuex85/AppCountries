@@ -8,27 +8,29 @@ import back from './667235.jpg'
 
 const LandingPage = () => {
   return (
-    <div className={style.fondo}>
-    <div className={style.container}>
-        <Link to='/countries' className={style.box}> 
+    <div className={style.imgBack}>
+        .
+        <div className={style.container}>
+             <Link to='/countries' className={style.box}> 
 
-            <img 
-                className={style.image}
-                src={image} 
-                alt="" width="300" height="300" 
-            /> 
+                 <img 
+                    className={style.image}
+                    src={image} 
+                    alt="" width="300" height="300" 
+                /> 
             {/* <h1 className={style.huno}>By Flags</h1> */}
-        </Link> 
+            </Link> 
 
-        <Link to='/worldmap' className={style.box}> 
-            <img 
-                className={style.image}
-                src={worldApp} 
-                alt="" width="300" height="300" 
-            /> 
-           {/*  <h1 className={style.huno}>World Map</h1> */}
-        </Link> 
-    </div>
+            <Link to='/worldmap' className={style.box}> 
+                <img 
+                    className={style.image}
+                    src={worldApp} 
+                    alt="" width="300" height="300" 
+                /> 
+            {/*  <h1 className={style.huno}>World Map</h1> */}
+            </Link> 
+        </div>
+        fsdgsd
     </div>
   )
 }

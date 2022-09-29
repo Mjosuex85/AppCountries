@@ -20,9 +20,10 @@ const CardsContainers = () => {
     const currentPage = useSelector((state) => state.paginate)
     const dispatch = useDispatch()
 
+
     const [show, setShow] = useState(false)
     const [x, setCurrentPage] = useState(1)
-    const [countriesPerPage, setCountriesPerPage] = useState(16)
+    const [countriesPerPage, setCountriesPerPage] = useState(12)
     const indexOfLastCharacter = currentPage * countriesPerPage 
     const indexOFfirstCharacter = indexOfLastCharacter - countriesPerPage
     const currentCountries = countries.slice(indexOFfirstCharacter, indexOfLastCharacter)
