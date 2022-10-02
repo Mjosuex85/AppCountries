@@ -20,7 +20,7 @@ const initialState = {
     activities: [],
     countryDetails: [],
     paginate: 1,
-    continents: ["All Continents"]
+    continents: ["All the World"]
 };
 
 export default function reducer(state = initialState, action) {

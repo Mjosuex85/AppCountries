@@ -4,8 +4,10 @@ import gif from './giphy.gif'
 
 const Loading = () => {
   return (
-    <div >
-      <img src={gif} alt="" width="120" height="120" />
+    <div style={{marginTop: '10rem', marginBottom: '80rem'}}>
+      <div class="spinner-border text-info" role="status">
+      <span class="visually-hidden"></span>
+      </div>
     </div>
   )
 };

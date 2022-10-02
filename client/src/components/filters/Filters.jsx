@@ -7,6 +7,7 @@ import { allActivities, byActivities, asc, desc, population, setPagination, byAr
 const Filters = ({setFirstPage}) => {
 
   const continentSelected = useSelector((state) => state.continents)
+  console.log(continentSelected)
     
 
     const dispatch = useDispatch()
