@@ -23,7 +23,7 @@ const initialState = {
     countryDetails: [],
     paginate: 1,
     continents: ["All the World"],
-    weather: []
+    weather: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -105,7 +105,7 @@ export default function reducer(state = initialState, action) {
             case BY_ID:
                 return {
                     ...state,
-                    countryDetails: action.payload
+                    countryDetails: action.payload,
                 };
 
             case RESET:
@@ -151,13 +151,13 @@ export default function reducer(state = initialState, action) {
                     weather: [action.payload]
                 };
 
-            case FILTER_ACTIVITIES: 
+            /* case FILTER_ACTIVITIES: 
                 console.log(action.payload)
-                /* const filterX = state.countryDetails */
+                const filterX = state.countryDetails
                 return {
                     ...state,
-                    countryDetails: []
-                }
+                    activities: activitiesDetails
+                }; */
 
     
     default: {

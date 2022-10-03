@@ -11,22 +11,17 @@ const CountryDetails = ({id}) => {
     const dispatch = useDispatch()
     const details = useSelector((state) => state.countryDetails)
     const wheater = useSelector((state) => state.weather)
-    const activities = useSelector((state) => state.countryDetails.activities)
+    const activities = useSelector((state) => state.activitiesDetails)
     
-    const [acti, setActivitie] = useState([])
-    console.log("la acti", acti)
     
     useEffect(() => {
       dispatch(byId(id))
       dispatch(getWheather(id))
-      setActivitie(activities)
     }, [dispatch, id])
     
 
     const removeFunction = (id) => {
-      console.log(id)
-      const x = activities.filter(e => e.id != id)
-      console.log(x)
+        dispatch(filterActivities(id))
     }
 
     /* console.log("dddd",wheater[0]) */
