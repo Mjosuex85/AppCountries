@@ -1,26 +1,29 @@
-.h1 {  
+.tittle {  
     background-color: #03BCD1; 
     text-align: center;
     color: white;
     border: none;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: center;
 }
 
 .container {
- 
     background-color: white;
     font-size: 20px;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
-    margin: 0px 10px;
-    width: 335px;
+    margin:5px 10px;
+    width: 18rem;
     height: 100%;
     margin-top: 10px;
 }
 
 .cancel {
-    margin-left: 43%;
+    
 }
 
 .cancel:hover {
