@@ -63,7 +63,7 @@ const byId= async (id) => {
     return country
 };
 
-const eliminateActivityCountry = (id/* , activity */) => {
+const eliminateActivityCountry = () => {
     const toEliminate = CountryActivities.findAll({
     })
         return toEliminate;
