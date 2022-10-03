@@ -19,10 +19,22 @@ const CountryDetails = ({id}) => {
       dispatch(getWheather(id))
     }, [dispatch, id])
     
-
+    
     const removeFunction = (objeto) => {
+      var mensaje;
+      var opcion = window.confirm("Are you sure to delete this activity?");
+      if (opcion == true) {
+        mensaje = "OK";
         earaseActivities(objeto)
+        setTimeout(() => {
+          window.location.reload()
+        }, 500);
+    } else {
+        alert("Cancel")
+    }
+  
     };
+    
 
     /* console.log("dddd",wheater[0]) */
 

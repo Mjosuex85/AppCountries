@@ -160,18 +160,15 @@ export function continentSelected(payload) {
     }
 };
 
-export function earaseActivities(payload) {
-    const {id, country} = payload
-    console.log("este es el id ",id)
-    console.log("este es el pais",country)
-    return async function(dispatch) {
+export async function earaseActivities(payload) {
         try{
+            const {id, country} = payload
+            console.log(id)
             let x = await axios.delete(`http://localhost:3005/countries/${country}?idname=${id.toString()}`)
-            console.log("HOLA")
             return x
         }
         catch(error) {
             console.log(error)
         }
-    }
+    
 };

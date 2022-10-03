@@ -30,11 +30,6 @@ router.get('/', async (req, res, next) => {
 });
 
 router.delete('/:id', async (req, res) => {
-    console.log(req.query)
-    const { id } = req.params
-    const { idname } = req.query
-    console.log(" por query",idname)
-    console.log(" por params",id)
     try{
         const delete_activity = await eliminateActivityCountry(
             {
@@ -52,27 +47,8 @@ router.delete('/:id', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const { idname } = req.query
-    const { id } = req.params
-
-    if(idname) {
-        try{
-            const delete_activity = await eliminateActivityCountry(
-                {
-                 countryId: id, 
-                 activityId: idname
-                })
     
-            res.json("Eliminadoaq   ")
-            return delete_activity
-        }
-        catch(error) {
-            console.log(error)
-        }
-    }
-
-    else {
-
+    const { id } = req.params
         try {
             const coutry_id = await byId(id)
             res.send(coutry_id)
@@ -81,7 +57,7 @@ router.get('/:id', async (req, res) => {
             console.log(error)
             res.send("NO SE ENCUENTRA EL ID")
         }
-    }
+    
 
 });
 
