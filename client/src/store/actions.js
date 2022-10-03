@@ -13,7 +13,10 @@ export const SET_CONTINENTS = "SET_CONTINENTS"
 export const SET_PAGINATE = "SET_PAGINATE"
 export const BY_AREA = "BY_AREA"
 export const CONTINENT_SELECTED = "CONTINENT_SELECTED"
+export const GET_WEATHER = "GET_WEATHER"
+export const FILTER_ACTIVITIES = "FILTER_ACTIVITIES" 
 
+const apiKey = "8e84108b95ef7a2c77bc1bd073ccfe77"
 const url = `http://localhost:3005/countries/`
 
 export function allCountries(){
@@ -72,7 +75,19 @@ export function byId(id) {
             payload: byId.data
         })
     }
-}
+};
+
+
+export function getWheather(capital) {
+    return async function(dispatch){
+        const query = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=${apiKey}&units=metric`)
+        return dispatch({
+            type: GET_WEATHER,
+            payload: query.data
+        })
+        
+      };
+};
 
 export function byContinente(payload) {
     return {
@@ -141,6 +156,14 @@ export function byArea(payload) {
 export function continentSelected(payload) {
     return {
         type: CONTINENT_SELECTED,
+        payload
+    }
+};
+
+
+export function filterActivities(payload) {
+    return {
+        type: FILTER_ACTIVITIES,
         payload
     }
 }

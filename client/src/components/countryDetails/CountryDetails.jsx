@@ -1,21 +1,41 @@
 import React, { useState } from 'react'
 import style from './countryDetails.module.css'
 import { useSelector, useDispatch} from 'react-redux'
-import { useEffect } from 'react'
-import { byId } from '../../store/actions.js'
+import { useEffect} from 'react'
+import { byId, getWheather, filterActivities } from '../../store/actions.js'
 import Activities from '../activities/Activities.jsx'
 import Loading from '../loading/Loading'
+import axios from 'axios'
 
 const CountryDetails = ({id}) => {
     const dispatch = useDispatch()
     const details = useSelector((state) => state.countryDetails)
-
-/*     const [show, setShow] = useState(true) */
-
+    const wheater = useSelector((state) => state.weather)
+    const activities = useSelector((state) => state.countryDetails.activities)
+    
+    const [acti, setActivitie] = useState([])
+    console.log("la acti", acti)
+    
     useEffect(() => {
-        dispatch(byId(id))
-/*         setShow(() => setTimeout(false), 1500) */
+      dispatch(byId(id))
+      dispatch(getWheather(id))
+      setActivitie(activities)
     }, [dispatch, id])
+    
+
+    const removeFunction = (id) => {
+      console.log(id)
+      const x = activities.filter(e => e.id != id)
+      console.log(x)
+    }
+
+    /* console.log("dddd",wheater[0]) */
+
+    /* useEffect(() => {
+      setTimeout(() => {
+        setWeatherC(wheater)
+      }, 1000);
+    },[]) */
 
     function back() {
         window.history.back() 
@@ -52,11 +72,17 @@ const CountryDetails = ({id}) => {
             </div>
             </div>
         </div>
+
+        {/* <div className={style.container1}> 
+             <h3> Wheater in {details.capital}</h3>
+              <p>{{wheater && wheater[0].base}}</p>
+        </div> */}
         
         <div className={style.activities}> 
             
-                {details.activities?.map((a, i) => { 
+                {activities?.map((a, i) => { 
                     return <Activities key={i} 
+                    remove={removeFunction}
                     country_id={details}
                     activity_id={a.id}
                     name={a.name} 

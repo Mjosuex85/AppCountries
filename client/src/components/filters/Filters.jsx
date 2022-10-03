@@ -7,7 +7,6 @@ import { allActivities, byActivities, asc, desc, population, setPagination, byAr
 const Filters = ({setFirstPage}) => {
 
   const continentSelected = useSelector((state) => state.continents)
-  console.log(continentSelected)
     
 
     const dispatch = useDispatch()
@@ -45,7 +44,7 @@ const Filters = ({setFirstPage}) => {
 
   return (
     <div className={style.container}>
-      <h5> 
+      <h5 style={{padding: '0rem', margin: '0'}}> 
         {continentSelected[0]}
       </h5>
         

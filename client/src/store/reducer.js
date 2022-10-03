@@ -11,7 +11,9 @@ import { REQUEST_COUNTRIES,
         SET_CONTINENTS,
         SET_PAGINATE,
         BY_AREA,
-        CONTINENT_SELECTED
+        CONTINENT_SELECTED,
+        GET_WEATHER,
+        FILTER_ACTIVITIES
 } from './actions'
 
 const initialState = {
@@ -20,7 +22,8 @@ const initialState = {
     activities: [],
     countryDetails: [],
     paginate: 1,
-    continents: ["All the World"]
+    continents: ["All the World"],
+    weather: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -140,6 +143,20 @@ export default function reducer(state = initialState, action) {
                 return {
                     ...state,
                     continents: [action.payload]
+                };
+
+            case GET_WEATHER:
+                return {
+                    ...state,
+                    weather: [action.payload]
+                };
+
+            case FILTER_ACTIVITIES: 
+                console.log(action.payload)
+                /* const filterX = state.countryDetails */
+                return {
+                    ...state,
+                    countryDetails: []
                 }
 
     
