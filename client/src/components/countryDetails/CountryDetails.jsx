@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import style from './countryDetails.module.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { useEffect} from 'react'
-import { byId, getWheather, filterActivities } from '../../store/actions.js'
+import { byId, getWheather, earaseActivities } from '../../store/actions.js'
 import Activities from '../activities/Activities.jsx'
 import Loading from '../loading/Loading'
 import axios from 'axios'
@@ -20,9 +20,9 @@ const CountryDetails = ({id}) => {
     }, [dispatch, id])
     
 
-    const removeFunction = (id) => {
-        dispatch(filterActivities(id))
-    }
+    const removeFunction = (objeto) => {
+        earaseActivities(objeto)
+    };
 
     /* console.log("dddd",wheater[0]) */
 
@@ -75,7 +75,7 @@ const CountryDetails = ({id}) => {
         
         <div className={style.activities}> 
             
-                {activities?.map((a, i) => { 
+                {details.activities?.map((a, i) => { 
                     return <Activities key={i} 
                     remove={removeFunction}
                     country_id={details}

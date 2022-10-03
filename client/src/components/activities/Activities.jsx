@@ -9,14 +9,7 @@ const Activities = (props) => {
 
   const click = async (e) => {  // función para borrar la actividad solo a ese país
     e.preventDefault()
-    try {
-        props.remove(props.activity_id)
-        alert(props.activity_id)
-    }
-    
-    catch(error) {
-        console.log(error)
-    }
+    props.remove({id: props.activity_id, country: props.country_id.id })
 };
 
   return (

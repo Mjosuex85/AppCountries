@@ -63,10 +63,15 @@ const byId= async (id) => {
     return country
 };
 
-const eliminateActivityCountry = () => {
-    const toEliminate = CountryActivities.findAll({
+const eliminateActivityCountry = async (obj) => {
+    console.log("y este?",obj)
+    const toEliminate = await CountryActivities.destroy({
+        where:{
+            countryId: obj.countryId,
+            activityId: obj.activityId
+        }
     })
-        return toEliminate;
+        return toEliminate ;
 }
 
 

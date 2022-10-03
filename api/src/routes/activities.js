@@ -37,7 +37,6 @@ router.post('/activities', async (req, res) => {
 
 router.get("/activities", async (req, res) => {
     try {
-        
         const activities = await Activities.findAll({})
         res.send(activities)
     }
