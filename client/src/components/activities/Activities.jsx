@@ -13,11 +13,11 @@ const Activities = (props) => {
 };
 
   return (
-    <div onClick={(e) => click(e)} className={style.container}>
+    <div className={style.container}>
 
         <div className={style.tittle}>
           <h5 style={{marginLeft: '0.5rem'}}>{props.name} </h5>
-          <img className={style.cancel} onClick={click} style={{marginRight: '0.5rem'}} src={cancelImage} width='25' alt="" />
+          <img className={style.cancel} onClick={(e) => click(e)} style={{marginRight: '0.5rem'}} src={cancelImage} width='25' alt="" />
         </div>
         <h6> Difficulty: {props.difficulty}</h6>
         <h6> Duration: {props.duration} Days</h6>

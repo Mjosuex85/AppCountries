@@ -80,7 +80,7 @@ export function byId(id) {
 
 export function getWheather(capital) {
     return async function(dispatch){
-        const query = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=${apiKey}&units=metric`)
+        const query = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=8e84108b95ef7a2c77bc1bd073ccfe77&units=metric`)
         return dispatch({
             type: GET_WEATHER,
             payload: query.data

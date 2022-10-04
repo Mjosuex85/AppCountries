@@ -52,6 +52,11 @@ const countriesDB = async (name) => {
 };
 
 const byId= async (id) => {
+
+
+
+
+    
     const country_id = await Country.findOne({
         where: {
             id: id
@@ -64,14 +69,36 @@ const byId= async (id) => {
 };
 
 const eliminateActivityCountry = async (obj) => {
-    console.log("y este?",obj)
+
     const toEliminate = await CountryActivities.destroy({
         where:{
             countryId: obj.countryId,
             activityId: obj.activityId
         }
     })
-        return toEliminate ;
+    
+    const consultActivity = await CountryActivities.findAll({
+        where: {
+            activityId: obj.activityId
+        }
+    })
+
+    console.log(" LA ACTIVIDAD QUE ESTOY BUSCANDO ",consultActivity)
+
+    if(consultActivity.length < 1) {
+        console.log("PASÓ")
+        console.log("el id de la actividad" , obj.activityId)
+        const eliminar = await Activities.destroy({
+            where: {
+               id: obj.activityId 
+            }
+        })
+        return eliminar
+    }
+
+    else {
+        console.log("AUN QUEDAN PAISES CON ESA ACTIVIDAD")
+    };
 }
 
 

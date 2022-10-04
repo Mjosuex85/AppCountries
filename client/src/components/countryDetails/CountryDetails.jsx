@@ -12,27 +12,32 @@ const CountryDetails = ({id}) => {
     const details = useSelector((state) => state.countryDetails)
     const wheater = useSelector((state) => state.weather)
     const activities = useSelector((state) => state.activitiesDetails)
-    
+      
+   
+    const name = details.name
     
     useEffect(() => {
       dispatch(byId(id))
-      dispatch(getWheather(id))
     }, [dispatch, id])
+
+    useEffect(() => {
+        console.log("Name ",name)
+        dispatch(getWheather(name))
+    },[])
     
     
     const removeFunction = (objeto) => {
-      var mensaje;
-      var opcion = window.confirm("Are you sure to delete this activity?");
-      if (opcion == true) {
-        mensaje = "OK";
+      var option = window.confirm("Are you sure to delete this activity?")
+      if(option) {
         earaseActivities(objeto)
         setTimeout(() => {
           window.location.reload()
-        }, 500);
-    } else {
-        alert("Cancel")
-    }
-  
+          }, 500);
+      }
+
+      else {
+        return 
+      }
     };
     
 
