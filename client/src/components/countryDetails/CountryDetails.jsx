@@ -22,7 +22,8 @@ const CountryDetails = ({id}) => {
 
     useEffect(() => {
       const x = async () => {
-        const y = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${details && details.capital}&appid=8e84108b95ef7a2c77bc1bd073ccfe77&units=metric`)
+        const z = await details.capital
+        const y = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${z}&appid=8e84108b95ef7a2c77bc1bd073ccfe77&units=metric`)
       }
 
       x()

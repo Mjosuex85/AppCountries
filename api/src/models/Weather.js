@@ -3,32 +3,52 @@ const { DataTypes, UUIDV4 } = require('sequelize')
 module.exports = (sequelize) => {
     
     sequelize.define('weather', {
-
         id: {
             type: DataTypes.UUIDV4,
             primaryKey: true,
             defaultValue: UUIDV4
           },
 
-        name: {
-          type: DataTypes.STRING,
+        temp: {
+          type: DataTypes.INTEGER,
           unique: true
         },
 
-        difficulty: {   
+        feels_like: {   
             type: DataTypes.INTEGER,
             allowNull: false
         },
 
-        duration: {
+        temp_min: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
 
-        season: {
+        speed: {
             type: DataTypes.STRING,  // debería ser un array
             allowNull: false
         },
+
+        humidity: {
+            type: DataTypes.STRING,  // debería ser un array
+            allowNull: false
+        },
+
+        humidity: {
+            type: DataTypes.STRING,  // debería ser un array
+            allowNull: false
+        },
+
+        humidity: {
+            type: DataTypes.STRING,  // debería ser un array
+            allowNull: false
+        },
+
+        humidity: {
+            type: DataTypes.STRING,  // debería ser un array
+            allowNull: false
+        },
+
         
     });
 };
