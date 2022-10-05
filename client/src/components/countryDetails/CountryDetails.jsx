@@ -8,22 +8,31 @@ import Loading from '../loading/Loading'
 import axios from 'axios'
 
 const CountryDetails = ({id}) => {
-    const dispatch = useDispatch()
-    const details = useSelector((state) => state.countryDetails)
+  const details = useSelector((state) => state.countryDetails)
+  const dispatch = useDispatch()
     const wheater = useSelector((state) => state.weather)
     const activities = useSelector((state) => state.activitiesDetails)
       
-   
-    const name = details.name
-    
+    console.log(wheater)
+
     useEffect(() => {
       dispatch(byId(id))
     }, [dispatch, id])
 
+
     useEffect(() => {
+      const x = async () => {
+        const y = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${details && details.capital}&appid=8e84108b95ef7a2c77bc1bd073ccfe77&units=metric`)
+      }
+
+      x()
+    },[])
+
+
+   /*  useEffect(() => {
         console.log("Name ",name)
         dispatch(getWheather(name))
-    },[])
+    },[]) */
     
     
     const removeFunction = (objeto) => {
@@ -60,35 +69,51 @@ const CountryDetails = ({id}) => {
     <div>
       <div className={style.container2}>
                  <button className={style.btn} onClick={(e) => back(e)}> Back </button>
-       
         <div className={style.container1}> 
-             <h1 className={style.name}>{details.name}</h1>
+             <h6 className={style.name}>{details.name}</h6>
              <img className={style.image} src={details.flags} alt="Not Found"/>
+
 
              <div className={style.info_container}>
              
              <div className={style.info1}>
                 <h6> Population: </h6>
+                <hr style={{ width: '14rem' }}/>
                 <h6> Area: </h6>
+                <hr />
                 <h6> Continent: </h6>
+                <hr />
                 <h6> Capital: </h6>
+                <hr />
                 <h6> Subregion: </h6>
+                <hr />
              </div>
 
             <div className={style.info2}>
               <h6> {Intl.NumberFormat('de-DE').format(details.population)}</h6>
+              <hr style={{ width: '14rem' }}/>
               <h6> {Intl.NumberFormat('de-DE').format(details.area)} km2 </h6>
+              <hr/>
               <h6> {details.continents}</h6>
+              <hr/>
               <h6> {details.capital}</h6>
+              <hr/>
               <h6> {details.subregion}</h6>
+              <hr/>
             </div>
             </div>
+       
+        <div className={style.container3}> 
+             <h3> Wheater in {details.capital}</h3>
+             <p>Temp</p>
+             <p>Temp</p>
+             <p>Temp</p>
+             <p>Temp</p>
+             <p>Temp</p>
+              
+        </div>
         </div>
 
-        {/* <div className={style.container1}> 
-             <h3> Wheater in {details.capital}</h3>
-              <p>{{wheater && wheater[0].base}}</p>
-        </div> */}
         
         <div className={style.activities}> 
             

@@ -217,6 +217,7 @@ const CreateActivity = () => {
                             type="number"
                             name="duration"
                             value={error.duration} />
+                            
                 {error.duration ? <p className={style.validate}>{error.duration}</p> : ""} 
                 </div> <br/>
             </legend>
