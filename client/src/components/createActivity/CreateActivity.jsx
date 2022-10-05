@@ -227,7 +227,7 @@ const CreateActivity = () => {
                     <select onChange={(e) => handleOnChange(e)} className={style.inputs} name='season' value={error.activity}  > 
                         <option>Spring</option>
                         <option>Winter</option>
-                        <option>Auntum</option>
+                        <option>Autumn</option>
                         <option>Summer</option>
                     </select>
                     <p>{error.season ? <p className={style.validate}>{error.season}</p> : ""}</p>

@@ -13,6 +13,7 @@ import { REQUEST_COUNTRIES,
         BY_AREA,
         CONTINENT_SELECTED,
         GET_WEATHER,
+        CLEAR,
         FILTER_ACTIVITIES
 } from './actions'
 
@@ -144,6 +145,13 @@ export default function reducer(state = initialState, action) {
                     ...state,
                     continents: [action.payload]
                 };
+
+            case CLEAR: 
+                return {
+                    ...state,
+                    countryDetails: []
+
+                }
 
             case GET_WEATHER:
                 return {

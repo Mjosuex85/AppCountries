@@ -15,6 +15,7 @@ export const BY_AREA = "BY_AREA"
 export const CONTINENT_SELECTED = "CONTINENT_SELECTED"
 export const GET_WEATHER = "GET_WEATHER"
 export const FILTER_ACTIVITIES = "FILTER_ACTIVITIES" 
+export const CLEAR = "CLEAR"
 
 const apiKey = "8e84108b95ef7a2c77bc1bd073ccfe77"
 const url = `http://localhost:3005/countries/`
@@ -144,6 +145,13 @@ export function setPagination(payload) {
         payload
     }
 };
+
+export function clear(payload) {
+    return {
+        type: CLEAR,
+        payload
+    }
+}
 
 export function byArea(payload) {
     return {

@@ -2,39 +2,27 @@ import React, { useState } from 'react'
 import style from './countryDetails.module.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { useEffect} from 'react'
-import { byId, getWheather, earaseActivities } from '../../store/actions.js'
+import { byId, getWheather, earaseActivities, clear } from '../../store/actions.js'
 import Activities from '../activities/Activities.jsx'
 import Loading from '../loading/Loading'
 import axios from 'axios'
 
 const CountryDetails = ({id}) => {
-  const details = useSelector((state) => state.countryDetails)
   const dispatch = useDispatch()
-    const wheater = useSelector((state) => state.weather)
-    const activities = useSelector((state) => state.activitiesDetails)
-      
-    console.log(wheater)
+  
+  const details = useSelector((state) => state.countryDetails)
+  const wheater = useSelector((state) => state.weather)
+  const activities = useSelector((state) => state.activitiesDetails)
 
     useEffect(() => {
       dispatch(byId(id))
     }, [dispatch, id])
 
 
-    useEffect(() => {
-      const x = async () => {
-        const z = await details.capital
-        const y = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${z}&appid=8e84108b95ef7a2c77bc1bd073ccfe77&units=metric`)
-      }
-
-      x()
-    },[])
-
-
    /*  useEffect(() => {
         console.log("Name ",name)
         dispatch(getWheather(name))
     },[]) */
-    
     
     const removeFunction = (objeto) => {
       var option = window.confirm("Are you sure to delete this activity?")
@@ -44,14 +32,10 @@ const CountryDetails = ({id}) => {
           window.location.reload()
           }, 500);
       }
-
       else {
         return 
       }
     };
-    
-
-    /* console.log("dddd",wheater[0]) */
 
     /* useEffect(() => {
       setTimeout(() => {
@@ -60,6 +44,7 @@ const CountryDetails = ({id}) => {
     },[]) */
 
     function back() {
+        dispatch(clear())
         window.history.back() 
       }
 /* 
@@ -71,8 +56,8 @@ const CountryDetails = ({id}) => {
       <div className={style.container2}>
                  <button className={style.btn} onClick={(e) => back(e)}> Back </button>
         <div className={style.container1}> 
-             <h6 className={style.name}>{details.name}</h6>
-             <img className={style.image} src={details.flags} alt="Not Found"/>
+             <h6 className={style.name}>{details &&details.name}</h6>
+             <img className={style.image} src={details && details.flags} alt="Not Found"/>
 
 
              <div className={style.info_container}>
@@ -91,21 +76,21 @@ const CountryDetails = ({id}) => {
              </div>
 
             <div className={style.info2}>
-              <h6> {Intl.NumberFormat('de-DE').format(details.population)}</h6>
+              <h6> {Intl.NumberFormat('de-DE').format(details && details.population)}</h6>
               <hr style={{ width: '14rem' }}/>
-              <h6> {Intl.NumberFormat('de-DE').format(details.area)} km2 </h6>
+              <h6> {Intl.NumberFormat('de-DE').format(details && details.area)} km2 </h6>
               <hr/>
-              <h6> {details.continents}</h6>
+              <h6> {details && details.continents}</h6>
               <hr/>
-              <h6> {details.capital}</h6>
+              <h6> {details && details.capital}</h6>
               <hr/>
-              <h6> {details.subregion}</h6>
+              <h6> {details && details.subregion}</h6>
               <hr/>
             </div>
             </div>
        
         <div className={style.container3}> 
-             <h3> Wheater in {details.capital}</h3>
+             <h3> Wheater in {details && details.capital}</h3>
              <p>Temp</p>
              <p>Temp</p>
              <p>Temp</p>
@@ -118,7 +103,7 @@ const CountryDetails = ({id}) => {
         
         <div className={style.activities}> 
             
-                {details.activities?.map((a, i) => { 
+                {details && details.activities?.sort((a, b) => a.name > b.name).map((a, i) => { 
                     return <Activities key={i} 
                     remove={removeFunction}
                     country_id={details}

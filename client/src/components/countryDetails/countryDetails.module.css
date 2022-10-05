@@ -16,10 +16,10 @@
 .container2 {
     background-color: #E6EAEC;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    /* flex-direction: row; */
+    /* justify-content: space-around; */
     color: rgb(0, 0, 0);
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
     margin: 0px 10px;
@@ -33,12 +33,10 @@
     margin-top: 30px;
     display: flex;
     justify-content: center;
-    
 }
 
 .btn {
     margin-top: 0px;
-
     color: #ffffff;
     background-color: #04BCD1;
     border-radius: 10px;
@@ -60,10 +58,12 @@
 }
 
 .activities {
+    background-color: transparent;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: left;
+  /*   justify-content: center; */
     width: 60%;
-    height: 100%;
 }
 
 .name {
