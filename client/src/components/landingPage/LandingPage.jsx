@@ -35,7 +35,7 @@ const LandingPage = () => {
   return (
     <header>
 
-        <h1>HOLA</h1>
+        {/* <h1>HOLA</h1> */}
 
         <div className={style.imgBack}>
         <div className={style.container}>
