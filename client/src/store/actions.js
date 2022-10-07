@@ -16,6 +16,8 @@ export const CONTINENT_SELECTED = "CONTINENT_SELECTED"
 export const GET_WEATHER = "GET_WEATHER"
 export const FILTER_ACTIVITIES = "FILTER_ACTIVITIES" 
 export const CLEAR = "CLEAR"
+export const BY_SEASON = "BY_SEASON"
+export const BY_DIFFICULTY = "BY_DIFFICULTY"
 
 const apiKey = "8e84108b95ef7a2c77bc1bd073ccfe77"
 const url = `http://localhost:3005/countries/`
@@ -180,4 +182,18 @@ export async function earaseActivities(payload) {
             console.log(error)
         }
     
+};
+
+export function bySeason(payload){
+    return {
+        type: BY_SEASON,
+        payload
+    }
+};
+
+export function byDifficulty(payload) {
+    return {
+        type: BY_DIFFICULTY,
+        payload
+    }
 };

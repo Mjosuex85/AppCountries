@@ -60,16 +60,19 @@ const Activities = (props) => {
 
   const goActivity = (e) => {
     e.preventDefault()
-    e.target.title = title
+    const title = e.target.title
     if (title === "Winter" || title === "Autumn" || title === 'Spring' || title === 'Summer' ) {
       bySeason(title)
+      window.history.back() 
     }
 
     else {
+      
       byDifficulty(title)
+      window.history.back() 
     }
-    
-  } 
+    return
+  };
 
 
 
@@ -86,7 +89,7 @@ const Activities = (props) => {
         </div>
           <h6> Duration: {props.duration} Days</h6>
           <hr />
-          <div className={style.icon}> <h6> Difficulty: {props.difficulty}</h6> <img src={difficulty} alt="" width="30px" /> </div>
+          <div onClick={(e) => goActivity(e)} className={style.icon}  > <h6> Difficulty: {props.difficulty}</h6> <img title={props.difficulty} src={difficulty} alt="" width="30px" /> </div>
           <hr />
         <div onClick={(e) => goActivity(e)} className={style.icon}><h6>Season: {props.season}</h6><img src={season} title={props.season}  alt="" width="30px"/></div>
     </div>

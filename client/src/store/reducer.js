@@ -14,7 +14,9 @@ import { REQUEST_COUNTRIES,
         CONTINENT_SELECTED,
         GET_WEATHER,
         CLEAR,
-        FILTER_ACTIVITIES
+        FILTER_ACTIVITIES,
+        BY_DIFFICULTY,
+        BY_SEASON
 } from './actions'
 
 const initialState = {
@@ -166,6 +168,20 @@ export default function reducer(state = initialState, action) {
                     ...state,
                     activities: activitiesDetails
                 }; */
+
+           case BY_SEASON:
+                const season = state.allCountriesCopy.filter((c) => c.activities.find((c) => c.season === action.payload))
+              return {
+                ...state,
+                allCountries: [...season]
+              }
+
+              case BY_DIFFICULTY:
+                const difficulty = state.allCountriesCopy.filter((c) => c.activities.find((c) => c.difficulty === action.payload))
+              return {
+                ...state,
+                allCountries: [...difficulty]
+              }
 
     
     default: {

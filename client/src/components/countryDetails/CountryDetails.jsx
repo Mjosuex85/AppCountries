@@ -14,10 +14,7 @@ const CountryDetails = ({id}) => {
   const wheater = useSelector((state) => state.weather)
   const activities = useSelector((state) => state.activitiesDetails)
 
-  console.log(wheater)
-
     const [w, setW] = useState({})
-    console.log(" que lo que",w)
 
     useEffect(() => {
       dispatch(byId(id))
