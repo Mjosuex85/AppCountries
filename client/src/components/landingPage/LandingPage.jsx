@@ -10,9 +10,9 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 
 const LandingPage = () => {
-
-    /* const [move, setMove] = useState(true)
-    const [styleB, setStyleB] = useState({backgroundColor: 'red'})
+    
+    const [move, setMove] = useState(true)
+    const [styleB, setStyleB] = useState()
 
     useEffect(() => {
         setInterval(() => {
@@ -21,15 +21,22 @@ const LandingPage = () => {
                 setMove(false)
             }
             else {
-                setStyleB({backgroundColor: 'red'})
+                setStyleB({backgroundColor: 'black'})
                 setMove(true)
             }
         }, 2000);
-    }) */
+    },[move])
+
+
+  /*   setInterval(() => {
+        console.log("HOla   ")
+    }, 2000); */
 
   return (
-
     <header>
+
+        <h1>HOLA</h1>
+
         <div className={style.imgBack}>
         <div className={style.container}>
              <Link to='/countries' className={style.box}> 
@@ -39,7 +46,7 @@ const LandingPage = () => {
                     src={image} 
                     alt="" width="300" height="300" 
                 /> 
-            {/* <h1 className={style.huno}>By Flags</h1> */}
+      
             </Link> 
 
             <Link to='/worldmap' className={style.box}> 
@@ -48,7 +55,7 @@ const LandingPage = () => {
                     src={worldApp} 
                     alt="" width="300" height="300" 
                 /> 
-            {/*  <h1 className={style.huno}>World Map</h1> */}
+             
             </Link> 
         </div>
          </div>

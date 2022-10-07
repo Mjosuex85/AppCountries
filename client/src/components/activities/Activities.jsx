@@ -10,10 +10,12 @@ import summer from './summer.png'
 import minimun from './minimun.png'
 import medium from './medium.png'
 import high from './high.png'
+import { bySeason, byDifficulty } from '../../store/actions'
 
 
 const Activities = (props) => {
 
+    const dispatch = useDispatch()
     let season;
     let difficulty;
 
@@ -44,7 +46,7 @@ const Activities = (props) => {
       case 3:
         difficulty = medium
       break;
-        case 4:
+      case 4:
         difficulty = medium
       break;
       case 5:
@@ -56,8 +58,22 @@ const Activities = (props) => {
     }
 
 
+  const goActivity = (e) => {
+    e.preventDefault()
+    e.target.title = title
+    if (title === "Winter" || title === "Autumn" || title === 'Spring' || title === 'Summer' ) {
+      bySeason(title)
+    }
 
-  const click = async (e) => {  // función para borrar la actividad solo a ese país
+    else {
+      byDifficulty(title)
+    }
+    
+  } 
+
+
+
+  const onHandleclick = async (e) => {  // función para borrar la actividad solo a ese país
     e.preventDefault()
     props.remove({id: props.activity_id, country: props.country_id.id })
 };
@@ -66,16 +82,15 @@ const Activities = (props) => {
     <div  className={style.container}>
         <div className={style.tittle}>
           <h5 style={{marginLeft: '0.5rem'}}>{props.name} </h5>
-          <img className={style.cancel} onClick={(e) => click(e)} style={{marginRight: '0.5rem'}} src={cancelImage} width='25' alt="" />
+          <img className={style.cancel} onClick={(e) => onHandleclick(e)} style={{marginRight: '0.5rem'}} src={cancelImage} width='25' alt="" />
         </div>
-        <h6> Duration: {props.duration} Days</h6>
-        <hr />
-        <div className={style.icon}> <h6> Difficulty: {props.difficulty}</h6> <img src={difficulty} alt="" width="30px" /> </div>
-        <hr />
-        <div className={style.icon}><h6>Season: {props.season}</h6><img src={season} alt="" width="30px"/></div>
-        
+          <h6> Duration: {props.duration} Days</h6>
+          <hr />
+          <div className={style.icon}> <h6> Difficulty: {props.difficulty}</h6> <img src={difficulty} alt="" width="30px" /> </div>
+          <hr />
+        <div onClick={(e) => goActivity(e)} className={style.icon}><h6>Season: {props.season}</h6><img src={season} title={props.season}  alt="" width="30px"/></div>
     </div>
   )
-}
+};
 
 export default Activities

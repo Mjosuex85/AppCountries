@@ -14,15 +14,20 @@ const CountryDetails = ({id}) => {
   const wheater = useSelector((state) => state.weather)
   const activities = useSelector((state) => state.activitiesDetails)
 
+  console.log(wheater)
+
+    const [w, setW] = useState({})
+    console.log(" que lo que",w)
+
     useEffect(() => {
       dispatch(byId(id))
+      setW({...wheater[0]})
     }, [dispatch, id])
 
 
-   /*  useEffect(() => {
-        console.log("Name ",name)
-        dispatch(getWheather(name))
-    },[]) */
+    useEffect(() => {
+        dispatch(getWheather())
+    },[])
     
     const removeFunction = (objeto) => {
       var option = window.confirm("Are you sure to delete this activity?")
@@ -54,12 +59,10 @@ const CountryDetails = ({id}) => {
   return (
     <div>
       <div className={style.container2}>
-                 <button className={style.btn} onClick={(e) => back(e)}> Back </button>
+                  <button className={style.btn} onClick={(e) => back(e)}> Back </button>
         <div className={style.container1}> 
-             <h6 className={style.name}>{details &&details.name}</h6>
-             <img className={style.image} src={details && details.flags} alt="Not Found"/>
-
-
+             <h6 className={style.name}>{details && details.name}</h6>
+             <img className={style.image} src={details && details.flags} alt="Not Found"/>              
              <div className={style.info_container}>
              
              <div className={style.info1}>
@@ -89,21 +92,32 @@ const CountryDetails = ({id}) => {
             </div>
             </div>
        
+        
+        
+        
+        
         <div className={style.container3}> 
-             <h3> Wheater in {details && details.capital}</h3>
-             <p>Temp</p>
-             <p>Temp</p>
-             <p>Temp</p>
-             <p>Temp</p>
-             <p>Temp</p>
-              
-        </div>
+
+             <h5> Weather in {details && details.capital} <img src={`http://openweathermap.org/img/wn/${wheater[0] && wheater[0].weather[0].icon}@2x.png`} alt="" />{wheater[0] && wheater[0].main.temp} C° </h5> 
+             <p>Feels Like {wheater[0] && wheater[0].main.feels_like}</p>
+             <hr/>
+             <p>max  {wheater[0] && wheater[0].main.temp_max}</p>
+             <hr/>
+             <p>min  {wheater[0] && wheater[0].main.temp_min}</p>
+             <hr/>
+             <p>wind  {wheater[0] && wheater[0].wind.speed}</p>
+             <hr/>
+             <p>humidity  {wheater[0] && wheater[0].main.temp}</p>
         </div>
 
+
         
-        <div className={style.activities}> 
-            
-                {details && details.activities?.sort((a, b) => a.name > b.name).map((a, i) => { 
+        </div> 
+
+        
+       {details.activities && details.activities.length === 0 ? <h3 className={style.noActivities}> There is not activities archived </h3> : <div className={style.activities}> 
+
+                {details.activities?.sort((a, b) => a.name > b.name).map((a, i) => { 
                     return <Activities key={i} 
                     remove={removeFunction}
                     country_id={details}
@@ -113,7 +127,8 @@ const CountryDetails = ({id}) => {
                     duration={a.duration}
                     season={a.season} />}
                 )}
-        </div>
+        </div>}
+
       </div>
     </div>
   )

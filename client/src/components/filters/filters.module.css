@@ -13,11 +13,12 @@
 }
 
 .filterA {
-    margin-right: 5px;
+    margin-right: 50px;
 }
 
 .filters {
-    /* margin-top: 3%; */
+   /*  margin-left: 2%; */
+   padding: 4px;
     border-radius: 3px;
     border: none
 }

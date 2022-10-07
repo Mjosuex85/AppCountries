@@ -38,3 +38,7 @@ background-color: transparent;
     align-items: center;
     margin-right: 6px;
 }
+
+.icon:hover {
+    cursor: pointer;
+}
