@@ -15,27 +15,19 @@ const CountryCard = (props) => {
 
   return (
     <Link to={`/countries/${props.id}`} className={style.containrer}> 
-
-
-      
-
-      <div>
+      <div >
         <div> 
-        
-        
-        
-              <p className={style.ph}> {props.name}  {activities.length > 0 ? activities.map((icon, index) => 
-                      
-                      { 
-                        let img
+          <p className={style.ph}> {props.name}  
+              {activities.length > 0 ? activities.map((icon, index) => 
+                      { let img
                         if(icon === 'Autumn' )  img = autumn
                         if(icon === 'Spring' )  img = spring
                         if(icon === 'Summer' )  img = summer
                         if(icon === 'Winter' )  img = winter
-                        
                    return <img style={{marginLeft: '5px'}} key={index} src={img} alt="" width="24px" />
-                            }) : <p></p>}
-                            </p></div>
+                            }) : ""}
+                            </p>
+        </div>
         
         <img className={style.image} 
               src={props.flags} 
@@ -43,8 +35,8 @@ const CountryCard = (props) => {
               width="120" 
               height="70"/>
         <p >{props.continents}</p>
-        <p>Population: {props.population}</p>
-        <p>Area: {props.area} km2</p>
+        <p> Population: {props.population}</p>
+        <p> Area: {props.area} km2</p>
       </div>
     </Link>
   )

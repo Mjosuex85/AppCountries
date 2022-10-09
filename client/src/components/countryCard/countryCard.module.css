@@ -1,5 +1,3 @@
-
-
 .containrer {
    
     font-size: smaller;
@@ -8,14 +6,14 @@
     text-align: center;
     background-color: white;
     color: black;
-    padding: 7px;
+    padding: 15px;
     border-radius: 5px;
     box-shadow: 0 5px 10px rgb(121, 120, 120);
     margin: 10px 10px;
     width: 25rem;
-    height: 10%;
+    /* height: 10%; */
     margin-top: 10px;
-    text-decoration: none;
+  /*   text-decoration: none; */
     transition: all .2s ease-in-out;
 }
 
@@ -44,4 +42,6 @@
     box-shadow: 0 1px 1px #9c9c9c;
     border-radius: 3px;
 }
+
+
 	

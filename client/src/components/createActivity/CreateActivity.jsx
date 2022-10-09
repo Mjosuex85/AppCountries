@@ -129,10 +129,10 @@ const CreateActivity = () => {
 
    
 
-    const showFlags = async (e) => {
+    const showFlags =  (e) => {
         e.preventDefault()
         const y = e.target.value
-        const x = await countriesBD.find(e => e.name === y)
+        const x =  countriesBD.find(e => e.name === y)
         if (!flags.find(e => e.name === y)) {
         setFlags([
             ...flags,

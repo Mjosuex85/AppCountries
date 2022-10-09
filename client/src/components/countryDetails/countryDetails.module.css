@@ -99,3 +99,17 @@
     margin-top: 3rem;
     
 }
+
+.create {
+    color: gray;
+    border: 1px solid gray ;
+    border-radius: 5px;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.create:hover {
+    cursor: pointer;
+}
