@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { allActivities, byActivities, asc, desc, population, setPagination, byArea} from '../../store/actions'
 
-const Filters = () => {
+const Filters = ({countriesPerPageFunction}) => {
   const continentSelected = useSelector((state) => state.continents)
   const dispatch = useDispatch()
   const activities = useSelector((state) => state.activities)
@@ -26,31 +26,27 @@ const Filters = () => {
           return
         case 'Name: a - z':
           dispatch(asc())
-          dispatch(setPagination(1))
           break;
         case 'Name: z - a':
           dispatch(desc())
-          dispatch(setPagination(1))
           break;
         case "Area: high to low": 
           dispatch(byArea(value))
-          dispatch(setPagination(1))
           break;
         case "Area: Low to high":
           dispatch(byArea(value))
-          dispatch(setPagination(1))
           break
         case 'Population: high to low':
           dispatch(population(value))
-          dispatch(setPagination(1))
           break;
         case 'Population: low to high':
           dispatch(population(value))
-          dispatch(setPagination(1))
           break;
 
         default: break
       }
+      dispatch(setPagination(1))
+      countriesPerPageFunction()
     };
 
   return (

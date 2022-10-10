@@ -38,6 +38,14 @@ const CardsContainers = () => {
         setTimeout(() => setShow(true), 3000)
     }, [dispatch, setTimeout])
 
+    const moreCountries = () => {
+        setCountriesPerPage(countriesPerPage + 12)
+    };
+
+    const countriesPerPageFunction = () => {
+        setCountriesPerPage(12)
+    }
+
     if (countries === "NO SE ENCUENTRA EL PAIS") {
 
         return (
@@ -62,8 +70,11 @@ const CardsContainers = () => {
   return (
     <div>
         <div>
-            <Continents />
-            <Filters setFirstPage={paginateF}/>
+            <Continents countriesPerPageFunction={countriesPerPageFunction} />
+            
+            <Filters setFirstPage={paginateF}
+                     countriesPerPageFunction={countriesPerPageFunction}        
+            />
         </div>
 
         <div className={style.container} >
@@ -73,7 +84,6 @@ const CardsContainers = () => {
                <div>
         </div>
             
-
              {show === true && currentCountries && currentCountries.map((country, index) => {
              return <CountryCard
              key={index}
@@ -88,11 +98,12 @@ const CardsContainers = () => {
              activities={country.activities}
              season={country.activities.map(s => s.season)}
              fifa={country.fifa}
-             
              />
-            }) } 
+            }) }
+
         </div>
         <div>
+         <div onClick={() => moreCountries()}> Show More </div> 
             <Paginate
                 countriesPerPage={countriesPerPage}
                 countries={countries.length}

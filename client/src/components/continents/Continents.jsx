@@ -21,7 +21,7 @@ let style1 = style.image
 let style2 = style.selectedImg
 
 
-const Continents = () => {
+const Continents = ({countriesPerPageFunction}) => {
   const dispatch = useDispatch()  
   const [continente, setContinente] = useState("")
 
@@ -36,6 +36,7 @@ const Continents = () => {
     dispatch(setPagination(1))
     dispatch(byContinente(e.target.name))
     setContinente(e.target.name)
+    countriesPerPageFunction()
   };
 
   return (

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import style from './createActivity.module.css'
 import { useEffect } from 'react'
-import { allCountries, allActivities } from '../../store/actions'
+import { allCountries, allActivities,  } from '../../store/actions'
 import { NavLink } from 'react-router-dom'
 import icon from '../NavBar/Coun.png'
 import s from '../NavBar/navbar.module.css'
@@ -13,11 +13,13 @@ const CreateActivity = () => {
     const countriesBD = useSelector((state) => state.allCountries).map(e => {return {name: e.name, continent: e.continents, flags: e.flags}})
     const activities = useSelector((state) => state.activities).map(e => e.name.toLowerCase())
     const continents = ["World","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
+    const flagImported = useSelector((state) => state.flagImported)[0]
     const dispatch = useDispatch()
-    
+
     useEffect(() => {
         dispatch(allCountries())
         dispatch(allActivities())
+        setFlags([...flagImported])
     }, [dispatch])
 
     

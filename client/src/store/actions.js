@@ -18,6 +18,7 @@ export const FILTER_ACTIVITIES = "FILTER_ACTIVITIES"
 export const CLEAR = "CLEAR"
 export const BY_SEASON = "BY_SEASON"
 export const BY_DIFFICULTY = "BY_DIFFICULTY"
+export const FLAG_IMPORTED = 'FLAG_IMPORTED'
 
 const apiKey = "8e84108b95ef7a2c77bc1bd073ccfe77"
 const url = `http://localhost:3005/countries/`
@@ -197,3 +198,10 @@ export function byDifficulty(payload) {
         payload
     }
 };
+
+export function flagImported(payload) {
+    return {
+        type: FLAG_IMPORTED,
+        payload
+    }
+}
