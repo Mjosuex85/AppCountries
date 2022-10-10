@@ -9,9 +9,6 @@ import winter from './winter.png'
 const CountryCard = (props) => {
 
   const activities = [...new Set(props.activities?.map(e => e.season))]
-  
-  const x = [autumn, spring, summer, winter]
-  console.log(activities)
 
   return (
     <Link to={`/countries/${props.id}`} className={style.containrer}> 

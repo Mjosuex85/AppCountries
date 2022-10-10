@@ -4,15 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { allActivities, byActivities, asc, desc, population, setPagination, byArea} from '../../store/actions'
 
-const Filters = ({setFirstPage}) => {
-
+const Filters = () => {
   const continentSelected = useSelector((state) => state.continents)
+  const dispatch = useDispatch()
+  const activities = useSelector((state) => state.activities)
     
-
-    const dispatch = useDispatch()
-    const activities = useSelector((state) => state.activities)
-    
-
     useEffect(() => {
         dispatch(allActivities())
     }, [dispatch])
@@ -22,47 +18,61 @@ const Filters = ({setFirstPage}) => {
       dispatch(setPagination(1))
       dispatch(byActivities(event.target.value))
     };
-    
-    function asc_abc(event) {
-      event.preventDefault()
-      dispatch(setPagination(1))
-      event.target.value === "Name: Asc" ?
-      dispatch(asc()) : dispatch(desc())
-    };
 
-    function orderPopulation(event) {
-      event.preventDefault()
-      dispatch(setPagination(1))
-      dispatch(population(event.target.value))
-    };
+    function onHandleChange(e) {
+      const value = e.target.value
+      switch(value) {
+        case "Order by...":
+          return
+        case 'Name: a - z':
+          dispatch(asc())
+          dispatch(setPagination(1))
+          break;
+        case 'Name: z - a':
+          dispatch(desc())
+          dispatch(setPagination(1))
+          break;
+        case "Area: high to low": 
+          dispatch(byArea(value))
+          dispatch(setPagination(1))
+          break;
+        case "Area: Low to high":
+          dispatch(byArea(value))
+          dispatch(setPagination(1))
+          break
+        case 'Population: high to low':
+          dispatch(population(value))
+          dispatch(setPagination(1))
+          break;
+        case 'Population: low to high':
+          dispatch(population(value))
+          dispatch(setPagination(1))
+          break;
 
-    function orderArea(event) {
-      event.preventDefault()
-      dispatch(setPagination(1))
-      dispatch(byArea(event.target.value))
-    }
+        default: break
+      }
+    };
 
   return (
     <div className={style.container}>
       <h5 style={{padding: '0rem', margin: '0'}}> 
         {continentSelected[0]}
       </h5>
-        
-      <div>
-            <select className={style.filters} name="" id="">
+        <div>
+            <select onChange={(e) => onHandleChange(e)} className={style.filters} >
               <option disabled={false}> Order by...</option>
-              <option onClick={(e) => asc_abc(e)}> Name: Asc </option>
-              <option onClick={(e) => asc_abc(e)}> Name: Desc </option>
-              <option onClick={(e) => orderPopulation(e)}> Population: high to low </option>
-              <option onClick={(e) => orderPopulation(e)}> Population: low to high </option>
-              <option onClick={(e) => orderArea(e)}> Area: high to low </option>
-              <option onClick={(e) => orderArea(e)}> Area: Low to high </option>
+              <option> Name: a - z</option>
+              <option> Name: z - a </option>
+              <option> Population: high to low </option>
+              <option> Population: low to high </option>
+              <option> Area: high to low </option>
+              <option> Area: Low to high </option>
             </select>
 
-            <select className={style.filters} name="" id="">
+            <select onChange={(e) => activityFilter(e)} className={style.filters} >
                 <option> By Activities...</option>
                   {activities.map((a, index) => {
-                  return <option onClick={(e) => activityFilter(e)} key={index}> {a.name} </option>
+                  return <option key={index}> {a.name} </option>
                  })}
             </select>
       </div>

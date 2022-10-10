@@ -33,39 +33,37 @@ const LandingPage = () => {
     }, 2000); */
 
   return (
+    <>
     <header>
 
         {/* <h1>HOLA</h1> */}
 
         <div className={style.imgBack}>
-        <div className={style.container}>
-             <Link to='/countries' className={style.box}> 
+            <div className={style.container}>
+                <Link to='/countries' className={style.box}> 
+                    <img 
+                        className={style.image}
+                        src={image} 
+                        alt="" width="300" height="300" 
+                    /> 
+                </Link> 
 
-                 <img 
-                    className={style.image}
-                    src={image} 
-                    alt="" width="300" height="300" 
-                /> 
-      
-            </Link> 
-
-            <Link to='/worldmap' className={style.box}> 
-                <img 
-                    className={style.image}
-                    src={worldApp} 
-                    alt="" width="300" height="300" 
-                /> 
-             
-            </Link> 
+                <Link to='/worldmap' className={style.box}> 
+                    <img 
+                        className={style.image}
+                        src={worldApp} 
+                        alt="" width="300" height="300" 
+                    /> 
+                </Link> 
+            </div>
         </div>
-         </div>
             
-            <video width='100%'  onLoadedMetadata="this.muted=true" autoPlay loop>
-                <source src={video}/>
-            </video>
+        {<video width='100%'  onLoadedMetadata="this.muted=true" autoPlay loop>
+            <source src={video}/>
+        </video>}
        
     </header>
-
+    </>
 
     
   )

@@ -29,11 +29,11 @@
     margin-top: 2rem;
     margin-left: 2rem;
     padding: 5px;
-     transition: all .3s ease-in-out;  
-     border-radius: 500px;
-     width: 18rem;
+    transition: all .3s ease-in-out;  
+    border-radius: 500px;
+    width: 18rem;
      /* height: 10rem;  */
-     box-shadow: 0 5px 10px rgba(121, 120, 120, 0.494);
+    box-shadow: 0 5px 10px rgba(121, 120, 120, 0.494);
      
 }
 
