@@ -5,6 +5,3 @@ import reducer from './reducer.js'
 const store = createStore(reducer,applyMiddleware(thunk))
 
 export default store
-
-
-
