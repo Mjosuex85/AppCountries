@@ -1,14 +1,14 @@
 import React from 'react'
-import style from './worldMap.module.css'
-import {useSelector, useDispatch} from "react-redux"
+/* import style from './worldMap.module.css' */
+import {/* useSelector */ useDispatch} from "react-redux"
 import { useEffect } from 'react'
-import { allCountries } from '../../store/actions'
+import { allCountries} from '../../store/actions'
 
 
 const WorldMap = () => {
 
   const dispatch = useDispatch()
-  const countries = useSelector((state) => state.allCountries)
+  /* const countries = useSelector((state) => state.allCountries) */
 
   useEffect(() => {
     dispatch(allCountries())
@@ -464,7 +464,7 @@ const WorldMap = () => {
 <path id="Vector_425" d="M1074.84 594.41C1072.23 595.425 1069.91 597.794 1068.56 600.755C1067.11 604.055 1068.75 608.2 1072.72 611.077C1075.23 612.938 1076.39 613.192 1080.06 612.853C1092.82 611.584 1093.3 595.171 1080.64 594.072C1078.52 593.818 1075.91 593.987 1074.84 594.41Z" fill="#FFFEFE"/>
 <path id="Vector_426" d="M717.503 597.625C712.573 600.332 711.22 607.608 714.893 611.669C721.079 618.606 734.127 614.799 734.417 606.001C734.707 598.217 725.138 593.479 717.503 597.625Z" fill="#FFFEFE"/>
  <g id="argentina"title="Argentina" >
-<a href="" ><path  id="ARG" d="M403.948 599.909C401.145 602.363 400.661 603.378 400.661 606.593C400.661 619.03 421.829 619.283 422.216 606.847C422.409 601.009 417.77 597.033 410.714 597.033C408.007 597.033 406.461 597.71 403.948 599.909Z" fill="#316E88"/></a>
+{/* <a  ><path  id="ARG" d="M403.948 599.909C401.145 602.363 400.661 603.378 400.661 606.593C400.661 619.03 421.829 619.283 422.216 606.847C422.409 601.009 417.77 597.033 410.714 597.033C408.007 597.033 406.461 597.71 403.948 599.909Z" fill="#316E88"/></a> */}
 </g>
 <path id="Vector_427" d="M1146.56 598.725C1136.51 605.662 1146.47 619.96 1157.97 615.138C1162.03 613.446 1164.25 610.231 1164.25 605.831C1164.25 603.462 1163.48 602.109 1160.96 599.909C1158.16 597.456 1157 597.033 1153.33 597.033C1150.53 597.033 1148.21 597.625 1146.56 598.725Z" fill="#FFFEFE"/>
 <path id="Vector_428" d="M347.694 604.308C343.827 606.001 341.701 609.385 341.701 613.615C341.701 618.014 346.824 622.414 352.043 622.414C360.452 622.414 366.058 615.561 362.675 609.3C359.776 604.055 353.3 601.855 347.694 604.308Z" fill="#FFFEFE"/>

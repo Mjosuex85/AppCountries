@@ -20,7 +20,7 @@ export const BY_SEASON = "BY_SEASON"
 export const BY_DIFFICULTY = "BY_DIFFICULTY"
 export const FLAG_IMPORTED = 'FLAG_IMPORTED'
 
-const apiKey = "8e84108b95ef7a2c77bc1bd073ccfe77"
+/* const apiKey = "8e84108b95ef7a2c77bc1bd073ccfe77" */
 const url = `http://localhost:3005/countries/`
 
 export function allCountries(){
@@ -83,7 +83,6 @@ export function byId(id) {
 
 
 export function getWheather(capital) {
-    console.log(capital)
     return async function(dispatch){
         const query = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Washington, D.C.&appid=8e84108b95ef7a2c77bc1bd073ccfe77&units=metric`)
         return dispatch({

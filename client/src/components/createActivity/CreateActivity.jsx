@@ -4,33 +4,39 @@ import { useState } from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import style from './createActivity.module.css'
 import { useEffect } from 'react'
-import { allCountries, allActivities,  } from '../../store/actions'
+import { allCountries, allActivities} from '../../store/actions'
 import { NavLink } from 'react-router-dom'
 import icon from '../NavBar/Coun.png'
 import s from '../NavBar/navbar.module.css'
 
 const CreateActivity = () => {
+    const dispatch = useDispatch()
     const countriesBD = useSelector((state) => state.allCountries).map(e => {return {name: e.name, continent: e.continents, flags: e.flags}})
     const activities = useSelector((state) => state.activities).map(e => e.name.toLowerCase())
     const continents = ["World","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
-    const flagImported = useSelector((state) => state.flagImported)[0]
-    const dispatch = useDispatch()
+    const importedFlag = useSelector((state) => state.importedFlag)
 
-    useEffect(() => {
-        dispatch(allCountries())
-        dispatch(allActivities())
-        setFlags([...flagImported])
-    }, [dispatch])
-
-    
-    //////////////////////////////////////////// LOCAL STATES //////////////////////////////////
-    
     const [error, setError] = useState({})
     const [countryF, setCountryF] = useState([])
     /* const [countries, setCountries] = useState([]) */
     const [activity, setActivity] = useState({});
     const [flags, setFlags] = useState([])
+
+    console.log(importedFlag)
+
+
+    useEffect(() => {
+        dispatch(allCountries())
+        dispatch(allActivities())
+        setFlags([{...importedFlag}])
+        setActivity({countries: [importedFlag.name]})
+    }, [dispatch])
+
     
+    //////////////////////////////////////////// LOCAL STATES //////////////////////////////////
+    
+
+
     
     ////////////////////////////////////// FUNCIONES ///////////////////////////////////////////
         
@@ -214,7 +220,7 @@ const CreateActivity = () => {
         
             <legend> <h6>Duration: (in Days)</h6>
                 <div>
-                    <input  onChange={(e) => handleOnChange(e)} 
+                    <input onChange={(e) => handleOnChange(e)} 
                             className={style.inputs} 
                             type="number"
                             name="duration"
@@ -235,7 +241,6 @@ const CreateActivity = () => {
                     <p>{error.season ? <p className={style.validate}>{error.season}</p> : ""}</p>
                 </div> <br/>
             </legend>
-        
         </div>
 
         <div name='Continents, Countries'>
@@ -255,7 +260,6 @@ const CreateActivity = () => {
                     <select className={style.inputs} 
                             /* onChange={(e) => handleOnChange(e)}   */
                             name="countries" value={activity.countries}> 
-                                untr
                                 {countryF && countryF?.map((country, index) => {
                                     return (
                                             <option 
@@ -273,7 +277,7 @@ const CreateActivity = () => {
          </legend>
 
             <div className={style.imgContainer}> 
-                    {flags && flags.map((e, i) => {
+                    {flags && flags?.map((e, i) => {
                     return <img 
                                 title={e.name}
                                 onClick={(e) => removeCountries(e)}
@@ -283,7 +287,7 @@ const CreateActivity = () => {
                                 src={e.flags} 
                                 width='40'
                                 height="30"
-                                alt='Not Flag'/>
+                                alt=''/>
             }) } </div>
          
         </div>

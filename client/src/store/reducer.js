@@ -14,9 +14,9 @@ import { REQUEST_COUNTRIES,
         CONTINENT_SELECTED,
         GET_WEATHER,
         CLEAR,
-        FILTER_ACTIVITIES,
         BY_DIFFICULTY,
-        BY_SEASON
+        BY_SEASON,
+        FLAG_IMPORTED
 } from './actions'
 
 const initialState = {
@@ -27,6 +27,7 @@ const initialState = {
     paginate: 1,
     continents: ["All the World"],
     weather: [],
+    importedFlag: {}
 };
 
 export default function reducer(state = initialState, action) {
@@ -181,6 +182,13 @@ export default function reducer(state = initialState, action) {
               return {
                 ...state,
                 allCountries: [...difficulty]
+              }
+
+            case FLAG_IMPORTED: 
+            console.log("este es el payload", action.payload)
+              return {
+                ...state,
+                importedFlag: {...action.payload}
               }
 
     

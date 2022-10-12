@@ -58,7 +58,7 @@ const LandingPage = () => {
             </div>
         </div>
             
-        {<video width='100%'  onLoadedMetadata="this.muted=true" autoPlay loop>
+        {<video width='100%'  /* onLoadedMetadata="this.muted=true" */ autoPlay loop>
             <source src={video}/>
         </video>}
        

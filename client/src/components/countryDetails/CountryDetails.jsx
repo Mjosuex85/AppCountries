@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import style from './countryDetails.module.css'
 import { useSelector, useDispatch} from 'react-redux'
 import { useEffect} from 'react'
-import { byId, getWheather, earaseActivities, clear } from '../../store/actions.js'
+import { byId, getWheather, earaseActivities, clear, flagImported } from '../../store/actions.js'
 import Activities from '../activities/Activities.jsx'
 import Loading from '../loading/Loading'
 import axios from 'axios'
@@ -12,19 +12,18 @@ const CountryDetails = ({id}) => {
   const dispatch = useDispatch()
   
   const details = useSelector((state) => state.countryDetails)
+  const count = useSelector((state) => state.countryDetails.name)
   const wheater = useSelector((state) => state.weather)
   const activities = useSelector((state) => state.activitiesDetails)
 
     const [w, setW] = useState({})
+    const [coun, setCoun] = useState("")
 
-
-  console.log(details)
-
+    
     useEffect(() => {
       dispatch(byId(id))
       setW({...wheater[0]})
     }, [dispatch, id])
-
 
     useEffect(() => {
         dispatch(getWheather())
@@ -42,9 +41,9 @@ const CountryDetails = ({id}) => {
         return 
       }
     };
-
-    const createActicity = {
-      
+    
+    const importCountrie = () => {
+      dispatch(flagImported({name: details.name, continent: details.continents, flags: details.flags}))
     }
 
     /* useEffect(() => {
@@ -119,7 +118,7 @@ const CountryDetails = ({id}) => {
           ? <div className={style.noActivities}> 
                 <h3 > There is not activities archived </h3> 
                   <Link to="/createactivity"> 
-                    <button className={style.create} >Create Activity</button>
+                    <button onClick={() => importCountrie()} className={style.create} >Create Activity</button>
                   </Link> 
             </div>   
 
