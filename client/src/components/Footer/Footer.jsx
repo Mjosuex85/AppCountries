@@ -5,10 +5,10 @@ function Footer() {
   return (
     <nav className={style.container}>
       
-      <ul>
+      {/* <ul>
         <li> Create Activitie</li>
         <li> Home</li>
-      </ul>
+      </ul> */}
       
     </nav>
   )

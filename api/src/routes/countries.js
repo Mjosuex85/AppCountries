@@ -1,12 +1,18 @@
 const { Router } = require('express')
 const router = Router()
 const { Country, Activities } = require('../db')
-const { getCountries, byId, countriesDB, include_activities, eliminateActivityCountry } = require('../controllers/countries')
 const { Op } = require('sequelize')
 
-
+const { getCountries, 
+        byId, 
+        countriesDB, 
+        include_activities, 
+        eliminateActivityCountry 
+      } = require('../controllers/countries')
+      
 router.get('/', async (req, res, next) => {
-     const { name } = req.query
+    const { name } = req.query
+
     try { 
         const api_countries = await getCountries()
         const x = await Country.findAll()
@@ -32,7 +38,8 @@ router.get('/', async (req, res, next) => {
 router.delete('/:id', async (req, res) => { 
     const { id } = req.params
     const { idname } = req.query
-    try{
+
+    try {
         const delete_activity = await eliminateActivityCountry(
             {
              countryId: id, 
@@ -59,9 +66,6 @@ router.get('/:id', async (req, res) => {
             console.log(error)
             res.send("NO SE ENCUENTRA EL ID")
         }
-    
-
 });
-
 
 module.exports = router

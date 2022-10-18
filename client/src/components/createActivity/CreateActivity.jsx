@@ -14,30 +14,28 @@ const CreateActivity = () => {
     const countriesBD = useSelector((state) => state.allCountries).map(e => {return {name: e.name, continent: e.continents, flags: e.flags}})
     const activities = useSelector((state) => state.activities).map(e => e.name.toLowerCase())
     const continents = ["World","North America", "Africa", "South America", "Antarctica", "Asia", "Oceania", "Europe"]
-    const importedFlag = useSelector((state) => state.importedFlag)
+    /* const importedFlag = useSelector((state) => state.importedFlag) */ // importa la bandera del pais, desde su detalle
 
+    //////////////////////////////////////////// LOCAL STATES //////////////////////////////////
     const [error, setError] = useState({})
     const [countryF, setCountryF] = useState([])
     /* const [countries, setCountries] = useState([]) */
     const [activity, setActivity] = useState({});
     const [flags, setFlags] = useState([])
 
-    console.log(importedFlag)
+    /* console.log(importedFlag) */
 
 
     useEffect(() => {
         dispatch(allCountries())
         dispatch(allActivities())
-        setFlags([{...importedFlag}])
-        setActivity({countries: [importedFlag.name]})
+        /* setFlags([{...importedFlag}]) */
+        /* setActivity({countries: [importedFlag.name]}) */
     }, [dispatch])
 
     
-    //////////////////////////////////////////// LOCAL STATES //////////////////////////////////
     
 
-
-    
     ////////////////////////////////////// FUNCIONES ///////////////////////////////////////////
         
     const handleOnChange = (e) => { // FUNCION QUE LLENA EL ESTADO CON LA INFORMACIÓN
@@ -181,9 +179,9 @@ const CreateActivity = () => {
         <li className="nav-item">
           <NavLink className="nav-link" to="/createactivity"><span>Create Activity</span></NavLink>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <NavLink className="nav-link" to="/About"><span>About</span></NavLink>
-        </li>
+        </li> */}
       </ul>
     </div>
   </nav>

@@ -118,7 +118,7 @@ const CountryDetails = ({id}) => {
           ? <div className={style.noActivities}> 
                 <h3 > There is not activities archived </h3> 
                   <Link to="/createactivity"> 
-                    <button onClick={() => importCountrie()} className={style.create} >Create Activity</button>
+                    <button /* onClick={() => importCountrie()} */ className={style.create} >Create Activity</button>
                   </Link> 
             </div>   
 

@@ -14,11 +14,11 @@ const include_activities = {
 };
 
 const getCountries = async () => {
-    const countries = await axios.get(url)
+    try {
+        const countries = await axios.get(url)
     const data = countries.data
     
     // the conten of some subregions keys are null, so it need to be check the info sended to the client
-
     return data.map(country => {
         return {
             id: country.cca3,
@@ -33,6 +33,12 @@ const getCountries = async () => {
             maps: country.maps.googleMaps
         }
     });
+    }
+
+    catch(error) {
+        console.log(error)
+    }
+    
 };
 
 const countriesDB = async (name) => {
@@ -52,11 +58,6 @@ const countriesDB = async (name) => {
 };
 
 const byId= async (id) => {
-
-
-
-
-    
     const country_id = await Country.findOne({
         where: {
             id: id
@@ -68,6 +69,7 @@ const byId= async (id) => {
     return country
 };
 
+
 const eliminateActivityCountry = async (obj) => {
 
     const toEliminate = await CountryActivities.destroy({
@@ -75,19 +77,15 @@ const eliminateActivityCountry = async (obj) => {
             countryId: obj.countryId,
             activityId: obj.activityId
         }
-    })
+    });
     
     const consultActivity = await CountryActivities.findAll({
         where: {
             activityId: obj.activityId
         }
-    })
-
-    console.log(" LA ACTIVIDAD QUE ESTOY BUSCANDO ",consultActivity)
+    });
 
     if(consultActivity.length < 1) {
-        console.log("PASÓ")
-        console.log("el id de la actividad" , obj.activityId)
         const eliminar = await Activities.destroy({
             where: {
                id: obj.activityId 
