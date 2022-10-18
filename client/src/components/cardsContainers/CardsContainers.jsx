@@ -103,7 +103,7 @@ const CardsContainers = () => {
 
         </div>
         <div>
-         <div onClick={() => moreCountries()}> Show More </div> 
+         {/* <div onClick={() => moreCountries()}> Show More </div> FUNCIÓN QUE TE MUESTRA MÁS PAISES */   }  
             <Paginate
                 countriesPerPage={countriesPerPage}
                 countries={countries.length}

@@ -1,8 +1,16 @@
 import React from 'react'
+import style from './footer.module.css'
 
 function Footer() {
   return (
-    <div>Footer</div>
+    <nav className={style.container}>
+      
+      <ul>
+        <li> Create Activitie</li>
+        <li> Home</li>
+      </ul>
+      
+    </nav>
   )
 };
 

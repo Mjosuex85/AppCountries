@@ -15,6 +15,7 @@ const Home = () => {
       {/*   <Continents/> */}
         <Countries/>
       </div>
+        <Footer/>
     </div>
   )
 }

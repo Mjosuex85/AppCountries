@@ -12,14 +12,16 @@
     justify-content: space-between;
 }
 
-.filterA {
-    margin-right: 50px;
-}
+/* .filterA {
+    margin-right: 100px;
+} */
 
 .filters {
-   /*  margin-left: 2%; */
-   padding: 4px;
+    margin-left: 10px;
+    padding: 4px;
     border-radius: 3px;
-    border: none
+    border-radius: 20px;
+    border: 1px solid #00A0C0;
+    background-color: transparent;
 }
 

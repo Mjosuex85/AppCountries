@@ -1,0 +1,16 @@
+.container {
+    width: 100%;
+    background-image: -webkit-image-set("https://images4.alphacoders.com/667/667235.jpg");
+    height: 10rem;
+    margin-top: 40px;
+    text-align: center;
+    color: white;
+    align-items: center;
+    justify-content: center;
+   display: flex;
+   flex-direction: wrap;
+}
+
+.decoration {
+    text-decoration: none;
+}
