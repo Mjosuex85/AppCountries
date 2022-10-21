@@ -21,7 +21,7 @@ const CountryCard = (props) => {
                         if(icon === 'Spring' )  img = spring
                         if(icon === 'Summer' )  img = summer
                         if(icon === 'Winter' )  img = winter
-                   return <img style={{marginLeft: '5px'}} key={index} src={img} alt="" width="24px" />
+                   return  <img style={{marginLeft: '5px'}} key={index} src={img} alt="" width="24px" />
                             }) : ""}
                             </p>
         </div>

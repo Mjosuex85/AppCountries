@@ -18,7 +18,7 @@
 }
 
 .ph {
-    padding: 1px;
+    padding: 2px;
     /* font-weight:bold; */
     font-size: medium;
     background-color: transparent;
@@ -41,7 +41,10 @@
     text-align: center;
     box-shadow: 0 1px 1px #9c9c9c;
     border-radius: 3px;
+    justify-content: space-around;
 }
+
+
 
 
 	
