@@ -21,7 +21,6 @@ export const BY_DIFFICULTY = "BY_DIFFICULTY"
 export const FLAG_IMPORTED = 'FLAG_IMPORTED'
 
 /* const apiKey = "8e84108b95ef7a2c77bc1bd073ccfe77" */
-const url = `http://localhost:3005/countries/`
 
 export function allCountries(){
    return async function (dispatch) {
@@ -175,7 +174,7 @@ export async function earaseActivities(payload) {
         try{
             const {id, country} = payload
             console.log(id)
-            let x = await axios.delete(`http://localhost:3005/countries/${country}?idname=${id.toString()}`)
+            let x = await axios.delete(`/${country}?idname=${id.toString()}`)
             return x
         }
         catch(error) {
