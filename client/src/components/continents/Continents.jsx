@@ -25,8 +25,6 @@ const Continents = ({countriesPerPageFunction}) => {
   const dispatch = useDispatch()  
   const [continente, setContinente] = useState("")
 
-  console.log(continente)
-
   useEffect(() => {
     dispatch(continentSelected(continente))
   },[continente])
