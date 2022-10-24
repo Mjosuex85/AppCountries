@@ -4,9 +4,6 @@ import CountryDetails from './components/countryDetails/CountryDetails.jsx';
 import { BrowserRouter, Route } from 'react-router-dom';  
 import CreateActivity from './components/createActivity/CreateActivity.jsx'
 import Worldmap from './components/worldMap/WorldMap.jsx'
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-
 
 function App() {
   return (

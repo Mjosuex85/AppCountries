@@ -26,7 +26,7 @@ const url = `http://localhost:3005/countries/`
 export function allCountries(){
    return async function (dispatch) {
         try {
-            const countries = await axios.get(url)
+            const countries = await axios.get("/countries")
             return dispatch({
                 type: REQUEST_COUNTRIES,
                 payload: countries.data
@@ -42,7 +42,7 @@ export function allCountries(){
 export function byName(name) {
     return async function(dispatch) {
         try {
-            const searched = await axios.get(`${url}?name=${name}`)
+            const searched = await axios.get(`${"/countries"}?name=${name}`)
             return dispatch({
                 type: COUNTRIES_SEARCHED,
                 payload: searched.data
@@ -58,7 +58,7 @@ export function byName(name) {
 export function allActivities() {
     return async function(dispatch) {
         try {
-            const activities = await axios.get("http://localhost:3005/activities")
+            const activities = await axios.get("/activities")
         return dispatch({
             type: ALL_ACTIVITIES,
             payload: activities.data
@@ -73,7 +73,7 @@ export function allActivities() {
 
 export function byId(id) {
     return async function(dispatch) {
-        const byId = await axios.get(`http://localhost:3005/countries/${id}`)
+        const byId = await axios.get(`/countries/${id}`)
         return dispatch({
             type: BY_ID,
             payload: byId.data
