@@ -10,7 +10,7 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-axios.defaults.baseURL = "https://countriesapp-mv.herokuapp.com/"
+axios.defaults.baseURL = "https://countriesapp-mv.herokuapp.com"
 
 
 ReactDOM.render(
