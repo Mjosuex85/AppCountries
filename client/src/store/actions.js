@@ -25,7 +25,7 @@ export const FLAG_IMPORTED = 'FLAG_IMPORTED'
 export function allCountries(){
    return async function (dispatch) {
         try {
-            const countries = await axios.get("/countries")
+            const countries = await axios.get("https://countriesapp-mv.herokuapp.com/countries")
             return dispatch({
                 type: REQUEST_COUNTRIES,
                 payload: countries.data
