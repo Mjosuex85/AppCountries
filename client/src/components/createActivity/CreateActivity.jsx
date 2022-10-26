@@ -163,7 +163,7 @@ const CreateActivity = () => {
     <div className={style.prueba}>
         <nav className={`navbar navbar-expand-lg navbar-light ${s.nav}`}>
     <NavLink to="/" className="navbar-brand nav-link" href="http://localhost:3000/">
-      <div className={s.other}><img className={s.img} width="100px" height="90px" src={icon} alt="Not Found" /> </div>
+      <div className={s.other}><img className={s.img} width="100px" height="90px" src={icon} alt="" /> </div>
     </NavLink>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>

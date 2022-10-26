@@ -69,7 +69,7 @@ const CountryDetails = ({id}) => {
 
       <div className={style.container1}> 
              <h6 className={style.name}>{details && details.name}</h6>
-             <img className={style.image} src={details && details.flags} alt="Not Found"/>              
+             <img className={style.image} src={details && details.flags} alt=""/>              
            
             <div className={style.info_container}>
              <div className={style.info1}>

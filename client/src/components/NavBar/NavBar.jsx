@@ -29,7 +29,7 @@ const NavBar = () => {
     </section> */
     <nav className={`navbar navbar-expand-lg navbar-light ${s.nav}`}>
     <NavLink to="/" className="navbar-brand nav-link" href="http://localhost:3000/">
-      <div className={s.other}><img className={s.img} width="120px" height="110px" src={icon} alt="Not Found" /> </div>
+      <div className={s.other}><img className={s.img} width="120px" height="110px" src={icon} alt="" /> </div>
     </NavLink>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -50,8 +50,8 @@ const NavBar = () => {
         </li> */}
       </ul> 
       <div>
-        <a href="https://github.com/Mjosuex85" rel="noreferrer" target="_blank"><img className={s.networks} width="35px" src={github} alt="Not Found" /></a>
-        <a href="https://www.linkedin.com/in/mario-vidal-8138651a1/" rel="noreferrer" target="_blank"><img className={s.networks} width="35px" src={linkedin} alt="Not Found" /></a>
+        <a href="https://github.com/Mjosuex85" rel="noreferrer" target="_blank"><img className={s.networks} width="35px" src={github} alt="" /></a>
+        <a href="https://www.linkedin.com/in/mario-vidal-8138651a1/" rel="noreferrer" target="_blank"><img className={s.networks} width="35px" src={linkedin} alt="" /></a>
       </div>
       <SearchBar/>
     </div>

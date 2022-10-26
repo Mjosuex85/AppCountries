@@ -35,13 +35,13 @@ export function allCountries(){
         catch(error) {
             console.log(error)
         }
-   };
+   };   
 };
 
 export function byName(name) {
     return async function(dispatch) {
         try {
-            const searched = await axios.get(`${"/countries"}?name=${name}`)
+            const searched = await axios.get(`${"https://countriesapp-mv.herokuapp.com/countries"}?name=${name}`)
             return dispatch({
                 type: COUNTRIES_SEARCHED,
                 payload: searched.data
@@ -57,7 +57,7 @@ export function byName(name) {
 export function allActivities() {
     return async function(dispatch) {
         try {
-            const activities = await axios.get("/activities")
+            const activities = await axios.get("https://countriesapp-mv.herokuapp.com/activities")
         return dispatch({
             type: ALL_ACTIVITIES,
             payload: activities.data
@@ -72,7 +72,7 @@ export function allActivities() {
 
 export function byId(id) {
     return async function(dispatch) {
-        const byId = await axios.get(`/countries/${id}`)
+        const byId = await axios.get(`https://countriesapp-mv.herokuapp.com/countries/${id}`)
         return dispatch({
             type: BY_ID,
             payload: byId.data
@@ -174,7 +174,7 @@ export async function earaseActivities(payload) {
         try{
             const {id, country} = payload
             console.log(id)
-            let x = await axios.delete(`/${country}?idname=${id.toString()}`)
+            let x = await axios.delete(`https://countriesapp-mv.herokuapp.com/${country}?idname=${id.toString()}`)
             return x
         }
         catch(error) {

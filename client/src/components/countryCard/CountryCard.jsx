@@ -28,7 +28,7 @@ const CountryCard = (props) => {
         
         <img className={style.image} 
               src={props.flags} 
-              alt="Not Found" 
+              alt="" 
               width="120" 
               height="70"/>
         <p >{props.continents}</p>

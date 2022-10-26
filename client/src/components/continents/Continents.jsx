@@ -44,7 +44,7 @@ const Continents = ({countriesPerPageFunction}) => {
                         className={style1} 
                         name={names[index]} 
                         onClick={(e) => handleClick(e)} 
-                        src={c} alt="Not Found" 
+                        src={c} alt="" 
                     width={width} 
                     height={height} />
         })}
