@@ -57,7 +57,7 @@ const CreateActivity = () => {
     const handleSubmit = async (e) => {  // FUNCIÖN CREA ACTIVIDAD AL POST
         e.preventDefault()
         try {
-            let post = await axios.post("http://localhost:3005/activities/", activity) 
+            let post = await axios.post("https://countriesapp-mv.herokuapp.com/activities/", activity) 
             alert("The Activity " + post.data.name + " Was Created")
             window.location.reload();
         }
