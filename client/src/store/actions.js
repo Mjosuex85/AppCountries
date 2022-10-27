@@ -173,7 +173,6 @@ export function continentSelected(payload) {
 export async function earaseActivities(payload) {
         try{
             const {id, country} = payload
-            console.log(id)
             let x = await axios.delete(`https://countriesapp-mv.herokuapp.com/${country}?idname=${id.toString()}`)
             return x
         }
