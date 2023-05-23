@@ -1,4 +1,4 @@
- "dates": [
+ const dates = "dates": [
             {
                 "pathList": [
                     {
