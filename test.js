@@ -1,4 +1,4 @@
- const dates = "dates": [
+ const dates = {"dates": [
             {
                 "pathList": [
                     {
@@ -454,4 +454,4 @@
                 ],
                 "date": "2023-05-23"
             }
-        ]
+        ]}
