@@ -6,7 +6,7 @@ const LineChart = () => {
   const { dates } = dates;
 
   // Obtener las fechas y los caminos únicos
-  const uniquePaths = [];
+  const uniquePathsSet = new Set();
   const labels = [];
   const datasets = [];
 
@@ -17,8 +17,8 @@ const LineChart = () => {
     pathList.forEach((pathItem) => {
       const { path, count } = pathItem;
 
-      if (!uniquePaths.includes(path)) {
-        uniquePaths.push(path);
+      if (!uniquePathsSet.has(path)) {
+        uniquePathsSet.add(path);
         datasets.push({
           label: path,
           data: [],
@@ -27,7 +27,7 @@ const LineChart = () => {
         });
       }
 
-      const dataIndex = uniquePaths.indexOf(path);
+      const dataIndex = Array.from(uniquePathsSet).indexOf(path);
       datasets[dataIndex].data.push(count);
     });
   });
