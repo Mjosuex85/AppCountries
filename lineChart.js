@@ -1,13 +1,12 @@
-{
-  "_id": {
-    "$oid": "6453bcfdc664df250a3bbd0c"
-  },
-  "path": "/api/Login",
-  "method": "GET",
-  "date": {
-    "$date": "2023-05-04T14:11:09.299Z"
-  },
-  "user": "portalAuroraAtlas",
-  "body": "",
-  "params": null
-}
+[
+  {
+    "$group": {
+      "_id": {
+        "path": "$path",
+        "date": { "$dateToString": { "format": "%Y-%m-%d", "date": "$date" } }
+      },
+      "count": { "$sum": 1 }
+    }
+  }
+]
+
