@@ -1,7 +1,8 @@
+// Crear un objeto para almacenar los paths y sus respectivos conteos
 let pathCounts = {};
 
 // Recorrer cada objeto en el array "dates"
-data.dates.forEach(date => {
+dates.forEach(date => {
   // Recorrer cada objeto en "pathList" de cada fecha
   date.pathList.forEach(pathObj => {
     const { path, count } = pathObj;
@@ -27,3 +28,5 @@ for (let path in pathCounts) {
   };
   result.push(pathObj);
 }
+
+console.log(result);
