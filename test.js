@@ -10,7 +10,7 @@ dates.forEach(date => {
       pathCounts[path] = {};
     }
     // Si el path existe, se establece el conteo en la fecha correspondiente
-    pathCounts[path][date.date] = count || 0;
+    pathCounts[path][date.date] = { date: date.date, count: count || 0 };
   });
 });
 
@@ -19,9 +19,13 @@ let result = [];
 
 // Recorrer el objeto pathCounts y agregar los paths al array result
 for (let path in pathCounts) {
+  let counts = [];
+  for (let date in pathCounts[path]) {
+    counts.push(pathCounts[path][date]);
+  }
   let pathObj = {
     path: path,
-    counts: pathCounts[path]
+    counts: counts
   };
   result.push(pathObj);
 }
