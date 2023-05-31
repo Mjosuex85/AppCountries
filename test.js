@@ -1,4 +1,3 @@
-// Crear un objeto para almacenar los paths y sus respectivos conteos
 let pathCounts = {};
 
 // Recorrer cada objeto en el array "dates"
@@ -9,11 +8,9 @@ dates.forEach(date => {
     // Si el path no existe en el objeto pathCounts, se agrega con su conteo
     if (!pathCounts[path]) {
       pathCounts[path] = {};
-      pathCounts[path][date.date] = count;
-    } else {
-      // Si el path ya existe, se actualiza su conteo en la fecha correspondiente
-      pathCounts[path][date.date] = count;
     }
+    // Si el path existe, se establece el conteo en la fecha correspondiente
+    pathCounts[path][date.date] = count || 0;
   });
 });
 
@@ -29,4 +26,3 @@ for (let path in pathCounts) {
   result.push(pathObj);
 }
 
-console.log(result);
