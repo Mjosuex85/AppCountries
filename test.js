@@ -1,11 +1,8 @@
-function generateRandomColors(count) {
+function generateRandomDarkColors(count) {
   const colors = [];
-  const availableColors = ["#FF5733", "#33FF57", "#5733FF", "#FF33E6", "#33E6FF", "#E6FF33"];
   
   for (let i = 0; i < count; i++) {
-    const randomIndex = Math.floor(Math.random() * availableColors.length);
-    const color = availableColors[randomIndex];
-    availableColors.splice(randomIndex, 1);
+    const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(color);
   }
   
@@ -13,7 +10,7 @@ function generateRandomColors(count) {
 }
 
 const info = useMemo(() => {
-  const colors = generateRandomColors(result.length);
+  const colors = generateRandomDarkColors(result.length);
   
   return {
     labels,
