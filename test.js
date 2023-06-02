@@ -19,7 +19,7 @@ for (let path in pathCounts) {
 
   fechas.forEach(fecha => {
     const count = pathCounts[path][fecha] || 0;
-    counts.push({ date: fecha, count: count });
+    counts.push(count);
   });
 
   result.push({ path: path, counts: counts });
