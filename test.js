@@ -1,1 +1,187 @@
-const fechas = ['01/05/2023', '02/05/2023', '03/05/2023', '04/05/2023', '05/05/2023', '06/05/2023', '07/05/2023', '08/05/2023', '09/05/2023', '10/05/2023', '11/05/2023', '12/05/2023', '13/05/2023', '14/05/2023', '15/05/2023', '16/05/2023', '17/05/2023', '18/05/2023', '19/05/2023', '20/05/2023', '21/05/2023', '22/05/2023', '23/05/2023', '24/05/2023', '25/05/2023', '26/05/2023', '27/05/2023', '28/05/2023', '29/05/2023', '30/05/2023', '31/05/2023']
+ "dates": [
+            {
+                "pathList": [
+                    {
+                        "count": 1,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/CodigosPostales"
+                    },
+                    {
+                        "count": 3,
+                        "method": "GET",
+                        "path": "/api/v1/SIPSElectricidad"
+                    },
+                    {
+                        "count": 2,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Poblaciones"
+                    },
+                    {
+                        "count": 1,
+                        "method": "GET",
+                        "path": "/api/v1/ConsumoEstimado"
+                    },
+                    {
+                        "count": 2,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Vias"
+                    },
+                    {
+                        "count": 5,
+                        "method": "GET",
+                        "path": "/api/Login/"
+                    },
+                    {
+                        "count": 7,
+                        "method": "GET",
+                        "path": "/api/v1/Status"
+                    }
+                ],
+                "date": "08/05/2023"
+            },
+            {
+                "pathList": [
+                    {
+                        "count": 9,
+                        "method": "GET",
+                        "path": "/api/v1/Status"
+                    },
+                    {
+                        "count": 2,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/CodigosPostales"
+                    },
+                    {
+                        "count": 1,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Poblaciones"
+                    },
+                    {
+                        "count": 1,
+                        "method": "GET",
+                        "path": "/api/v1/SIPSElectricidad"
+                    },
+                    {
+                        "count": 2,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Vias"
+                    },
+                    {
+                        "count": 34,
+                        "method": "OPTIONS",
+                        "path": "/api/v1/Status"
+                    },
+                    {
+                        "count": 1,
+                        "method": "GET",
+                        "path": "/api/v1/ConsumoEstimado"
+                    }
+                ],
+                "date": "10/05/2023"
+            },
+            {
+                "pathList": [
+                    {
+                        "count": 3,
+                        "method": "GET",
+                        "path": "/api/Login/"
+                    },
+                    {
+                        "count": 3,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Vias"
+                    },
+                    {
+                        "count": 7,
+                        "method": "GET",
+                        "path": "/api/v1/SIPSElectricidad"
+                    },
+                    {
+                        "count": 4,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Poblaciones"
+                    },
+                    {
+                        "count": 2,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/CodigosPostales"
+                    },
+                    {
+                        "count": 2,
+                        "method": "GET",
+                        "path": "/api/v1/ConsumoEstimado"
+                    }
+                ],
+                "date": "11/05/2023"
+            },
+            {
+                "pathList": [
+                    {
+                        "count": 4,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/CodigosPostales"
+                    },
+                    {
+                        "count": 2,
+                        "method": "GET",
+                        "path": "/api/v1/ConsumoEstimado"
+                    },
+                    {
+                        "count": 4,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Poblaciones"
+                    },
+                    {
+                        "count": 2,
+                        "method": "GET",
+                        "path": "/api/v1/SIPSElectricidad"
+                    },
+                    {
+                        "count": 1,
+                        "method": "GET",
+                        "path": "/api/admin/Status"
+                    },
+                    {
+                        "count": 4,
+                        "method": "GET",
+                        "path": "/api/Login/"
+                    },
+                    {
+                        "count": 4,
+                        "method": "POST",
+                        "path": "/api/v1/Callejero/Vias"
+                    }
+                ],
+                "date": "12/05/2023"
+            },
+            {
+                "pathList": [
+                    {
+                        "count": 3,
+                        "method": "GET",
+                        "path": "/api/v1/Status"
+                    },
+                    {
+                        "count": 1,
+                        "method": "GET",
+                        "path": "/api/Login/"
+                    },
+                    {
+                        "count": 35,
+                        "method": "OPTIONS",
+                        "path": "/api/v1/Status"
+                    },
+                    {
+                        "count": 2,
+                        "method": "GET",
+                        "path": "/api/v1/ConsumoEstimado"
+                    },
+                    {
+                        "count": 9,
+                        "method": "GET",
+                        "path": "/api/admin/Status"
+                    }
+                ],
+                "date": "16/05/2023"
+            }
+        ]
