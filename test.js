@@ -1,83 +1,95 @@
-import {
-  GET_ALL_INFO,
-  GET_MOCK_DATA,
-  GET_DATE,
-  SET_DAY_PER_MONTH,
-} from "./actions.js";
+import rootReducer from "./reducer";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 
-let initialState = {
-  allInfoCopy: [],
-  allInfo: [],
-  dates: [],
-  firstMonth: "",
-  allMonthDays: {},
-};
+const store = createStore(
+  rootReducer,(applyMiddleware(thunk))
+);
 
-export default function rootReducer(state = initialState, action) {
-  switch (action.type) {
-    // RETURN COMPLETE INFO
-    case GET_ALL_INFO:
-      return {
-        ...state,
-        allInfo: action.payload,
-        allInfoCopy: action.payload,
-      };
-
-    // TRAE LOS MESES DE LA BASE DE DATOS.
-    case GET_DATE:
-      return {
-        ...state,
-        dates: action.payload,
-      };
-
-    case SET_DAY_PER_MONTH:
-      // eslint-disable-next-line no-case-declarations
-      const year = action.payload?.slice(6, 10)
-      // eslint-disable-next-line no-case-declarations
-      const month = action.payload?.slice(10)
-      // eslint-disable-next-line no-case-declarations
-      let ultimoDia = new Date(year, month, 0).getDate();
-      // eslint-disable-next-line no-case-declarations
-      let diasMes = [];
-
-      for (let i = 1; i <= ultimoDia; i++) {
-        let dia = i.toString().padStart(2, "0");
-
-        let mesActual = month.toString().padStart(2, "0");
-
-        let anioActual = year.toString();
-
-        let fecha = dia + "/" + mesActual + "/" + anioActual;
-        diasMes.push(fecha);
-      }
-
-      return {
-        ...state,
-        allMonthDays: diasMes,
-      };
-
-    // RETURN MOCK DATA TO TEST
-    case GET_MOCK_DATA:
-      return {
-        ...state,
-        allInfo: action.payload,
-        allInfoCopy: action.payload,
-      };
-    default:
-      return state;
-  }
-}
+export default store;
 
 
 
-export function getMockData() {
+
+import "./App.css";
+import { Dashboard } from "./components/dashBoard/Dashboard";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getAllInfo, getDates, setMonthDays } from "./redux/actions";
+import { useState } from "react";
+
+function App() {
+  const dispatch = useDispatch();
+  const dates = useSelector((state) => state.dates)
+  const data = useSelector((state) => state.allInfo);
+  const [date, setDate] = useState("track_202305");
   
-  return function (dispatch) {
-    dispatch({
-      type: GET_MOCK_DATA,
-      payload: status,
-    });
+  console.log("la primera fecha, luego cambia",date)
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    setDate(event.target.value);
   };
 
+
+  useEffect(() => {
+    dispatch(getDates());
+    dispatch(getAllInfo(date));
+  }, []);
+  
+  useEffect(() => {
+    dispatch(getAllInfo(date))
+    dispatch(setMonthDays(date))
+  },[date]) 
+
+
+  return (
+    <>  
+    <div style={{marginLeft: '2px', marginBottom: '20px'}}>
+      <select style={{borderRadius: '20px', paddingLeft: '20px', paddingRight: '20px'}} onChange={(e) => handleChange(e)}>
+        <option> Selecionar Fecha...</option>
+        {dates.data?.dates.map((e, index) => {
+          return <option key={index}> {e} </option>;
+        })}
+      </select>
+    </div> 
+
+        <Dashboard apiData={data} />
+ 
+    </>
+  );
 }
+
+export default App; 
+
+
+
+
+
+
+
+
+
+import LastTen from "../lastTen/LastTen";
+import BarChart from "../charts/barChart/BarChart";
+import Users from "../general/totalUsers/Users";
+import LineChart from "../charts/lineChart/LineChart";
+import style from './dashboard.module.css';
+
+
+export const Dashboard = (apiData) => {
+  return (
+    <div className={style.container}>
+      <div className={style.cards}>
+        <LineChart data={apiData.apiData.data?.dates} />
+        <BarChart data={apiData.apiData.data?.pathCount}/>
+      </div>
+
+      <div className={style.cards}>
+        <LastTen data={apiData.apiData.data?.lastTen} />
+        <Users data={apiData.apiData.data?.users} />
+      </div>
+    </div>
+  );
+};
 
