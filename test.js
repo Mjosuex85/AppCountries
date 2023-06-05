@@ -14,6 +14,9 @@ export default function LineChart(data) {
   const [labels, setLabels] = useState([]);
   const [lines, setLines] = useState([]);
 
+  console.log("esta data llega a linechart", data)
+  console.log("estas fechas llegan al lineChart", fechas)
+
   useEffect(() => {
     let pathCounts = {};
 
@@ -39,11 +42,14 @@ export default function LineChart(data) {
         counts.push(count);
       });
 
-      result.push({path: path, counts: counts });
+      result.push({path: path, counts: counts});
     }
 
     setLines(result);
-  }, []);
+
+  },[]);
+
+  console.log("las lineas",lines)
 
 
   useEffect(() => {
@@ -52,12 +58,12 @@ export default function LineChart(data) {
     } else {
       setLabels(fechas);
     }
-  }, [fechas]);
+  }, []);
 
 
   useEffect(() => {
     dispatch(getDates());
-  }, [labels]);
+  }, []);
 
   const options = {
     fill: false,
@@ -69,7 +75,6 @@ export default function LineChart(data) {
     },
   };
 
- /*  console.log("TRAE ESTO",lines.map((e) => e.counts)); */
 
   function generateRandomColors(count) {
     const colors = [];
@@ -112,9 +117,9 @@ export default function LineChart(data) {
         };
       }),
     };
-  }, [labels]);
+  }, []);
 
-console.log("esta info",info)
+
 
 
   return (
@@ -125,4 +130,5 @@ console.log("esta info",info)
     </div>
   );
 }
+
 
