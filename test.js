@@ -1,129 +1,79 @@
-import { useEffect, useMemo, useState } from "react";
-import { Line } from "react-chartjs-2";
-import { Chart, registerables } from "chart.js";
-import style from "./lineChart.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getDates } from "../../../redux/actions";
+import axios from "axios";
+import status from "../data";
 
-Chart.register(...registerables);
+export const GET_ALL_INFO = "GET_ALL_INFO";
+export const GET_MOCK_DATA = "GET_MOCK_DATA";
+export const GET_DATE = "GET_DATE";
+export const SET_DAY_PER_MONTH = "SET_DAY_PER_MONTH";
 
-export default function LineChart(data) {
-  const dispatch = useDispatch();
+const DATA_URL = "http://localhost:7000/api/admin/Status/Data";
+const DATE_URL = "http://localhost:7000/api/admin/Status/Dates";
+const token =
 
-  const fechas = useSelector((state) => state.allMonthDays);
-  const [labels, setLabels] = useState([]);
-  const [lines, setLines] = useState([]);
 
-  useEffect(() => {
-    let pathCounts = {};
+// trae la toda el json con toda la información
 
-    data.data?.forEach((date) => {
-      date.pathList.forEach((pathObj) => {
-        const { path, count } = pathObj;
+export function getAllInfo(date) {
 
-        if (!pathCounts[path]) {
-          pathCounts[path] = {};
+  return function (dispatch) {
+    axios.get(`${DATA_URL}?trackDate=${date}`, {   
+      headers: {
+          Authorization: token,
         }
+      })
+      .then((res) => {
+        dispatch({
+          type: GET_ALL_INFO,
+          payload: res.data
 
-        pathCounts[path][date.date] = count;
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
-
-    let result = [];
-
-    for (let path in pathCounts) {
-      let counts = [];
-
-      fechas.forEach((fecha) => {
-        const count = pathCounts[path][fecha] || 0;
-        counts.push(count);
-      });
-
-      result.push({path: path, counts: counts });
-    }
-
-    setLines(result);
-  }, []);
-
-
-  useEffect(() => {
-    if (Object.entries(fechas).length === 0) {
-      console.log("setea fechas si está vacio");
-    } else {
-      setLabels(fechas);
-    }
-  }, [fechas]);
-
-
-  useEffect(() => {
-    dispatch(getDates());
-  }, [labels]);
-
-  const options = {
-    fill: false,
-    responsive: true,
-    scales: {
-      y: {
-        min: 0,
-      },
-    },
   };
-
- /*  console.log("TRAE ESTO",lines.map((e) => e.counts)); */
-
-  function generateRandomColors(count) {
-    const colors = [];
-    const availableColors = [
-      "#FF5733 ",
-      "#33FF57",
-      "#5733FF",
-      "#FF33E6",
-      "#33E6FF",
-      "#E6FF33",
-    ];
-
-    for (let i = 0; i < count; i++) {
-      const randomIndex = Math.floor(Math.random() * availableColors.length);
-      const color = availableColors[randomIndex];
-      availableColors.splice(randomIndex, 1);
-      colors.push(color);
-    }
-
-    return colors;
-  }
-
-  const info = useMemo(() => {
-    const colors = generateRandomColors(lines.length);
-
-    return {
-      labels,
-      datasets: lines.map((item, index) => {
-        const color = colors[index];
-        return {
-          id: index,
-          label: item.path,
-          data: item.counts,
-          transition: 0.1,
-          tension: 0.1,
-          borderColor: color,
-          borderRadius: "30px",
-          pointBackgroundColor: color,
-          borderWidth: 0.9,
-        };
-      }),
-    };
-  }, [labels]);
-
-console.log("esta info",info)
-
-
-  return (
-    <div className={style.container}>
-      <div>
-        <Line datasetIdKey="id" data={info} options={options} />
-      </div>
-    </div>
-  );
 }
 
+// trae la información de las fechas guardadas en los tracks de mongodb
+// ejemplo ----> track_202305
+
+export function getDates() {
+  return function(dispatch) {
+    axios.get(DATE_URL, {
+      headers: {
+        'Authorization': token
+      }
+    }).then((res) => {
+       dispatch({
+        type: GET_DATE,
+        payload: res.data
+       })
+    })
+   
+  }
+}
+
+// modifica la fecha para poder hacer los meses
+
+export function setMonthDays(payload) {
+  return function(dispatch) {
+    dispatch({
+      type: SET_DAY_PER_MONTH,
+      payload: payload
+    })
+  }
+}
+
+
+
+export function getMockData() {
+  
+  return function (dispatch) {
+    dispatch({
+      type: GET_MOCK_DATA,
+      payload: status,
+    });
+  };
+
+}
 
