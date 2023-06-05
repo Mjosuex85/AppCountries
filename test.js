@@ -1,66 +1,70 @@
-import axios from "axios";
-import status from "../data";
+import {
+  GET_ALL_INFO,
+  GET_MOCK_DATA,
+  GET_DATE,
+  SET_DAY_PER_MONTH,
+} from "./actions.js";
 
-export const GET_ALL_INFO = "GET_ALL_INFO";
-export const GET_MOCK_DATA = "GET_MOCK_DATA";
-export const GET_DATE = "GET_DATE";
-export const SET_DAY_PER_MONTH = "SET_DAY_PER_MONTH";
+let initialState = {
+  allInfoCopy: [],
+  allInfo: [],
+  dates: [],
+  firstMonth: "",
+  allMonthDays: {},
+};
 
-const DATA_URL = "http://localhost:7000/api/admin/Status/Data";
-const DATE_URL = "http://localhost:7000/api/admin/Status/Dates";
-const token =
+export default function rootReducer(state = initialState, action) {
+  switch (action.type) {
+    // RETURN COMPLETE INFO
+    case GET_ALL_INFO:
+      return {
+        ...state,
+        allInfo: action.payload,
+        allInfoCopy: action.payload,
+      };
 
+    // TRAE LOS MESES DE LA BASE DE DATOS.
+    case GET_DATE:
+      return {
+        ...state,
+        dates: action.payload,
+      };
 
-// trae la toda el json con toda la información
+    case SET_DAY_PER_MONTH:
+      // eslint-disable-next-line no-case-declarations
+      const year = action.payload?.slice(6, 10)
+      // eslint-disable-next-line no-case-declarations
+      const month = action.payload?.slice(10)
+      // eslint-disable-next-line no-case-declarations
+      let ultimoDia = new Date(year, month, 0).getDate();
+      // eslint-disable-next-line no-case-declarations
+      let diasMes = [];
 
-export function getAllInfo(date) {
+      for (let i = 1; i <= ultimoDia; i++) {
+        let dia = i.toString().padStart(2, "0");
 
-  return function (dispatch) {
-    axios.get(`${DATA_URL}?trackDate=${date}`, {   
-      headers: {
-          Authorization: token,
-        }
-      })
-      .then((res) => {
-        dispatch({
-          type: GET_ALL_INFO,
-          payload: res.data
+        let mesActual = month.toString().padStart(2, "0");
 
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-}
+        let anioActual = year.toString();
 
-// trae la información de las fechas guardadas en los tracks de mongodb
-// ejemplo ----> track_202305
-
-export function getDates() {
-  return function(dispatch) {
-    axios.get(DATE_URL, {
-      headers: {
-        'Authorization': token
+        let fecha = dia + "/" + mesActual + "/" + anioActual;
+        diasMes.push(fecha);
       }
-    }).then((res) => {
-       dispatch({
-        type: GET_DATE,
-        payload: res.data
-       })
-    })
-   
-  }
-}
 
-// modifica la fecha para poder hacer los meses
+      return {
+        ...state,
+        allMonthDays: diasMes,
+      };
 
-export function setMonthDays(payload) {
-  return function(dispatch) {
-    dispatch({
-      type: SET_DAY_PER_MONTH,
-      payload: payload
-    })
+    // RETURN MOCK DATA TO TEST
+    case GET_MOCK_DATA:
+      return {
+        ...state,
+        allInfo: action.payload,
+        allInfoCopy: action.payload,
+      };
+    default:
+      return state;
   }
 }
 
