@@ -12,48 +12,48 @@ export default function LineChart(data) {
 
   const fechas = useSelector((state) => state.allMonthDays);
   const [labels, setLabels] = useState([]);
-  const [lines, setLines] = useState([])
-
-  let pathCounts = {};
-
-  data.data?.forEach((date) => {
-    date.pathList.forEach((pathObj) => {
-      const { path, count } = pathObj;
-
-      if (!pathCounts[path]) {
-        pathCounts[path] = {};
-      }
-
-      pathCounts[path][date.date] = count;
-    });
-  });
-
-  let result = [];
-
-  for (let path in pathCounts) {
-    let counts = [];
-
-    fechas.forEach((fecha) => {
-      const count = pathCounts[path][fecha] || 0;
-      counts.push(count);
-    });
-
-    result.push({ path: path, counts: counts });
-  }
+  const [lines, setLines] = useState([]);
 
   useEffect(() => {
-    setLines(result)
-  },[])
+    let pathCounts = {};
 
+    data.data?.forEach((date) => {
+      date.pathList.forEach((pathObj) => {
+        const { path, count } = pathObj;
+
+        if (!pathCounts[path]) {
+          pathCounts[path] = {};
+        }
+
+        pathCounts[path][date.date] = count;
+      });
+    });
+
+    let result = [];
+
+    for (let path in pathCounts) {
+      let counts = [];
+
+      fechas.forEach((fecha) => {
+        const count = pathCounts[path][fecha] || 0;
+        counts.push(count);
+      });
+
+      result.push({path: path, counts: counts });
+    }
+
+    setLines(result);
+  }, []);
 
 
   useEffect(() => {
     if (Object.entries(fechas).length === 0) {
       console.log("setea fechas si está vacio");
     } else {
-      setLabels([...fechas]);
+      setLabels(fechas);
     }
   }, [fechas]);
+
 
   useEffect(() => {
     dispatch(getDates());
@@ -61,37 +61,46 @@ export default function LineChart(data) {
 
   const options = {
     fill: false,
-    /* responsive: true, */
-    /* scales: {
+    responsive: true,
+    scales: {
       y: {
         min: 0,
-        max: 100,
       },
-    }, */
+    },
   };
 
-  console.log(lines.map(e => e.counts))
+ /*  console.log("TRAE ESTO",lines.map((e) => e.counts)); */
 
-
-  function generateRandomDarkColors(count) {
+  function generateRandomColors(count) {
     const colors = [];
-    
+    const availableColors = [
+      "#FF5733 ",
+      "#33FF57",
+      "#5733FF",
+      "#FF33E6",
+      "#33E6FF",
+      "#E6FF33",
+    ];
+
     for (let i = 0; i < count; i++) {
-      const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      const randomIndex = Math.floor(Math.random() * availableColors.length);
+      const color = availableColors[randomIndex];
+      availableColors.splice(randomIndex, 1);
       colors.push(color);
     }
-    
+
     return colors;
   }
-  
+
   const info = useMemo(() => {
-    const colors = generateRandomDarkColors(result.length);
-    
+    const colors = generateRandomColors(lines.length);
+
     return {
       labels,
-      datasets: result.map((item, index) => {
+      datasets: lines.map((item, index) => {
         const color = colors[index];
         return {
+          id: index,
           label: item.path,
           data: item.counts,
           transition: 0.1,
@@ -105,27 +114,8 @@ export default function LineChart(data) {
     };
   }, [labels]);
 
-  /* const info = useMemo(
-    function () {
-      return {
-        labels,
-        datasets: [
-          {
-      
-            label: lines[0]?.path,
-            data: lines[0]?.counts,
-            transition: 0.1,
-            tension: 0.1,
-            borderColor: "FF5733",
-            borderRadius: "30px",
-            pointBackgroundColor: "FF5733",
-            borderWidth: 0.9,
-          }
-        ],
-      };
-    },
-    [labels]
-  ); */
+console.log("esta info",info)
+
 
   return (
     <div className={style.container}>
@@ -135,4 +125,5 @@ export default function LineChart(data) {
     </div>
   );
 }
+
 
