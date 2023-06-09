@@ -37,5 +37,12 @@
       opacity: 1;
     }
   }
+
+
+//spinner
+
+<div className="spinner-border text-primary">
+          <span className="sr-only" />
+ </div>
   
   
