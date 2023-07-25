@@ -1,12 +1,26 @@
-public static decimal ConvertirNumero(decimal numero)
+public static string ConvertirNumero(string numeroTexto)
     {
-        string numeroTexto = numero.ToString("0.######");
+        string numeroFormateado = numeroTexto.Replace(',', '.');
 
-        if (numeroTexto.Contains(",") && !numeroTexto.EndsWith("0"))
+        // Usamos decimal.TryParse para asegurarnos de que el número sea válido
+        if (decimal.TryParse(numeroFormateado, out decimal numeroDecimal))
         {
-            int posicionComa = numeroTexto.IndexOf(",");
-            numeroTexto = numeroTexto.Substring(0, posicionComa + 4); // Tomamos hasta 3 decimales después de la coma
+            string[] partes = numeroDecimal.ToString().Split('.');
+            if (partes.Length > 1)
+            {
+                string parteDecimal = partes[1];
+                parteDecimal = parteDecimal.TrimEnd('0'); // Eliminamos los ceros a la derecha
+                if (parteDecimal.Length == 0)
+                {
+                    return partes[0] + ",0";
+                }
+                else
+                {
+                    return partes[0] + "," + parteDecimal;
+                }
+            }
         }
 
-        return decimal.Parse(numeroTexto);
+        // Si no se pudo convertir correctamente, se devuelve el número original sin cambios.
+        return numeroTexto;
     }
