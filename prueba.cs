@@ -1,10 +1,12 @@
-protected void GetGenericFields(BasePriceIndexed price)
-        {
+public static decimal ConvertirNumero(decimal numero)
+    {
+        string numeroTexto = numero.ToString("0.######");
 
-            Console.WriteLine(price.CG.ToString(SixDecimalFormat, Culture));
-            Fields["duracion"] = price.Duration.Name;
-            Fields["cg"]       = price.CG.ToString(SixDecimalFormat, Culture);
-            Fields["cf"]       = price.CF.ToString(SixDecimalFormat, Culture);
-            Fields["gdo"]      = price.GDO.ToString(SixDecimalFormat, Culture);
-            Fields["ifnee"]    = price.IFNEE.ToString(SixDecimalFormat, Culture);  
+        if (numeroTexto.Contains(",") && !numeroTexto.EndsWith("0"))
+        {
+            int posicionComa = numeroTexto.IndexOf(",");
+            numeroTexto = numeroTexto.Substring(0, posicionComa + 4); // Tomamos hasta 3 decimales después de la coma
         }
+
+        return decimal.Parse(numeroTexto);
+    }
