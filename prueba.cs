@@ -1,26 +1,20 @@
-public static string ConvertirNumero(string numeroTexto)
-    {
-        string numeroFormateado = numeroTexto.Replace(',', '.');
+f (string.IsNullOrEmpty(input))
+            return input;
 
-        // Usamos decimal.TryParse para asegurarnos de que el número sea válido
-        if (decimal.TryParse(numeroFormateado, out decimal numeroDecimal))
+        int length = input.Length;
+        int index = length - 1;
+
+        // Starting from the right, find the index of the first non-zero character.
+        while (index >= 0 && input[index] == '0')
         {
-            string[] partes = numeroDecimal.ToString().Split('.');
-            if (partes.Length > 1)
-            {
-                string parteDecimal = partes[1];
-                parteDecimal = parteDecimal.TrimEnd('0'); // Eliminamos los ceros a la derecha
-                if (parteDecimal.Length == 0)
-                {
-                    return partes[0] + ",0";
-                }
-                else
-                {
-                    return partes[0] + "," + parteDecimal;
-                }
-            }
+            index--;
         }
 
-        // Si no se pudo convertir correctamente, se devuelve el número original sin cambios.
-        return numeroTexto;
-    }
+        // If we found a non-zero character, check if it's a decimal separator.
+        if (index >= 0 && input[index] == ',')
+        {
+            // If it is, we need to keep one trailing zero after the decimal separator.
+            index++;
+        }
+
+        return input.Substring(0, index + 1);
