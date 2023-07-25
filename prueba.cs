@@ -3,23 +3,37 @@ if (string.IsNullOrEmpty(input))
 
         int length = input.Length;
         int index = length - 1;
+        int zerosAfterComma = 0;
 
         // Starting from the right, find the index of the first non-zero character.
-        while (index >= 0 && input[index] == '0')
+        while (index >= 0 && (input[index] == '0' || input[index] == ','))
+        {
+            if (input[index] == ',')
+            {
+                // Count the zeros after the comma.
+                zerosAfterComma = 2;
+            }
+            else if (zerosAfterComma > 0)
+            {
+                // Reduce the count of zeros after the comma.
+                zerosAfterComma--;
+            }
+
+            index--;
+        }
+
+        // If the last digit is a comma, remove it.
+        if (index >= 0 && input[index] == ',')
         {
             index--;
         }
 
-        // If we found a non-zero character, check if it's a decimal separator.
-        if (index >= 0 && input[index] == ',')
+        // If there are any zeros after the comma, add them back.
+        while (zerosAfterComma > 0)
         {
-            // If it is, we need to keep two trailing zeros after the decimal separator.
-            index += 3;
-        }
-        else if (index >= 0)
-        {
-            // If it's a non-zero digit before the decimal separator, we need to keep one trailing zero.
-            index += 2;
+            input += "0";
+            zerosAfterComma--;
         }
 
         return input.Substring(0, index + 1);
+    }
