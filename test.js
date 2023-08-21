@@ -1,33 +1,27 @@
-export function getAllInfo(date) {
-  if (!date) {
-    const fechaActual = new Date();
-
-    const año = fechaActual.getFullYear();
-    const mes = fechaActual.getMonth() + 1;
-    const fechaFormateada = "track_" + año + padZero(mes);
-
-    function padZero(numero) {
-      return numero < 10 ? "0" + numero : numero;
-    }
-    date = fechaFormateada;
-  }
+public async Task<IRequestPipelineResult<bool>> UpdateContractStateOffer(int offerId)
+        {
 
 
-  return function (dispatch) {
-    axios
-      .get(`${DATA_URL}?trackDate=${date}`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        dispatch({
-          type: GET_ALL_INFO,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-}
+            var dbOffers = Repository
+            .Items<OfferRegular>(includeNavigationProperties: true, levels: 1, trackEntities: true)
+            .Where(or => or.Id != offerId)
+            .ToList();
+            
+
+
+            dbOffer.State = (int)offerStateId;
+
+            await Repository.Update<OfferRegular>(dbOffer);
+            bool dbUpdateErrorResult = await Repository.Commit();
+            
+            if (!dbUpdateErrorResult)
+            {
+                Logger.LogError($"Error al actualizar el estado de la oferta {dbOffer.Id}...");
+   
+            }
+
+
+            return await Task.FromResult(
+                new RequestPipelineResult<bool>(true)
+            );
+        }
