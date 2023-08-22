@@ -1,9 +1,24 @@
-<p-dialog [(visible)]="displayConfirmationDialog" header="Confirmación" modal="true" [style]="{ width: '300px' }">
-    <p>
-        ¿Está seguro de que desea reenviar la firma digital?
-    </p>
-    <p-footer>
-        <button type="button" pButton label="Sí" (click)="confirm()" class="p-button-success"></button>
-        <button type="button" pButton label="No" (click)="cancel()" class="p-button-secondary"></button>
-    </p-footer>
-</p-dialog>
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-tu-componente',
+  templateUrl: './tu-componente.component.html',
+})
+export class TuComponente {
+  displayConfirmationDialog: boolean = false;
+
+  // Resto del código de tu componente...
+
+  openConfirmationDialog(offerId: number, index: number): void {
+    this.displayConfirmationDialog = true;
+  }
+
+  confirm(): void {
+    // Aquí puedes realizar la acción de confirmación, como llamar a resendDigitalSignature
+    this.displayConfirmationDialog = false;
+  }
+
+  cancel(): void {
+    this.displayConfirmationDialog = false;
+  }
+}
