@@ -1,21 +1,44 @@
-<button mat-flat-button *ngIf="offer.stateId === 9 && checkPermissions()" [disabled]="offer.disabledButton" [title]="labels.resendSingaturButton" 
-        class="button-complementary-color-one rounded-0  me-0 me-lg-2 mb-2 mb-lg-0"
-        (click)="openConfirmationDialog(offer.id, rowIndex)">
-    <div *ngIf="!offer.disabledButton" class="d-flex flex-row justify-content-center align-items-center">
-        <fa-icon [icon]="['fas', 'rotate-right']"></fa-icon>
-    </div>
-    <div *ngIf="offer.disabledButton" class="d-flex flex-row justify-content-center align-items-center">
-        <fa-icon [icon]="['fas', 'spinner']" [spin]="true" class="me-2"></fa-icon>
-    </div>
-</button>
+public resendDigitalSignature(offerId: number, index: number) {
+        
+        this.offerRegularService.resendDigitalSignature(offerId).subscribe({
+            next: (data: boolean) => {
+                
+                console.log(data)
+                
+            }
+        }).add(() => {
+            this.isResendingSignature = false;
+            this.offers[index]['disabledButton'] = false;
+            
+        });
 
-<!-- Cuadro de diálogo de confirmación (fuera del botón) -->
-<p-dialog [(visible)]="displayConfirmationDialog" header="Confirmación" [style]="{ width: '300px' }">
-    <p>
-        ¿Está seguro de que desea reenviar la firma digital?
-    </p>
-    <p-footer>
-        <button type="button" pButton label="Sí" (click)="confirm()" class="p-button-success"></button>
-        <button type="button" pButton label="No" (click)="cancel()" class="p-button-secondary"></button>
-    </p-footer>
-</p-dialog>
+    }
+
+
+    public openConfirmationDialog(offerId: number, index: number) : void {
+        
+        
+        console.log("PASA POR AUI")
+        this.displayConfirmationDialog = true
+        
+        this.confirmationService.confirm({
+            message: "Se reenviará el contrato a firma digital",
+            accept: () => {
+    
+                this.resendDigitalSignature(offerId, index)
+                
+                this.displayConfirmationDialog = false
+                
+            }
+        })
+
+    }
+
+    public confirm() {
+        alert("LE DISTE A CONFIRMAR")
+        
+    }
+
+    public cancel() {
+        alert("CANCELASTE")
+    }
